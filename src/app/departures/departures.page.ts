@@ -12,7 +12,7 @@ export class DeparturesPage {
 
   constructor() {
     dvb.monitor('33000210', 0, this.departuresPerStop).then(departures => {
-      this.departures = departures;
+      this.departures = departures.filter(departure => departure.arrivalTimeRelative >= 0);
     });
   }
 }
