@@ -6,6 +6,8 @@ import { DeparturesPage } from './departures.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { DeparturesPageRoutingModule } from './departures-routing.module';
+import { DepartureCardComponent } from '../departure-card/departure-card.component';
+import { DepartureItemComponent } from '../departure-item/departure-item.component';
 
 @NgModule({
   imports: [
@@ -15,6 +17,6 @@ import { DeparturesPageRoutingModule } from './departures-routing.module';
     ExploreContainerComponentModule,
     DeparturesPageRoutingModule
   ],
-  declarations: [DeparturesPage]
+  declarations: [DeparturesPage, DepartureCardComponent, DepartureItemComponent]
 })
 export class DeparturesPageModule {}

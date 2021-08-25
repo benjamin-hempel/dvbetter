@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as dvb from 'dvbjs';
 
 @Component({
   selector: 'app-departures',
@@ -6,7 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['departures.page.scss']
 })
 export class DeparturesPage {
+  departures: dvb.IMonitor[];
+  departuresPerStop = 4;
 
-  constructor() {}
-
+  constructor() {
+    dvb.monitor('33000210', 0, this.departuresPerStop).then(departures => {
+      this.departures = departures;
+    });
+  }
 }
