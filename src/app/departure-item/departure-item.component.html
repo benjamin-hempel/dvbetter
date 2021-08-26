@@ -1,6 +1,6 @@
 <ion-item>
   <ion-avatar slot="start">
-    <img src="{{departure.mode.iconUrl}}">
+    <img src="{{departure.mode.iconUrl}}" [ngClass]="{'filter-grayscale': departure.arrivalTimeRelative < 0}">
   </ion-avatar>
   <ion-label [ngClass]="{'color-departed': departure.arrivalTimeRelative < 0}">
     <div class="ion-float-left">
