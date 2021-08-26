@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { DeparturesPage } from './departures.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
+import { AppTitleComponent } from '../app-title/app-title.component';
 import { DeparturesPageRoutingModule } from './departures-routing.module';
 import { DepartureCardComponent } from '../departure-card/departure-card.component';
 import { DepartureItemComponent } from '../departure-item/departure-item.component';
@@ -17,6 +18,11 @@ import { DepartureItemComponent } from '../departure-item/departure-item.compone
     ExploreContainerComponentModule,
     DeparturesPageRoutingModule
   ],
-  declarations: [DeparturesPage, DepartureCardComponent, DepartureItemComponent]
+  declarations: [
+    AppTitleComponent,
+    DeparturesPage,
+    DepartureCardComponent,
+    DepartureItemComponent
+  ]
 })
 export class DeparturesPageModule {}
