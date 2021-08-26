@@ -2,12 +2,13 @@
   <ion-avatar slot="start">
     <img src="{{departure.mode.iconUrl}}">
   </ion-avatar>
-  <ion-label>
+  <ion-label [ngClass]="{'color-departed': departure.arrivalTimeRelative < 0}">
     <h2 class="ion-float-left">{{departure.line}} {{departure.direction}}</h2>
     <h3 class="ion-float-right ion-text-end">
       {{departureTime}}
       <br />
-      <span [ngClass]="{'color-on-time': departure.delayTime === 0, 'color-late': departure.delayTime > 0, 'color-early': departure.delayTime < 0}">
+      <span [ngClass]="{'color-departed': departure.arrivalTimeRelative < 0, 'color-on-time': departure.delayTime === 0, 
+        'color-late': departure.delayTime > 0, 'color-early': departure.delayTime < 0}">
         {{delay}}
       </span>
     </h3>

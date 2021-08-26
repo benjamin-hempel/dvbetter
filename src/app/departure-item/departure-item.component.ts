@@ -18,6 +18,10 @@ export class DepartureItemComponent implements OnInit {
       return 'now';
     }
 
+    if(this.departure.arrivalTimeRelative < 0) {
+      return Math.abs(this.departure.arrivalTimeRelative) + ' min ago';
+    }
+
     if(this.departure.arrivalTimeRelative > 30) {
       let delimiter = ':';
       const minutes = this.departure.arrivalTime.getMinutes();
