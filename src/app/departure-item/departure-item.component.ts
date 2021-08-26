@@ -31,4 +31,16 @@ export class DepartureItemComponent implements OnInit {
 
     return this.departure.arrivalTimeRelative + ' min';
   }
+
+  get delay(): string {
+    if(this.departure.delayTime === 0) {
+      return 'on time';
+    }
+
+    if(this.departure.delayTime < 0) {
+      return this.departure.delayTime + ' min early';
+    }
+
+    return this.departure.delayTime + ' min late';
+  }
 }
