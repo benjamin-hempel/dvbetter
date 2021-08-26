@@ -5,6 +5,7 @@
   <ion-label [ngClass]="{'color-departed': departure.arrivalTimeRelative < 0}">
     <div class="ion-float-left">
       <h2>{{departure.line}} {{departure.direction}}</h2>
+      <h3>Platform {{departure.platform.name}}</h3>
     </div>
     <div class="ion-float-right ion-text-end">
       <h3>{{departureTime}}</h3>
