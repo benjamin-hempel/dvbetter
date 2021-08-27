@@ -1,14 +1,14 @@
 <ion-card>
   <ion-card-header>
     <ion-card-title>
-      Rankestraße
+      {{ monitoredStation.station.name }}
     </ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <ion-list *ngIf="departures">
-      <app-departure-item *ngFor="let departure of departures" [departure]="departure"></app-departure-item>
+    <ion-list *ngIf="monitoredStation.departures">
+      <app-departure-item *ngFor="let departure of monitoredStation.departures" [departure]="departure"></app-departure-item>
     </ion-list>
-    <ion-list *ngIf="!departures">
+    <ion-list *ngIf="!monitoredStation.departures">
       <ion-item *ngFor="let skeleton of skeletons">
         <ion-avatar slot="start">
           <ion-skeleton-text animated></ion-skeleton-text>

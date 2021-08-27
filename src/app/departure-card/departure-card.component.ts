@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import * as dvb from 'dvbjs';
+
+import { MonitoredStation } from '../shared/models/monitored-station.model';
 
 @Component({
   selector: 'app-departure-card',
@@ -7,14 +8,13 @@ import * as dvb from 'dvbjs';
   styleUrls: ['./departure-card.component.scss'],
 })
 export class DepartureCardComponent implements OnInit {
-  @Input() departures: dvb.IMonitor[];
-  @Input() departureCount: number;
+  @Input() monitoredStation: MonitoredStation;
 
   constructor() { }
 
   ngOnInit() {}
 
   get skeletons(): Array<number> {
-    return Array(this.departureCount);
+    return Array(this.monitoredStation.departureCount);
   }
 }
