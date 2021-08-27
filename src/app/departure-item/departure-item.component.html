@@ -1,6 +1,7 @@
 <ion-item>
   <ion-avatar slot="start">
-    <img src="{{departure.mode.iconUrl}}" [ngClass]="{'filter-grayscale': departure.arrivalTimeRelative < 0}">
+    <img src="{{departure.mode.iconUrl}}" [ngClass]="{'filter-grayscale': departure.arrivalTimeRelative < 0}"
+      onerror="this.onerror=null; this.src='assets/unknown-mode.svg'" alt="">
   </ion-avatar>
   <ion-label [ngClass]="{'color-departed': departure.arrivalTimeRelative < 0}">
     <div class="ion-float-left">
