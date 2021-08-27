@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DeparturesPage } from './departures.page';
-import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { AppTitleComponent } from '../app-title/app-title.component';
 import { DeparturesPageRoutingModule } from './departures-routing.module';
@@ -15,7 +14,6 @@ import { DepartureItemComponent } from '../departure-item/departure-item.compone
     IonicModule,
     CommonModule,
     FormsModule,
-    ExploreContainerComponentModule,
     DeparturesPageRoutingModule
   ],
   declarations: [
