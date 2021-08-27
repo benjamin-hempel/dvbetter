@@ -42,7 +42,7 @@ export class DepartureItemComponent implements OnInit {
     }
 
     if(this.departure.delayTime < 0) {
-      return this.departure.delayTime + ' min early';
+      return Math.abs(this.departure.delayTime) + ' min early';
     }
 
     return this.departure.delayTime + ' min late';
