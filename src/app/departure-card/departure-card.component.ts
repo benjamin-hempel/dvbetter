@@ -21,7 +21,7 @@ export class DepartureCardComponent implements OnInit {
 
   onMonitoredStationEditorSubmitted() {
     this.inEditMode = false;
-    this.monitoredStation.departures = [];
+    this.monitoredStation.departures = null;
     this.monitoredStation.updateDepartures();
   }
 }
