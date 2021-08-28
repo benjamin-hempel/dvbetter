@@ -1,26 +1,29 @@
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DeparturesPage } from './departures.page';
 
 import { AppTitleComponent } from '../app-title/app-title.component';
 import { DeparturesPageRoutingModule } from './departures-routing.module';
 import { DepartureCardComponent } from '../departure-card/departure-card.component';
 import { DepartureItemComponent } from '../departure-item/departure-item.component';
+import { MonitoredStationEditorComponent } from '../monitored-station-editor/monitored-station-editor.component';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     DeparturesPageRoutingModule
   ],
   declarations: [
     AppTitleComponent,
     DeparturesPage,
     DepartureCardComponent,
-    DepartureItemComponent
+    DepartureItemComponent,
+    MonitoredStationEditorComponent
   ]
 })
 export class DeparturesPageModule {}

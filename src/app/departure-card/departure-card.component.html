@@ -1,14 +1,14 @@
 <ion-card>
-  <ion-item>
+  <ion-item lines="none">
     <ion-label>
-      <ion-card-subtitle class="ion-text-nowrap">{{ monitoredStation.station.city }}</ion-card-subtitle>
       <ion-card-title class="ion-text-nowrap">{{ monitoredStation.station.name }}</ion-card-title>
+      <ion-card-subtitle class="ion-text-nowrap">{{ monitoredStation.station.city }}</ion-card-subtitle>
     </ion-label>
-    <ion-button slot="end" fill="clear" size="small">
+    <ion-button *ngIf="!inEditMode" slot="end" fill="clear" size="small" (click)="inEditMode = true">
       <ion-icon slot="icon-only" name="settings-outline" color="dark"></ion-icon>
     </ion-button>
   </ion-item>
-  <ion-card-content>
+  <ion-card-content *ngIf="!inEditMode">
     <ion-list *ngIf="monitoredStation.departures">
       <app-departure-item *ngFor="let departure of monitoredStation.departures" [departure]="departure"></app-departure-item>
     </ion-list>
@@ -27,5 +27,8 @@
         </ion-label>
       </ion-item>
     </ion-list>
+  </ion-card-content>
+  <ion-card-content *ngIf="inEditMode">
+    <app-monitored-station-editor [monitoredStation]="monitoredStation" (submittedEvent)="onMonitoredStationEditorSubmitted()"></app-monitored-station-editor>
   </ion-card-content>
 </ion-card> 

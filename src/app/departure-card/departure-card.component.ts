@@ -9,6 +9,7 @@ import { MonitoredStation } from '../shared/models/monitored-station.model';
 })
 export class DepartureCardComponent implements OnInit {
   @Input() monitoredStation: MonitoredStation;
+  inEditMode = false;
 
   constructor() { }
 
@@ -16,5 +17,11 @@ export class DepartureCardComponent implements OnInit {
 
   get skeletons(): Array<number> {
     return Array(this.monitoredStation.departureCount);
+  }
+
+  onMonitoredStationEditorSubmitted() {
+    this.inEditMode = false;
+    this.monitoredStation.departures = [];
+    this.monitoredStation.updateDepartures();
   }
 }
