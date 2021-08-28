@@ -1,6 +1,9 @@
 <ion-card>
   <ion-item>
-    <ion-card-title class="ion-text-nowrap">{{ monitoredStation.station.name }}</ion-card-title>
+    <ion-label>
+      <ion-card-subtitle class="ion-text-nowrap">{{ monitoredStation.station.city }}</ion-card-subtitle>
+      <ion-card-title class="ion-text-nowrap">{{ monitoredStation.station.name }}</ion-card-title>
+    </ion-label>
     <ion-button slot="end" fill="clear" size="small">
       <ion-icon slot="icon-only" name="create-outline" color="medium"></ion-icon>
     </ion-button>
