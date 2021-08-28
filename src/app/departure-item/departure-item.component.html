@@ -4,16 +4,14 @@
       onerror="this.onerror=null; this.src='assets/unknown-mode.svg'" alt="">
   </ion-avatar>
   <ion-label [ngClass]="{'color-departed': departure.arrivalTimeRelative < 0}">
-    <div class="ion-float-left">
-      <h2>{{departure.line}} {{departure.direction}}</h2>
-      <h3>{{departure.platform.type}} {{departure.platform.name}}</h3>
-    </div>
-    <div class="ion-float-right ion-text-end">
-      <h3>{{departureTime}}</h3>
-      <h3 [ngClass]="{'color-departed': departure.arrivalTimeRelative < 0, 'color-on-time': departure.delayTime === 0, 
-        'color-late': departure.delayTime > 0, 'color-early': departure.delayTime < 0}">
-        {{delay}}
-      </h3>
-    </div>
+    <h2>{{departure.line}} {{departure.direction}}</h2>
+    <h3>{{departure.platform.type}} {{departure.platform.name}}</h3>
   </ion-label>
+  <ion-note slot="end" class="ion-text-end" [ngClass]="{'color-departed': departure.arrivalTimeRelative < 0}">
+    <h3>{{departureTime}}</h3>
+    <h3 [ngClass]="{'color-departed': departure.arrivalTimeRelative < 0, 'color-on-time': departure.delayTime === 0, 
+      'color-late': departure.delayTime > 0, 'color-early': departure.delayTime < 0}">
+      {{delay}}
+    </h3>
+  </ion-note>
 </ion-item>
