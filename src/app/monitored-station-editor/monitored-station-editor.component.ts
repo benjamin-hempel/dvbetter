@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import * as dvb from 'dvbjs';
 
 import { MonitoredStation } from '../shared/models/monitored-station.model';
@@ -21,12 +21,22 @@ export class MonitoredStationEditorComponent implements OnInit {
 
   ngOnInit() {
     this.selectedStation = this.monitoredStation.station;
-    this.stationName = new FormControl(this.combinedStationName);
-    this.departureCount = new FormControl(this.monitoredStation.departureCount);
+    this.stationName = new FormControl(this.combinedStationName, [
+      Validators.required
+    ]);
+    this.departureCount = new FormControl(this.monitoredStation.departureCount, [
+      Validators.required,
+      Validators.min(1),
+      Validators.max(10)
+    ]);
   }
 
   get combinedStationName() {
     return this.selectedStation.name + ', ' + this.selectedStation.city;
+  }
+
+  get isFormValid(): boolean {
+    return this.stationName.valid && this.departureCount.valid;
   }
 
   async getMatchingStations(event: any): Promise<void> {
@@ -40,7 +50,7 @@ export class MonitoredStationEditorComponent implements OnInit {
     this.matchingStations = [];
   }
 
-  submit() {
+  submit(): void {
     this.monitoredStation.station = this.selectedStation;
     this.monitoredStation.departureCount = this.departureCount.value;
     this.submittedEvent.emit();
