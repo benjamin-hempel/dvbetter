@@ -4,7 +4,9 @@
       <ion-card-title class="ion-text-nowrap">{{ monitoredStation.station.name }}</ion-card-title>
       <ion-card-subtitle class="ion-text-nowrap">{{ monitoredStation.station.city }}</ion-card-subtitle>
     </ion-label>
-    <ion-button *ngIf="!inEditMode" slot="end" fill="clear" size="small" (click)="inEditMode = true">
+    <ion-icon *ngIf="!inEditMode" class="card-item-top-right" name="timer-outline" color="medium"></ion-icon>
+    <ion-text *ngIf="!inEditMode" color="medium">&nbsp;{{lastUpdatedSeconds}}s</ion-text>
+    <ion-button *ngIf="!inEditMode" class="card-item-top-right" slot="end" fill="clear" size="small" (click)="enterEditMode()">
       <ion-icon slot="icon-only" name="settings-outline" color="dark"></ion-icon>
     </ion-button>
   </ion-item>
@@ -29,6 +31,7 @@
     </ion-list>
   </ion-card-content>
   <ion-card-content *ngIf="inEditMode">
-    <app-monitored-station-editor [monitoredStation]="monitoredStation" (submittedEvent)="onMonitoredStationEditorSubmitted()"></app-monitored-station-editor>
+    <app-monitored-station-editor [monitoredStation]="monitoredStation" 
+      (submittedEvent)="onMonitoredStationEditorSubmitted()"></app-monitored-station-editor>
   </ion-card-content>
 </ion-card> 

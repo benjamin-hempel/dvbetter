@@ -16,7 +16,6 @@ export class DeparturesPage {
     dvb.findStop('S-Bf. N').then(stops => {
       station.station = stops[0];
       this.monitoredStations.push(station);
-      station.updateDepartures();
     });
   }
 }
