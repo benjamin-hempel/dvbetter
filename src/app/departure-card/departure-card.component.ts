@@ -43,6 +43,7 @@ export class DepartureCardComponent implements OnInit {
   async updateDepartures() {
     await this.departureMonitorService.updateDepartures(this.monitoredStation);
     this.lastUpdatedTimestamp = new Date();
+    this.computeLastUpdatedSeconds();
   }
 
   enterEditMode() {
