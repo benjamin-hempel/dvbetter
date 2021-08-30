@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { MonitoredStation } from '../shared/models/monitored-station.model';
+import { DepartureMonitorService } from '../shared/services/departure-monitor.service';
 
 @Component({
   selector: 'app-departure-card',
@@ -16,10 +17,10 @@ export class DepartureCardComponent implements OnInit {
   updateInterval: NodeJS.Timeout;
   lastUpdatedInterval: NodeJS.Timeout;
 
-  constructor() { }
+  constructor(private departureMonitorService: DepartureMonitorService) { }
 
-  ngOnInit() {
-    this.updateDepartures();
+  async ngOnInit() {
+    await this.updateDepartures();
 
     this.updateInterval = setInterval(() => {
       this.updateDepartures();
@@ -40,7 +41,7 @@ export class DepartureCardComponent implements OnInit {
   }
 
   async updateDepartures() {
-    await this.monitoredStation.updateDepartures();
+    await this.departureMonitorService.updateDepartures(this.monitoredStation);
     this.lastUpdatedTimestamp = new Date();
   }
 
@@ -51,10 +52,10 @@ export class DepartureCardComponent implements OnInit {
   }
 
   async onMonitoredStationEditorSubmitted() {
-    this.inEditMode = false;
     this.lastUpdatedSeconds = 0;
     this.monitoredStation.departures = null;
-
+    this.monitoredStation = await this.departureMonitorService.updateMonitoredStation(this.monitoredStation);
+    this.inEditMode = false;
     await this.updateDepartures();
 
     this.updateInterval = setInterval(() => {
