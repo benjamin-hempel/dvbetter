@@ -29,6 +29,7 @@ export class StationPickerComponent implements OnInit {
   async getMatchingStations(event: any): Promise<void> {
     const stationName: string = event.target.value;
     this.stationName.setValue(stationName);
+    this.stationName.markAsDirty();
     this.stationNameValidityChangedEvent.emit(this.stationName.valid);
 
     if(stationName == null || stationName === '') {
