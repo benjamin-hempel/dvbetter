@@ -1,16 +1,5 @@
-<ion-item>
-  <ion-label position="floating">Choose station</ion-label>
-  <ion-input type="text" debounce="250" (ionInput)="getMatchingStations($event)" [formControl]="stationName"></ion-input>
-</ion-item>
-<ion-text *ngIf="stationName.invalid && (stationName.dirty || stationName.touched)" color="danger">Please choose a valid station.</ion-text>
-<ion-list>
-  <ion-item *ngFor="let matchingStation of matchingStations" button (click)="selectStation(matchingStation)">
-    <ion-label>
-      <h2>{{matchingStation.name}}</h2>
-      <ion-card-subtitle>{{matchingStation.city}}</ion-card-subtitle>
-    </ion-label>
-  </ion-item>
-</ion-list>
+<app-station-picker [selectedStation]="selectedStation" (selectedStationChangedEvent)="onSelectedStationChanged($event)"
+  (stationNameValidityChangedEvent)="onStationNameValidityChanged($event)"></app-station-picker>
 <ion-item>
   <ion-label position="floating">Departure count</ion-label>
   <ion-input type="number" min="1" max="10" [formControl]="departureCount"></ion-input>

@@ -9,6 +9,7 @@ import { DeparturesPageRoutingModule } from './departures-routing.module';
 import { DepartureCardComponent } from '../departure-card/departure-card.component';
 import { DepartureItemComponent } from '../departure-item/departure-item.component';
 import { MonitoredStationEditorComponent } from '../monitored-station-editor/monitored-station-editor.component';
+import { StationPickerComponent } from '../station-picker/station-picker.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { MonitoredStationEditorComponent } from '../monitored-station-editor/mon
     DeparturesPage,
     DepartureCardComponent,
     DepartureItemComponent,
-    MonitoredStationEditorComponent
+    MonitoredStationEditorComponent,
+    StationPickerComponent
   ]
 })
 export class DeparturesPageModule {}

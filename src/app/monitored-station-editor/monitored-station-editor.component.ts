@@ -12,18 +12,14 @@ import { MonitoredStation } from '../shared/models/monitored-station.model';
 export class MonitoredStationEditorComponent implements OnInit {
   @Input() monitoredStation: MonitoredStation;
   @Output() submittedEvent = new EventEmitter();
-  selectedStation: dvb.ILocation;
-  matchingStations: dvb.ILocation[];
-  stationName: FormControl;
   departureCount: FormControl;
+  selectedStation: dvb.ILocation;
+  isStationNameValid = true;
 
   constructor() { }
 
   ngOnInit() {
     this.selectedStation = this.monitoredStation.station;
-    this.stationName = new FormControl(this.combinedStationName, [
-      Validators.required
-    ]);
     this.departureCount = new FormControl(this.monitoredStation.departureCount, [
       Validators.required,
       Validators.min(1),
@@ -31,23 +27,16 @@ export class MonitoredStationEditorComponent implements OnInit {
     ]);
   }
 
-  get combinedStationName() {
-    return this.selectedStation.name + ', ' + this.selectedStation.city;
-  }
-
   get isFormValid(): boolean {
-    return this.stationName.valid && this.departureCount.valid;
+    return this.isStationNameValid && this.departureCount.valid;
   }
 
-  async getMatchingStations(event: any): Promise<void> {
-    const stationName: string = event.target.value;
-    this.matchingStations = (await dvb.findStop(stationName)).slice(0, 4);
-  }
-
-  selectStation(station: dvb.ILocation) {
+  onSelectedStationChanged(station: dvb.ILocation): void {
     this.selectedStation = station;
-    this.stationName.setValue(this.combinedStationName);
-    this.matchingStations = [];
+  }
+
+  onStationNameValidityChanged(isStationNameValid: boolean): void {
+    this.isStationNameValid = isStationNameValid;
   }
 
   submit(): void {
