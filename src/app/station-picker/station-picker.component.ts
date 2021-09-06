@@ -23,7 +23,7 @@ export class StationPickerComponent implements OnInit {
   }
 
   get combinedStationName() {
-    return this.selectedStation.name + ', ' + this.selectedStation.city;
+    return this.selectedStation ? this.selectedStation.name + ', ' + this.selectedStation.city : '';
   }
 
   async getMatchingStations(event: any): Promise<void> {
