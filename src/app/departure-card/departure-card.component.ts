@@ -31,10 +31,6 @@ export class DepartureCardComponent implements OnInit {
     }, 500);
   }
 
-  get skeletons(): Array<number> {
-    return Array(this.monitoredStation.departureCount);
-  }
-
   computeLastUpdatedSeconds(): void {
     this.lastUpdatedSeconds =
       Math.floor((new Date().getTime() - this.lastUpdatedTimestamp.getTime()) / 1000);
