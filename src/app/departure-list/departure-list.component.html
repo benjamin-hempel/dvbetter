@@ -1,0 +1,18 @@
+<ion-list *ngIf="monitoredStation.departures">
+  <app-departure-item *ngFor="let departure of monitoredStation.departures" [departure]="departure"></app-departure-item>
+</ion-list>
+<ion-list *ngIf="!monitoredStation.departures">
+  <ion-item *ngFor="let skeleton of skeletons">
+    <ion-avatar slot="start">
+      <ion-skeleton-text animated></ion-skeleton-text>
+    </ion-avatar>
+    <ion-label>
+      <h2>
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </h2>
+      <h3>
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </h3>
+    </ion-label>
+  </ion-item>
+</ion-list>
