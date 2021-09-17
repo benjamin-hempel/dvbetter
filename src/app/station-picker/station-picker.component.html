@@ -2,7 +2,7 @@
   <ion-label position="floating">Station</ion-label>
   <ion-input type="text" debounce="250" (ionInput)="getMatchingStations($event)" [formControl]="stationName"></ion-input>
 </ion-item>
-<ion-text *ngIf="stationName.invalid && (stationName.dirty || stationName.touched)" color="danger">Please choose a valid station.</ion-text>
+<ion-text *ngIf="stationName.invalid && (stationName.dirty || stationName.touched)" color="danger">Please choose a station.</ion-text>
 <ion-list>
   <ion-item *ngFor="let matchingStation of matchingStations" button (click)="selectStation(matchingStation)">
     <ion-label>
