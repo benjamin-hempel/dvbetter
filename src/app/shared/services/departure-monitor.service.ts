@@ -25,7 +25,17 @@ export class DepartureMonitorService {
         return monitoredStations;
     }
 
+    async getMonitoredStation(stationId: string): Promise<MonitoredStation> {
+        try {
+            return await this.db.get(stationId);
+        }
+        catch {
+            return null;
+        }
+    }
+
     async addMonitoredStation(monitoredStation: MonitoredStation): Promise<MonitoredStation> {
+        monitoredStation._id = monitoredStation.station.id;
         await this.db.put(monitoredStation);
         return await this.db.get(monitoredStation._id);
     }
@@ -36,6 +46,10 @@ export class DepartureMonitorService {
     }
 
     async deleteMonitoredStation(monitoredStation: MonitoredStation): Promise<void> {
+        if(!monitoredStation._id || !monitoredStation._rev) {
+            monitoredStation = await this.getMonitoredStation(monitoredStation.station.id);
+        }
+
         await this.db.remove(monitoredStation);
     }
 
