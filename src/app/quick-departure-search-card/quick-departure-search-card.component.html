@@ -1,0 +1,44 @@
+<ion-card *ngIf="!inStationSelectedMode">
+  <ion-item lines="none">
+    <ion-label>
+      <ion-card-title class="ion-text-nowrap">Quick search</ion-card-title>
+    </ion-label>
+  </ion-item>
+  <ion-card-content>
+    <app-station-picker [selectedStation]="selectedStation" (stationNameValidityChangedEvent)="onStationNameValidityChanged($event)" 
+      (selectedStationChangedEvent)="onSelectedStationChanged($event)"></app-station-picker>
+    <ion-item>
+      <ion-label position="floating">Departure time</ion-label>
+      <ion-datetime [formControl]="departureTime" displayFormat="DD.MM.YYYY, HH:mm" min="{{ currentDate }}" max="{{ maxDate }}"></ion-datetime>
+    </ion-item>
+    <ion-row style="height: 1em"></ion-row>
+    <ion-button (click)="searchDepartures()" [disabled]="!isStationNameValid">
+      <ion-icon slot="start" name="search-outline"></ion-icon>
+      Search
+    </ion-button>
+  </ion-card-content>
+</ion-card>
+<ion-card *ngIf="inStationSelectedMode">
+  <ion-item lines="none">
+    <ion-label>
+      <ion-card-title class="ion-text-nowrap">{{ selectedStation.station.name }}</ion-card-title>
+      <ion-card-subtitle class="ion-text-nowrap">{{ selectedStation.station.city }}</ion-card-subtitle>
+    </ion-label>
+    <span class="card-item-top-right" slot="end" lines="none">
+      <ion-button *ngIf="!isStationInFavorites" fill="clear" size="small" (click)="addStationToFavorites()">
+        <ion-icon slot="icon-only" name="star-outline" color="dark"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="isStationInFavorites" fill="clear" size="small" (click)="removeStationFromFavorites()">
+        <ion-icon slot="icon-only" name="star" color="primary"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" size="small" (click)="leaveStationSelectedMode()">
+        <ion-icon slot="icon-only" name="close-circle-outline" color="dark"></ion-icon>
+      </ion-button>
+    </span>
+    
+  </ion-item>
+  <ion-card-content>
+    <app-departure-list [monitoredStation]="selectedStation"></app-departure-list>
+  </ion-card-content>
+</ion-card>
+
