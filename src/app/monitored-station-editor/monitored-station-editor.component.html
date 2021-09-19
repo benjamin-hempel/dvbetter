@@ -1,5 +1,3 @@
-<app-station-picker [selectedStation]="selectedStation" (selectedStationChangedEvent)="onSelectedStationChanged($event)"
-  (stationNameValidityChangedEvent)="onStationNameValidityChanged($event)"></app-station-picker>
 <ion-item>
   <ion-label position="floating">Departure count</ion-label>
   <ion-input type="number" min="1" max="10" [formControl]="departureCount"></ion-input>
