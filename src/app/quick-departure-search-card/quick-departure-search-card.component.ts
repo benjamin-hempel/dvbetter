@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { format, add } from 'date-fns';
+import { format, add, differenceInMinutes } from 'date-fns';
 import * as dvb from 'dvbjs';
 
 import { MonitoredStation } from '../shared/models/monitored-station.model';
@@ -32,13 +32,18 @@ export class QuickDepartureSearchCardComponent implements OnInit {
     this.departureTime = new FormControl(this.currentDate, Validators.required);
   }
 
+  get formattedDepartureTime(): string {
+    return format(new Date(this.departureTime.value), 'dd.MM.yyyy, HH:mm');
+  }
+
   async searchDepartures(): Promise<void> {
     if(await this.departureMonitorService.getMonitoredStation(this.selectedStation.station.id)) {
       this.isStationInFavorites = true;
     }
 
     this.inStationSelectedMode = true;
-    this.departureMonitorService.updateDepartures(this.selectedStation);
+    const minutesFromNow = differenceInMinutes(new Date(this.departureTime.value), new Date());
+    this.departureMonitorService.updateDepartures(this.selectedStation, minutesFromNow);
   }
 
   leaveStationSelectedMode(): void {

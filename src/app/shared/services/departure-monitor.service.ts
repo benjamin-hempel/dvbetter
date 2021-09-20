@@ -53,7 +53,7 @@ export class DepartureMonitorService {
         await this.db.remove(monitoredStation);
     }
 
-    async updateDepartures(monitoredStation: MonitoredStation): Promise<void> {
-        monitoredStation.departures = await dvb.monitor(monitoredStation.station.id, 0, monitoredStation.departureCount);
+    async updateDepartures(monitoredStation: MonitoredStation, minutesFromNow: number = 0): Promise<void> {
+        monitoredStation.departures = await dvb.monitor(monitoredStation.station.id, minutesFromNow, monitoredStation.departureCount);
     }
 }

@@ -38,6 +38,9 @@
     
   </ion-item>
   <ion-card-content>
+    <ion-text color="dark">
+      Departing at {{ formattedDepartureTime }}
+    </ion-text>
     <app-departure-list [monitoredStation]="selectedStation"></app-departure-list>
   </ion-card-content>
 </ion-card>
