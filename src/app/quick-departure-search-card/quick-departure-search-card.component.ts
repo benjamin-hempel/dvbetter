@@ -26,10 +26,14 @@ export class QuickDepartureSearchCardComponent implements OnInit {
   constructor(private departureMonitorService: DepartureMonitorService) { }
 
   ngOnInit() {
+    this.updateCurrentDate();
+    this.departureTime = new FormControl(this.currentDate, Validators.required);
+  }
+
+  updateCurrentDate(): void {
     const currentDateObj = new Date();
     this.currentDate = format(currentDateObj, 'yyyy-MM-dd\'T\'HH:mm');
     this.maxDate = format(add(currentDateObj, { months: 1 }), 'yyyy-MM-dd\'T\'HH:mm');
-    this.departureTime = new FormControl(this.currentDate, Validators.required);
   }
 
   get formattedDepartureTime(): string {
@@ -42,7 +46,13 @@ export class QuickDepartureSearchCardComponent implements OnInit {
     }
 
     this.inStationSelectedMode = true;
-    const minutesFromNow = differenceInMinutes(new Date(this.departureTime.value), new Date());
+    let minutesFromNow = differenceInMinutes(new Date(this.departureTime.value), new Date());
+    if(minutesFromNow < 0) {
+      minutesFromNow = 0;
+      this.updateCurrentDate();
+      this.departureTime.setValue(this.currentDate);
+    }
+
     this.departureMonitorService.updateDepartures(this.selectedStation, minutesFromNow);
   }
 
