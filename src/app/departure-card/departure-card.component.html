@@ -14,7 +14,7 @@
     <app-departure-list [monitoredStation]="monitoredStation"></app-departure-list>
   </ion-card-content>
   <ion-card-content *ngIf="inEditMode">
-    <app-monitored-station-editor [monitoredStation]="monitoredStation" 
-      (submittedEvent)="onMonitoredStationEditorSubmitted()"></app-monitored-station-editor>
+    <app-monitored-station-editor [monitoredStation]="monitoredStation" (submittedEvent)="onMonitoredStationEditorSubmitted()" 
+      (monitoredStationRemovedEvent)="onMonitoredStationRemoved($event)"></app-monitored-station-editor>
   </ion-card-content>
 </ion-card> 

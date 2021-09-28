@@ -11,6 +11,7 @@ import { MonitoredStation } from '../shared/models/monitored-station.model';
 export class MonitoredStationEditorComponent implements OnInit {
   @Input() monitoredStation: MonitoredStation;
   @Output() submittedEvent = new EventEmitter();
+  @Output() monitoredStationRemovedEvent = new EventEmitter();
   departureCount: FormControl;
   isStationNameValid = true;
 
@@ -31,5 +32,9 @@ export class MonitoredStationEditorComponent implements OnInit {
   submit(): void {
     this.monitoredStation.departureCount = this.departureCount.value;
     this.submittedEvent.emit();
+  }
+
+  removeStationFromFavorites(): void {
+    this.monitoredStationRemovedEvent.emit(this.monitoredStation);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { MonitoredStation } from '../shared/models/monitored-station.model';
 import { DepartureMonitorService } from '../shared/services/departure-monitor.service';
@@ -10,6 +10,7 @@ import { DepartureMonitorService } from '../shared/services/departure-monitor.se
 })
 export class DepartureCardComponent implements OnInit {
   @Input() monitoredStation: MonitoredStation;
+  @Output() monitoredStationRemovedEvent = new EventEmitter();
   inEditMode = false;
   lastUpdatedTimestamp: Date;
   lastUpdatedSeconds = 0;
@@ -36,19 +37,19 @@ export class DepartureCardComponent implements OnInit {
       Math.floor((new Date().getTime() - this.lastUpdatedTimestamp.getTime()) / 1000);
   }
 
-  async updateDepartures() {
+  async updateDepartures(): Promise<void> {
     await this.departureMonitorService.updateDepartures(this.monitoredStation);
     this.lastUpdatedTimestamp = new Date();
     this.computeLastUpdatedSeconds();
   }
 
-  enterEditMode() {
+  enterEditMode(): void {
     clearInterval(this.updateInterval);
     clearInterval(this.lastUpdatedInterval);
     this.inEditMode = true;
   }
 
-  async onMonitoredStationEditorSubmitted() {
+  async onMonitoredStationEditorSubmitted(): Promise<void> {
     this.lastUpdatedSeconds = 0;
     this.monitoredStation.departures = null;
     this.monitoredStation = await this.departureMonitorService.updateMonitoredStation(this.monitoredStation);
@@ -62,5 +63,9 @@ export class DepartureCardComponent implements OnInit {
     this.lastUpdatedInterval = setInterval(() => {
       this.computeLastUpdatedSeconds();
     }, 500);
+  }
+
+  onMonitoredStationRemoved(monitoredStation: MonitoredStation): void {
+    this.monitoredStationRemovedEvent.emit(monitoredStation);
   }
 }
