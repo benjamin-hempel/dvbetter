@@ -80,12 +80,11 @@ export class QuickDepartureSearchCardComponent implements OnInit {
 
     await this.departureMonitorService.addMonitoredStation(stationToSave);
     this.monitoredStationAddedEvent.emit(this.selectedStation.station.id);
-    this.isStationInFavorites = true;
+    this.leaveStationSelectedMode();
   }
 
   async removeStationFromFavorites(): Promise<void> {
-    this.monitoredStationRemovedEvent.emit(this.selectedStation.station.id);
-    this.departureMonitorService.deleteMonitoredStation(this.selectedStation);
+    this.monitoredStationRemovedEvent.emit(this.selectedStation);
     this.isStationInFavorites = false;
   }
 }

@@ -34,8 +34,10 @@ export class DeparturesPage implements OnInit {
     toast.present();
   }
 
-  async onMonitoredStationRemoved(stationId: string) {
-    const index = this.monitoredStations.findIndex(monitoredStation => monitoredStation._id === stationId);
+  async onMonitoredStationRemoved(monitoredStation: MonitoredStation) {
+    this.departureMonitorService.deleteMonitoredStation(monitoredStation);
+
+    const index = this.monitoredStations.findIndex(stationToDelete => stationToDelete._id === monitoredStation._id);
     const removedStations = this.monitoredStations.splice(index, 1);
 
     const toast = await this.toastController.create({
