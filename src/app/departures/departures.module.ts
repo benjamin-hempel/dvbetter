@@ -12,6 +12,7 @@ import { MonitoredStationEditorComponent } from '../monitored-station-editor/mon
 import { StationPickerComponent } from '../station-picker/station-picker.component';
 import { QuickDepartureSearchCardComponent } from '../quick-departure-search-card/quick-departure-search-card.component';
 import { DepartureListComponent } from '../departure-list/departure-list.component';
+import { TimerComponent } from '../timer/timer.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { DepartureListComponent } from '../departure-list/departure-list.compone
     DepartureItemComponent,
     MonitoredStationEditorComponent,
     StationPickerComponent,
-    DepartureListComponent
+    DepartureListComponent,
+    TimerComponent
   ]
 })
 export class DeparturesPageModule {}
