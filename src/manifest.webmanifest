@@ -1,7 +1,6 @@
 {
   "name": "DVBetter",
   "short_name": "DVBetter",
-  "theme_color": "#fdc400",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/dvbetter/",
