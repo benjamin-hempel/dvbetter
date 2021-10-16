@@ -1,7 +1,6 @@
 {
   "name": "DVBetter",
   "short_name": "DVBetter",
-  "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/dvbetter/",
   "start_url": "/dvbetter/departures",
