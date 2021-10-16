@@ -407,6 +407,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@angular/service-worker@npm:~12.1.1":
+  version: 12.1.5
+  resolution: "@angular/service-worker@npm:12.1.5"
+  dependencies:
+    tslib: ^2.2.0
+  peerDependencies:
+    "@angular/common": 12.1.5
+    "@angular/core": 12.1.5
+  bin:
+    ngsw-config: ngsw-config.js
+  checksum: 598a2dc435880628c300d7655d6803ec71536297a96971a9a9b6b028119e5485735822c5449d6d249f7d7630a77207714f568449668dfbc44823a512812dda12
+  languageName: node
+  linkType: hard
+
 "@babel/code-frame@npm:7.12.11":
   version: 7.12.11
   resolution: "@babel/code-frame@npm:7.12.11"
@@ -5230,6 +5244,7 @@ __metadata:
     "@angular/platform-browser": ~12.1.1
     "@angular/platform-browser-dynamic": ~12.1.1
     "@angular/router": ~12.1.1
+    "@angular/service-worker": ~12.1.1
     "@capacitor/app": 1.0.2
     "@capacitor/cli": 3.2.0
     "@capacitor/core": 3.2.0
