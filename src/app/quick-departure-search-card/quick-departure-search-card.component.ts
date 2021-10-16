@@ -20,12 +20,16 @@ export class QuickDepartureSearchCardComponent implements OnInit {
   isStationInFavorites = false;
   selectedStation: MonitoredStation;
   departureTime: FormControl;
+  lastUpdatedTimestamp: Date;
   currentDate: string;
   maxDate: string;
+
+  updateInterval: NodeJS.Timeout;
 
   constructor(private departureMonitorService: DepartureMonitorService) { }
 
   ngOnInit() {
+    this.lastUpdatedTimestamp = new Date();
     this.updateCurrentDate();
     this.departureTime = new FormControl(this.currentDate, Validators.required);
   }
@@ -40,12 +44,7 @@ export class QuickDepartureSearchCardComponent implements OnInit {
     return format(new Date(this.departureTime.value), 'dd.MM.yyyy, HH:mm');
   }
 
-  async searchDepartures(): Promise<void> {
-    if(await this.departureMonitorService.getMonitoredStation(this.selectedStation.station.id)) {
-      this.isStationInFavorites = true;
-    }
-
-    this.inStationSelectedMode = true;
+  async updateDepartures(): Promise<void> {
     let minutesFromNow = differenceInMinutes(new Date(this.departureTime.value), new Date());
     if(minutesFromNow < 0) {
       minutesFromNow = 0;
@@ -53,13 +52,27 @@ export class QuickDepartureSearchCardComponent implements OnInit {
       this.departureTime.setValue(this.currentDate);
     }
 
-    this.departureMonitorService.updateDepartures(this.selectedStation, minutesFromNow);
+    await this.departureMonitorService.updateDepartures(this.selectedStation, minutesFromNow);
+    this.lastUpdatedTimestamp = new Date();
+  }
+
+  async searchDepartures(): Promise<void> {
+    if(await this.departureMonitorService.getMonitoredStation(this.selectedStation.station.id)) {
+      this.isStationInFavorites = true;
+    }
+
+    this.inStationSelectedMode = true;
+    this.updateDepartures();
+    this.updateInterval = setInterval(() => {
+      this.updateDepartures();
+    }, 30000);
   }
 
   leaveStationSelectedMode(): void {
     this.inStationSelectedMode = false;
     this.isStationInFavorites = false;
     this.selectedStation = null;
+    clearInterval(this.updateInterval);
   }
 
   onStationNameValidityChanged(isStationNameValid: boolean): void {
