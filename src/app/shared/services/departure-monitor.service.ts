@@ -54,6 +54,15 @@ export class DepartureMonitorService {
     }
 
     async updateDepartures(monitoredStation: MonitoredStation, minutesFromNow: number = 0): Promise<void> {
-        monitoredStation.departures = await dvb.monitor(monitoredStation.station.id, minutesFromNow, monitoredStation.departureCount);
+        const departures = await dvb.monitor(monitoredStation.station.id, minutesFromNow, monitoredStation.departureCount);
+        if(!monitoredStation.departures) {
+            monitoredStation.departures = departures;
+        }
+        else {
+            // Prevent template reset and scrolling to top
+            for(let i = 0; i < monitoredStation.departureCount; i++) {
+                monitoredStation.departures[i] = departures[i];
+            }
+        }
     }
 }
