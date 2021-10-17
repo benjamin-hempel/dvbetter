@@ -1,5 +1,7 @@
 <ion-list *ngIf="monitoredStation.departures">
-  <app-departure-item *ngFor="let departure of monitoredStation.departures" [departure]="departure"></app-departure-item>
+  <div>
+    <app-departure-item *ngFor="let departure of monitoredStation.departures" [departure]="departure"></app-departure-item>
+  </div>
 </ion-list>
 <ion-list *ngIf="!monitoredStation.departures">
   <ion-item *ngFor="let skeleton of skeletons">
