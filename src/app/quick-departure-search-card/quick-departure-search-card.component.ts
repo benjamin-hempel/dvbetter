@@ -24,6 +24,7 @@ export class QuickDepartureSearchCardComponent implements OnInit {
   currentDate: string;
   maxDate: string;
 
+  updateCurrentDateInterval: NodeJS.Timeout;
   updateInterval: NodeJS.Timeout;
 
   constructor(private departureMonitorService: DepartureMonitorService) { }
@@ -31,6 +32,9 @@ export class QuickDepartureSearchCardComponent implements OnInit {
   ngOnInit() {
     this.lastUpdatedTimestamp = new Date();
     this.updateCurrentDate();
+    this.updateCurrentDateInterval = setInterval(() => {
+      this.updateCurrentDate();
+    }, 30000);
     this.departureTime = new FormControl(this.currentDate, Validators.required);
   }
 
@@ -38,6 +42,10 @@ export class QuickDepartureSearchCardComponent implements OnInit {
     const currentDateObj = new Date();
     this.currentDate = format(currentDateObj, 'yyyy-MM-dd\'T\'HH:mm');
     this.maxDate = format(add(currentDateObj, { months: 1 }), 'yyyy-MM-dd\'T\'HH:mm');
+
+    if(this.departureTime && !(this.departureTime.dirty || this.departureTime.touched)) {
+      this.departureTime.setValue(this.currentDate);
+    }
   }
 
   get formattedDepartureTime(): string {
