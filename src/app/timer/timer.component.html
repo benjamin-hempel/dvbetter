@@ -1,4 +1,4 @@
 <ion-item lines="none">
   <ion-icon name="timer-outline" color="medium"></ion-icon>
-  <ion-text color="medium">&nbsp;{{ updateCounterSeconds }}s</ion-text>
+  <ion-text color="medium">&nbsp;{{ updateCounterSeconds > 99 ? '>99' : updateCounterSeconds }}s</ion-text>
 </ion-item>
