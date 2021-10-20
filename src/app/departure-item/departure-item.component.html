@@ -9,8 +9,8 @@
   </ion-label>
   <ion-note slot="end" class="ion-text-end" [ngClass]="{'color-departed': departure.arrivalTimeRelative < 0}">
     <h3>{{departureTime}}</h3>
-    <h3 [ngClass]="{'color-departed': departure.arrivalTimeRelative < 0, 'color-on-time': departure.delayTime === 0, 
-      'color-late': departure.delayTime > 0, 'color-early': departure.delayTime < 0}">
+    <h3 *ngIf="departure.state !== 'Unknown'" [ngClass]="{'color-departed': departure.arrivalTimeRelative < 0, 
+      'color-on-time': departure.delayTime === 0, 'color-late': departure.delayTime > 0, 'color-early': departure.delayTime < 0}">
       {{delay}}
     </h3>
   </ion-note>
