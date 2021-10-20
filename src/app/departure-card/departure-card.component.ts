@@ -27,7 +27,7 @@ export class DepartureCardComponent implements OnInit {
   }
 
   async updateDepartures(): Promise<void> {
-    await this.departureMonitorService.updateDepartures(this.monitoredStation);
+    this.monitoredStation.departures = await this.departureMonitorService.getDepartures(this.monitoredStation);
     this.lastUpdatedTimestamp = new Date();
   }
 

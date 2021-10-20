@@ -60,7 +60,8 @@ export class QuickDepartureSearchCardComponent implements OnInit {
       this.departureTime.setValue(this.currentDate);
     }
 
-    await this.departureMonitorService.updateDepartures(this.selectedStation, minutesFromNow);
+    this.selectedStation.departures =
+      await this.departureMonitorService.getDepartures(this.selectedStation, minutesFromNow);
     this.lastUpdatedTimestamp = new Date();
   }
 
