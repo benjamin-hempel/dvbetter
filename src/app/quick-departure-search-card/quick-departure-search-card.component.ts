@@ -60,9 +60,21 @@ export class QuickDepartureSearchCardComponent implements OnInit {
       this.departureTime.setValue(this.currentDate);
     }
 
-    this.selectedStation.departures =
-      await this.departureMonitorService.getDepartures(this.selectedStation, minutesFromNow);
+    const departures = await this.departureMonitorService.getDepartures(this.selectedStation);
     this.lastUpdatedTimestamp = new Date();
+
+    if(!this.selectedStation.departures) {
+      this.selectedStation.departures = departures;
+      return;
+    }
+
+    for(const departure of departures) {
+      this.selectedStation.departures.push(departure);
+    }
+
+    for(let i = 0; i < this.selectedStation.departureCount; i++) {
+      this.selectedStation.departures.shift();
+    }
   }
 
   async searchDepartures(): Promise<void> {
