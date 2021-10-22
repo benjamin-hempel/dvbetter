@@ -52,6 +52,10 @@ export class QuickDepartureSearchCardComponent implements OnInit {
     return format(new Date(this.departureTime.value), 'dd.MM.yyyy, HH:mm');
   }
 
+  get lastUpdatedSeconds(): number {
+    return this.lastUpdatedTimestamp ? Math.floor((new Date().getTime() - this.lastUpdatedTimestamp.getTime()) / 1000) : 0;
+  }
+
   async updateDepartures(): Promise<void> {
     let minutesFromNow = differenceInMinutes(new Date(this.departureTime.value), new Date());
     if(minutesFromNow < 0) {
