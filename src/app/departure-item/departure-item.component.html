@@ -3,14 +3,15 @@
     <img src="{{departure.mode.iconUrl}}" [ngClass]="{'filter-grayscale': departure.arrivalTimeRelative < 0}"
       onerror="this.onerror=null; this.src='assets/unknown-mode.svg'" alt="">
   </ion-avatar>
-  <ion-label [ngClass]="{'color-departed': departure.arrivalTimeRelative < 0}">
+  <ion-label [ngClass]="{'color-departed': departure.arrivalTimeRelative < 0, 'strikethrough': departure.state === 'Cancelled'}">
     <h2>{{departure.line}} {{departure.direction}}</h2>
     <h3>{{departure.platform.type}} {{departure.platform.name}} <ion-text color="medium">| {{departure.state}}</ion-text></h3>
   </ion-label>
   <ion-note slot="end" class="ion-text-end" [ngClass]="{'color-departed': departure.arrivalTimeRelative < 0}">
     <h3>{{departureTime}}</h3>
     <h3 *ngIf="departure.state !== 'Unknown'" [ngClass]="{'color-departed': departure.arrivalTimeRelative < 0, 
-      'color-on-time': departure.delayTime === 0, 'color-late': departure.delayTime > 0, 'color-early': departure.delayTime < 0}">
+      'color-on-time': departure.delayTime === 0, 'color-late': departure.delayTime > 0 || departure.state === 'Cancelled', 
+      'color-early': departure.delayTime < 0}">
       {{delay}}
     </h3>
   </ion-note>

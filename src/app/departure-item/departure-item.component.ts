@@ -37,6 +37,10 @@ export class DepartureItemComponent implements OnInit {
   }
 
   get delay(): string {
+    if(this.departure.state === 'Cancelled') {
+      return 'cancelled';
+    }
+
     if(this.departure.delayTime === 0) {
       return 'on time';
     }
