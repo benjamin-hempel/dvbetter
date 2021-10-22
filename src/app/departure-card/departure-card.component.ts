@@ -26,6 +26,10 @@ export class DepartureCardComponent implements OnInit {
     }, 30000);
   }
 
+  get lastUpdatedSeconds(): number {
+    return this.lastUpdatedTimestamp ? Math.floor((new Date().getTime() - this.lastUpdatedTimestamp.getTime()) / 1000) : 0;
+  }
+
   async updateDepartures(): Promise<void> {
     this.monitoredStation.departures = await this.departureMonitorService.getDepartures(this.monitoredStation);
     this.lastUpdatedTimestamp = new Date();
