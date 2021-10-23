@@ -54,6 +54,11 @@ export class DepartureMonitorService {
     }
 
     async getDepartures(monitoredStation: MonitoredStation, minutesFromNow: number = 0): Promise<dvb.IMonitor[]> {
-        return await dvb.monitor(monitoredStation.station.id, minutesFromNow, monitoredStation.departureCount);
+        try {
+            return await dvb.monitor(monitoredStation.station.id, minutesFromNow, monitoredStation.departureCount);
+        }
+        catch {
+            return [];
+        }
     }
 }
