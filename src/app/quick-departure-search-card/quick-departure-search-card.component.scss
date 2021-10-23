@@ -1,0 +1,20 @@
+ion-card-title.ion-text-nowrap, ion-card-subtitle.ion-text-nowrap {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+ion-card-content {
+    padding-top: 0px;
+}
+
+.card-button-item {
+    margin-left: 0px !important;
+}
+
+.timer-item {
+    margin-left: 12px;
+}
+
+.no-departures {
+    margin-top: 10px;
+}

@@ -1,0 +1,3 @@
+<ion-list *ngIf="monitoredStation.departures">
+  <app-departure-item *ngFor="let departure of monitoredStation.departures" [departure]="departure"></app-departure-item>
+</ion-list>
