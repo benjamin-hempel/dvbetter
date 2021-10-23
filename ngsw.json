@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1634927225030,
+  "timestamp": 1635016436824,
   "index": "/dvbetter/index.html",
   "assetGroups": [
     {
@@ -25,9 +25,9 @@
         "/dvbetter/3527.ed4b800e86638b0fce5e.js",
         "/dvbetter/392.1b30e87de2077cec06bc.js",
         "/dvbetter/4195.12514c563aee713aed8f.js",
+        "/dvbetter/4283.f80d850c796bbf7fb077.js",
         "/dvbetter/431.3c1c09a2815d977a8f65.js",
         "/dvbetter/4513.f3ae3ea1ed07fcb1b4e9.js",
-        "/dvbetter/4605.05fed75b5fcabaa4fbc6.js",
         "/dvbetter/4694.04e76b9e17be6818d949.js",
         "/dvbetter/5043.1c72c9f35f0b486379f5.js",
         "/dvbetter/5174.faac68adcbf6c6553047.js",
@@ -65,13 +65,13 @@
         "/dvbetter/9921.682c648c90c0cf9cfbf9.js",
         "/dvbetter/common.1fe1044d66f005ebac97.js",
         "/dvbetter/index.html",
-        "/dvbetter/main.a48955081583a62a079d.js",
+        "/dvbetter/main.191dd6f7f4d7f5b5e045.js",
         "/dvbetter/manifest.webmanifest",
         "/dvbetter/polyfills-core-js.43932f869019dc283371.js",
         "/dvbetter/polyfills-css-shim.75c6d5085ecfc9b7456e.js",
         "/dvbetter/polyfills-dom.4a029a3e847e2dc227bc.js",
         "/dvbetter/polyfills.1dc18e944fc1515fa1d8.js",
-        "/dvbetter/runtime.37f052b5b639438735b4.js",
+        "/dvbetter/runtime.3e0481aa8fddf40f0c2d.js",
         "/dvbetter/styles.1ab024bd0461228f9822.css"
       ],
       "patterns": []
@@ -115,9 +115,9 @@
     "/dvbetter/3527.ed4b800e86638b0fce5e.js": "958958a71e08fee75345c5a97df2ae9dc090afa2",
     "/dvbetter/392.1b30e87de2077cec06bc.js": "2edf7fbe10b793d0848bba22315e88b13a336241",
     "/dvbetter/4195.12514c563aee713aed8f.js": "e213bd174e02b729bb7187ad8e7d0ac690caee28",
+    "/dvbetter/4283.f80d850c796bbf7fb077.js": "f924140959e539e7d5ce630326dd1cbe08af9681",
     "/dvbetter/431.3c1c09a2815d977a8f65.js": "8f804c85963a70e256a2efb076a7e47bad68b84d",
     "/dvbetter/4513.f3ae3ea1ed07fcb1b4e9.js": "a347f16e92bed78060ecd43eb96cd7d45e8d8baf",
-    "/dvbetter/4605.05fed75b5fcabaa4fbc6.js": "f33442558d9603d5ebf8c34d5fd1078670a2c2cf",
     "/dvbetter/4694.04e76b9e17be6818d949.js": "bbd6ac597df2e19cc4c47de0ed7a290ba69e9ece",
     "/dvbetter/5043.1c72c9f35f0b486379f5.js": "4476500ea4fb23ee343c147f694e57480691a64e",
     "/dvbetter/5174.faac68adcbf6c6553047.js": "909863c308f8e5555a3b3a472bc72f2465cfaee5",
@@ -165,14 +165,14 @@
     "/dvbetter/assets/icons/icon-96x96.png": "97bf0bc20c9b1c4b6c4b4cf986c0d9fdf03395ac",
     "/dvbetter/assets/unknown-mode.svg": "a759b0d7c49bd23da5207416efb37977aeedef3b",
     "/dvbetter/common.1fe1044d66f005ebac97.js": "6c8b737613f25607243e266469335f98e7b1b4a9",
-    "/dvbetter/index.html": "4b5b01135c0d8ee069b7e90ce5b085cb58e5c329",
-    "/dvbetter/main.a48955081583a62a079d.js": "f1c7e6f3ada4626065f843631aba01a858e106d7",
+    "/dvbetter/index.html": "26acf7499dd2991a46504f4a7e3bc1e0805ffb3a",
+    "/dvbetter/main.191dd6f7f4d7f5b5e045.js": "eccbf5ccc5ce83ad3b5e79ea28ccda57f3883233",
     "/dvbetter/manifest.webmanifest": "d6cd09f6f5b0b6bab135741988710b45e105bbb2",
     "/dvbetter/polyfills-core-js.43932f869019dc283371.js": "09c4b717993241328df0c5bee8102ccd151dda3c",
     "/dvbetter/polyfills-css-shim.75c6d5085ecfc9b7456e.js": "eaf7ee49a7a519db234e0ea0be9590982ff73c15",
     "/dvbetter/polyfills-dom.4a029a3e847e2dc227bc.js": "3686407c6b83b96c193357374f3fbb7c29a93676",
     "/dvbetter/polyfills.1dc18e944fc1515fa1d8.js": "0635ad18123cf80186be3a449c04cb07dc4946da",
-    "/dvbetter/runtime.37f052b5b639438735b4.js": "02fc678c5ce2bfd329c923c91d381d614efda32e",
+    "/dvbetter/runtime.3e0481aa8fddf40f0c2d.js": "890e7a3e43b4ac7e3c8acf0fc26726753bdf6c26",
     "/dvbetter/styles.1ab024bd0461228f9822.css": "2c94391feb18922915f407873f266d40a13495b8"
   },
   "navigationUrls": [
