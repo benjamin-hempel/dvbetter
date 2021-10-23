@@ -5,5 +5,5 @@ export class MonitoredStation {
     _rev: string;
     station: dvb.ILocation;
     departures: dvb.IMonitor[];
-    departureCount = 4;
+    departureCount = 5;
 }
