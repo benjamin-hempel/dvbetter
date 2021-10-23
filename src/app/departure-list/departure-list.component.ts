@@ -12,8 +12,4 @@ export class DepartureListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {}
-
-  get skeletons(): Array<number> {
-    return Array(this.monitoredStation.departureCount);
-  }
 }

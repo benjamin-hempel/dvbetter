@@ -16,6 +16,7 @@ export class QuickDepartureSearchCardComponent implements OnInit {
   @Output() monitoredStationRemovedEvent = new EventEmitter();
 
   inStationSelectedMode = false;
+  isUpdating = true;
   isStationNameValid = false;
   isStationInFavorites = false;
   selectedStation: MonitoredStation;
@@ -66,6 +67,7 @@ export class QuickDepartureSearchCardComponent implements OnInit {
 
     this.selectedStation.departures =
       await this.departureMonitorService.getDepartures(this.selectedStation, minutesFromNow);
+      this.isUpdating = false;
     this.lastUpdatedTimestamp = new Date();
   }
 

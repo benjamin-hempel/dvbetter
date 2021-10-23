@@ -12,6 +12,7 @@ export class DepartureCardComponent implements OnInit {
   @Input() monitoredStation: MonitoredStation;
   @Output() monitoredStationRemovedEvent = new EventEmitter();
   inEditMode = false;
+  isUpdating = true;
   lastUpdatedTimestamp: Date;
 
   updateInterval: NodeJS.Timeout;
@@ -32,6 +33,7 @@ export class DepartureCardComponent implements OnInit {
 
   async updateDepartures(): Promise<void> {
     this.monitoredStation.departures = await this.departureMonitorService.getDepartures(this.monitoredStation);
+    this.isUpdating = false;
     this.lastUpdatedTimestamp = new Date();
   }
 
