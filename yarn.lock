@@ -5280,7 +5280,6 @@ __metadata:
     ts-node: ~8.3.0
     tslib: ^2.2.0
     typescript: ~4.2.4
-    uuid: ^8.3.2
     zone.js: ~0.11.4
   languageName: unknown
   linkType: soft
@@ -13095,7 +13094,7 @@ typescript@~4.2.4:
   languageName: node
   linkType: hard
 
-"uuid@npm:8.3.2, uuid@npm:^8.3.2":
+"uuid@npm:8.3.2":
   version: 8.3.2
   resolution: "uuid@npm:8.3.2"
   bin:
