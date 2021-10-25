@@ -1,4 +1,4 @@
-# dvbetter
+# DVBetter
 
 An attempt at fixing the god-awful mobile app of Dresdner Verkehrsbetriebe.
 
