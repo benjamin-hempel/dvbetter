@@ -32,9 +32,25 @@ export class DepartureCardComponent implements OnInit {
   }
 
   async updateDepartures(): Promise<void> {
-    this.monitoredStation.departures = await this.departureMonitorService.getDepartures(this.monitoredStation);
+    const departures = await this.departureMonitorService.getDepartures(this.monitoredStation);
+    if(!departures && this.monitoredStation.departures) {
+      this.isUpdating = false;
+      return;
+    }
+
+    this.monitoredStation.departures = departures;
     this.isUpdating = false;
     this.lastUpdatedTimestamp = new Date();
+  }
+
+  async tapToRefresh(): Promise<void> {
+    clearInterval(this.updateInterval);
+
+    await this.updateDepartures();
+
+    this.updateInterval = setInterval(() => {
+      this.updateDepartures();
+    }, 30000);
   }
 
   enterEditMode(): void {

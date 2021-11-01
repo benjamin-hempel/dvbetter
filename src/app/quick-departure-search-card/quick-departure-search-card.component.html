@@ -25,7 +25,7 @@
       <ion-card-subtitle class="ion-text-nowrap">{{ selectedStation.station.city }}</ion-card-subtitle>
     </ion-label>
     <app-timer class="timer-item" [ngClass]="{'clickable': lastUpdatedSeconds > 35}" 
-      [color]="lastUpdatedSeconds <= 35 ? 'medium' : ''" (click)="lastUpdatedSeconds > 35 && updateDepartures()"
+      [color]="lastUpdatedSeconds <= 35 ? 'medium' : ''" (click)="lastUpdatedSeconds > 35 && tapToRefresh()"
       [updateCounterTimestamp]="lastUpdatedTimestamp" [isActive]="inStationSelectedMode"></app-timer>
     <ion-button *ngIf="!isStationInFavorites" class="card-button-item" fill="clear" size="small" (click)="addStationToFavorites()">
       <ion-icon slot="icon-only" name="star-outline" color="dark"></ion-icon>

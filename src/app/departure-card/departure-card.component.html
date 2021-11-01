@@ -5,7 +5,7 @@
       <ion-card-subtitle class="ion-text-nowrap">{{ monitoredStation.station.city }}</ion-card-subtitle>
     </ion-label>
     <app-timer *ngIf="!inEditMode" class="timer-item" [ngClass]="{'clickable': lastUpdatedSeconds > 35}" 
-      [color]="lastUpdatedSeconds <= 35 ? 'medium' : ''" (click)="lastUpdatedSeconds > 35 && updateDepartures()"
+      [color]="lastUpdatedSeconds <= 35 ? 'medium' : ''" (click)="lastUpdatedSeconds > 35 && tapToRefresh()"
       [updateCounterTimestamp]="lastUpdatedTimestamp" [isActive]="!inEditMode"></app-timer>
     <ion-button *ngIf="!inEditMode" class="settings-item" slot="end" fill="clear" size="small" (click)="enterEditMode()">
       <ion-icon slot="icon-only" name="settings-outline" color="dark"></ion-icon>
