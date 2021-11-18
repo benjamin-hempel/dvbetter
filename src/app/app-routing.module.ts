@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () => import('./departures/departures.module').then(m => m.DeparturesPageModule)
   },
   {
+    path: 'settings',
+    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+  },
+  {
     path: '',
     redirectTo: '/departures',
     pathMatch: 'full'
