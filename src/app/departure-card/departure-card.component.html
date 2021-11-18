@@ -11,14 +11,10 @@
       <ion-icon slot="icon-only" name="settings-outline" color="dark"></ion-icon>
     </ion-button>
   </ion-item>
-  <ion-card-content *ngIf="!inEditMode && monitoredStation.departures?.length > 0 && !isUpdating">
-    <app-departure-list [monitoredStation]="monitoredStation"></app-departure-list>
-  </ion-card-content>
-  <ion-card-content *ngIf="!inEditMode && isUpdating">
-    <app-departure-skeletons [departureCount]="monitoredStation.departureCount"></app-departure-skeletons>
-  </ion-card-content>
-  <ion-card-content *ngIf="!inEditMode && monitoredStation.departures?.length === 0 && !isUpdating">
-    <h2>No departures found</h2>
+  <ion-card-content *ngIf="!inEditMode">
+    <app-departure-list *ngIf="monitoredStation.departures" [monitoredStation]="monitoredStation"></app-departure-list>
+    <app-departure-skeletons *ngIf="!monitoredStation.departures && isUpdating" [departureCount]="monitoredStation.departureCount"></app-departure-skeletons>
+    <h2 *ngIf="!monitoredStation.departures && !isUpdating">No departures found</h2>
   </ion-card-content>
   <ion-card-content *ngIf="inEditMode">
     <app-monitored-station-editor [monitoredStation]="monitoredStation" (submittedEvent)="onMonitoredStationEditorSubmitted()" 

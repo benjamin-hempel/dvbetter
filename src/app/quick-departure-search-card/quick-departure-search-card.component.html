@@ -41,9 +41,9 @@
     <ion-text color="dark">
       Departing at {{ formattedDepartureTime }}
     </ion-text>
-    <app-departure-list *ngIf="selectedStation.departures?.length > 0 && !isUpdating" [monitoredStation]="selectedStation"></app-departure-list>
-    <h2 class="no-departures" *ngIf="selectedStation.departures?.length === 0  && !isUpdating">No departures found</h2>
-    <app-departure-skeletons *ngIf="selectedStation.departures?.length === 0 && isUpdating" 
+    <app-departure-list *ngIf="selectedStation.departures" [monitoredStation]="selectedStation"></app-departure-list>
+    <h2 class="no-departures" *ngIf="!selectedStation.departures  && !isUpdating">No departures found</h2>
+    <app-departure-skeletons *ngIf="!selectedStation.departures && isUpdating" 
       [departureCount]="selectedStation.departureCount"></app-departure-skeletons>
   </ion-card-content>
 </ion-card>

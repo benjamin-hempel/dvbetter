@@ -58,6 +58,8 @@ export class QuickDepartureSearchCardComponent implements OnInit {
   }
 
   async updateDepartures(): Promise<void> {
+    this.isUpdating = true;
+
     let minutesFromNow = differenceInMinutes(new Date(this.departureTime.value), new Date());
     if(minutesFromNow < 0) {
       minutesFromNow = 0;
