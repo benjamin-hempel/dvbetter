@@ -14,7 +14,7 @@
   <ion-card-content *ngIf="!inEditMode">
     <app-departure-list *ngIf="monitoredStation.departures" [monitoredStation]="monitoredStation"></app-departure-list>
     <app-departure-skeletons *ngIf="!monitoredStation.departures && isUpdating" [departureCount]="monitoredStation.departureCount"></app-departure-skeletons>
-    <h2 *ngIf="!monitoredStation.departures && !isUpdating">No departures found</h2>
+    <h2 *ngIf="!monitoredStation.departures && !isUpdating">{{ 'departures.none-found' | translate}}</h2>
   </ion-card-content>
   <ion-card-content *ngIf="inEditMode">
     <app-monitored-station-editor [monitoredStation]="monitoredStation" (submittedEvent)="onMonitoredStationEditorSubmitted()" 

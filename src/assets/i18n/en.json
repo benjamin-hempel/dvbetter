@@ -1,0 +1,23 @@
+{
+    "shared": {
+        "station-types": {
+            "platform": "Stand",
+            "railtrack": "Track"
+        }
+    },
+    "departures": {
+        "title": "Departures",
+        "none-found": "No departures found",
+        "arrival-times": {
+            "now": "now",
+            "min": "{{count}} min",
+            "min-ago": "{{count}} min ago"
+        },
+        "delays": {
+            "on-time": "on time",
+            "late": "{{count}} min late",
+            "early": "{{count}} min early",
+            "cancelled": "cancelled"
+        }
+    }
+}

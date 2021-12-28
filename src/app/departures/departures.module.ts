@@ -14,6 +14,7 @@ import { QuickDepartureSearchCardComponent } from '../quick-departure-search-car
 import { DepartureListComponent } from '../departure-list/departure-list.component';
 import { TimerComponent } from '../timer/timer.component';
 import { DepartureSkeletonsComponent } from '../departure-skeletons/departure-skeletons.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { DepartureSkeletonsComponent } from '../departure-skeletons/departure-sk
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    DeparturesPageRoutingModule
+    DeparturesPageRoutingModule,
+    TranslateModule
   ],
   declarations: [
     AppTitleComponent,
