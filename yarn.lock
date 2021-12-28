@@ -2019,6 +2019,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ngx-translate/core@npm:^14.0.0":
+  version: 14.0.0
+  resolution: "@ngx-translate/core@npm:14.0.0"
+  dependencies:
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular/core": ">=13.0.0"
+    rxjs: ^6.5.3 || ^7.4.0
+  checksum: d1afc35e7b729caf776e78c10badc0853b63252bdf2fa129f1b95a271cd15cf6f22ffecc52922ffbe1c3aca7d8e08351669e8bae18727664aba66b5d405f05e1
+  languageName: node
+  linkType: hard
+
+"@ngx-translate/http-loader@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "@ngx-translate/http-loader@npm:7.0.0"
+  dependencies:
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular/common": ">=13.0.0"
+    "@ngx-translate/core": ">=14.0.0"
+    rxjs: ^6.5.3 || ^7.4.0
+  checksum: ac20c888c7955656b729029a521d85b0f9964ab2acfd4c42faa37fde3aa56ea56a9ea0424ddf102cac2f33cec2d411b6359f062c068ec3c3e1163b7a465c1c4b
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -5253,6 +5278,8 @@ __metadata:
     "@capacitor/status-bar": 1.0.2
     "@ionic/angular": ^5.5.2
     "@ionic/angular-toolkit": ^4.0.0
+    "@ngx-translate/core": ^14.0.0
+    "@ngx-translate/http-loader": ^7.0.0
     "@types/jasmine": ~3.6.0
     "@types/jasminewd2": ~2.0.3
     "@types/node": ^12.11.1
@@ -12783,7 +12810,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.2.0":
+"tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.2.0, tslib@npm:^2.3.0":
   version: 2.3.1
   resolution: "tslib@npm:2.3.1"
   checksum: de17a98d4614481f7fcb5cd53ffc1aaf8654313be0291e1bfaee4b4bb31a20494b7d218ff2e15017883e8ea9626599b3b0e0229c18383ba9dce89da2adf15cb9
