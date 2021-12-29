@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,5 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private titleService: Title) {}
+  constructor(private titleService: Title, private translateService: TranslateService) {}
 }

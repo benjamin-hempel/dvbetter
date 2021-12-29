@@ -2,12 +2,33 @@
     "shared": {
         "station-types": {
             "platform": "Stand",
-            "railtrack": "Track"
+            "railtrack": "Track",
+            "null": ""
+        },
+        "favorite": {
+            "added": "{{name}} added to favorites",
+            "removed": "{{name}} removed from favorites"
+        },
+        "inputs": {
+            "save": "Save",
+            "delete": "Delete",
+            "search": "Search",
+            "station": "Station",
+            "restraints" : {
+                "range": "Please enter a number between {{lower}} and {{upper}}.",
+                "station": "Please choose a station."
+            }
+        },
+        "times": {
+            "departure-time": "Departure time",
+            "departing-at": "Departing at {{time}}"
         }
     },
     "departures": {
         "title": "Departures",
         "none-found": "No departures found",
+        "departure-count": "Departure count",
+        "quick-search-title": "Search",
         "arrival-times": {
             "now": "now",
             "min": "{{count}} min",
@@ -19,5 +40,8 @@
             "early": "{{count}} min early",
             "cancelled": "cancelled"
         }
+    },
+    "settings": {
+        "title": "Settings"
     }
 }

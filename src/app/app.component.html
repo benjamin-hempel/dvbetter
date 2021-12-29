@@ -3,14 +3,14 @@
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="departures" 
-        (click)="titleService.setTitle('Departures – DVBetter')">
+        (click)="titleService.setTitle(translateService.instant('departures.title') + ' – DVBetter')">
         <ion-icon name="train-outline"></ion-icon>
-        <ion-label>Departures</ion-label>
+        <ion-label>{{ 'departures.title' | translate }}</ion-label>
       </ion-tab-button>
       <ion-tab-button tab="settings" 
-        (click)="titleService.setTitle('Settings – DVBetter')">
+        (click)="titleService.setTitle(translateService.instant('settings.title') + ' – DVBetter')">
         <ion-icon name="settings-outline"></ion-icon>
-        <ion-label>Settings</ion-label>
+        <ion-label>{{ 'settings.title' | translate }}</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>

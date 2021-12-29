@@ -1,20 +1,20 @@
 <ion-card *ngIf="!inStationSelectedMode">
   <ion-item lines="none">
     <ion-label>
-      <ion-card-title class="ion-text-nowrap">Quick search</ion-card-title>
+      <ion-card-title class="ion-text-nowrap">{{ 'departures.quick-search-title' | translate }}</ion-card-title>
     </ion-label>
   </ion-item>
   <ion-card-content>
     <app-station-picker [selectedStation]="selectedStation" (stationNameValidityChangedEvent)="onStationNameValidityChanged($event)" 
       (selectedStationChangedEvent)="onSelectedStationChanged($event)"></app-station-picker>
     <ion-item>
-      <ion-label position="floating">Departure time</ion-label>
+      <ion-label position="floating">{{ 'shared.times.departure-time' | translate }}</ion-label>
       <ion-datetime [formControl]="departureTime" displayFormat="DD.MM.YYYY, HH:mm" min="{{ currentDate }}" max="{{ maxDate }}"></ion-datetime>
     </ion-item>
     <ion-row style="height: 1em"></ion-row>
     <ion-button (click)="searchDepartures()" [disabled]="!isStationNameValid">
       <ion-icon slot="start" name="search-outline"></ion-icon>
-      Search
+      {{ 'shared.inputs.search' | translate }}
     </ion-button>
   </ion-card-content>
 </ion-card>
@@ -39,10 +39,10 @@
   </ion-item>
   <ion-card-content>
     <ion-text color="dark">
-      Departing at {{ formattedDepartureTime }}
+      {{ 'shared.times.departing-at' | translate:{time: formattedDepartureTime} }}
     </ion-text>
     <app-departure-list *ngIf="selectedStation.departures" [monitoredStation]="selectedStation"></app-departure-list>
-    <h2 class="no-departures" *ngIf="!selectedStation.departures  && !isUpdating">No departures found</h2>
+    <h2 class="no-departures" *ngIf="!selectedStation.departures  && !isUpdating">{{ 'departures.none-found' | translate }}</h2>
     <app-departure-skeletons *ngIf="!selectedStation.departures && isUpdating" 
       [departureCount]="selectedStation.departureCount"></app-departure-skeletons>
   </ion-card-content>
