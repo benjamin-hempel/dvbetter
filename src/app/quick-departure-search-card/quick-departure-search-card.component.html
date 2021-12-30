@@ -9,7 +9,8 @@
       (selectedStationChangedEvent)="onSelectedStationChanged($event)"></app-station-picker>
     <ion-item>
       <ion-label position="floating">{{ 'shared.times.departure-time' | translate }}</ion-label>
-      <ion-datetime [formControl]="departureTime" displayFormat="DD.MM.YYYY, HH:mm" min="{{ currentDate }}" max="{{ maxDate }}"></ion-datetime>
+      <ion-datetime [formControl]="departureTime" displayFormat="DD.MM.YYYY, HH:mm" min="{{ currentDate }}" max="{{ maxDate }}" 
+        cancelText="{{ 'shared.inputs.cancel' | translate }}" doneText="{{ 'shared.inputs.done' | translate }}"></ion-datetime>
     </ion-item>
     <ion-row style="height: 1em"></ion-row>
     <ion-button (click)="searchDepartures()" [disabled]="!isStationNameValid">

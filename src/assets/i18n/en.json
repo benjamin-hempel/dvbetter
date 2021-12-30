@@ -12,6 +12,8 @@
         "inputs": {
             "save": "Save",
             "delete": "Delete",
+            "cancel": "Cancel",
+            "done": "Done",
             "search": "Search",
             "station": "Station",
             "restraints" : {
