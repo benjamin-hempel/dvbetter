@@ -34,7 +34,7 @@ const httpLoaderFactory = (http: HttpClient) => new TranslateHttpLoader(http, '.
         useFactory: httpLoaderFactory,
         deps: [HttpClient]
       },
-      defaultLanguage: 'en'
+      defaultLanguage: 'de'
     })
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
