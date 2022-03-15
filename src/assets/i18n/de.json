@@ -44,6 +44,14 @@
         }
     },
     "settings": {
-        "title": "Einstellungen"
+        "title": "Einstellungen",
+        "language": {
+            "title": "Sprache",
+            "options": {
+                "system": "Systemsprache",
+                "german": "Deutsch",
+                "english": "English"
+            }
+        }
     }
 }
