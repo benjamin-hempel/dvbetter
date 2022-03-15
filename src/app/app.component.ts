@@ -10,9 +10,9 @@ import { SettingsStorageService } from './shared/services/settings-storage.servi
 })
 export class AppComponent {
   constructor(
-    private titleService: Title,
-    private translateService: TranslateService,
-    private settingsStorageService: SettingsStorageService) {
+    public titleService: Title,
+    public translateService: TranslateService,
+    public settingsStorageService: SettingsStorageService) {
     let language = this.settingsStorageService.getLanguage();
 
     if(language === 'system') {

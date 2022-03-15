@@ -8,9 +8,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SettingsPageRoutingModule } from './settings-routing.module';
 
 import { SettingsPage } from './settings.page';
-import { AppTitleComponent } from '../app-title/app-title.component';
 import { LanguagePickerComponent } from '../language-picker/language-picker.component';
 import { AboutComponent } from '../about/about.component';
+import { SharedComponentsModule } from '../shared-components/shared-components.module';
 
 @NgModule({
   imports: [
@@ -18,11 +18,11 @@ import { AboutComponent } from '../about/about.component';
     FormsModule,
     IonicModule,
     SettingsPageRoutingModule,
-    TranslateModule
+    TranslateModule,
+    SharedComponentsModule
   ],
   declarations: [
     SettingsPage,
-    AppTitleComponent,
     LanguagePickerComponent,
     AboutComponent
   ]

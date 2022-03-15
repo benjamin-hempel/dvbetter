@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DeparturesPage } from './departures.page';
 
-import { AppTitleComponent } from '../app-title/app-title.component';
 import { DeparturesPageRoutingModule } from './departures-routing.module';
 import { DepartureCardComponent } from '../departure-card/departure-card.component';
 import { DepartureItemComponent } from '../departure-item/departure-item.component';
@@ -15,6 +14,7 @@ import { DepartureListComponent } from '../departure-list/departure-list.compone
 import { TimerComponent } from '../timer/timer.component';
 import { DepartureSkeletonsComponent } from '../departure-skeletons/departure-skeletons.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedComponentsModule } from '../shared-components/shared-components.module';
 
 @NgModule({
   imports: [
@@ -23,10 +23,10 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     ReactiveFormsModule,
     DeparturesPageRoutingModule,
-    TranslateModule
+    TranslateModule,
+    SharedComponentsModule
   ],
   declarations: [
-    AppTitleComponent,
     DeparturesPage,
     DepartureCardComponent,
     QuickDepartureSearchCardComponent,
