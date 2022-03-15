@@ -10,6 +10,7 @@ import { SettingsPageRoutingModule } from './settings-routing.module';
 import { SettingsPage } from './settings.page';
 import { AppTitleComponent } from '../app-title/app-title.component';
 import { LanguagePickerComponent } from '../language-picker/language-picker.component';
+import { AboutComponent } from '../about/about.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { LanguagePickerComponent } from '../language-picker/language-picker.comp
   declarations: [
     SettingsPage,
     AppTitleComponent,
-    LanguagePickerComponent
+    LanguagePickerComponent,
+    AboutComponent
   ]
 })
 export class SettingsPageModule {}
