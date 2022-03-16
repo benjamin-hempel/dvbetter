@@ -2,9 +2,12 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DeparturesPage } from './departures.page';
 
 import { DeparturesPageRoutingModule } from './departures-routing.module';
+import { TranslateModule } from '@ngx-translate/core';
+import { SharedComponentsModule } from '../shared-components/shared-components.module';
+
+import { DeparturesPage } from './departures.page';
 import { DepartureCardComponent } from '../departure-card/departure-card.component';
 import { DepartureItemComponent } from '../departure-item/departure-item.component';
 import { MonitoredStationEditorComponent } from '../monitored-station-editor/monitored-station-editor.component';
@@ -13,8 +16,6 @@ import { QuickDepartureSearchCardComponent } from '../quick-departure-search-car
 import { DepartureListComponent } from '../departure-list/departure-list.component';
 import { TimerComponent } from '../timer/timer.component';
 import { DepartureSkeletonsComponent } from '../departure-skeletons/departure-skeletons.component';
-import { TranslateModule } from '@ngx-translate/core';
-import { SharedComponentsModule } from '../shared-components/shared-components.module';
 
 @NgModule({
   imports: [
