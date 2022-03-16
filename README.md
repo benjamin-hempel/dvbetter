@@ -22,6 +22,10 @@ DVBetter currently offers the following features. If you'd like to see what's co
     * choose how many departures to display for each bookmarked station individually
     * automatically refresh departures to always see the latest information
 * light or dark mode depending on system theme
+* support for multiple languages
+    * currently supported: German and English
+    * by default, the system language is used (if yours is currently not supported, English is used as a fallback)
+    * language can also be selected manually via the settings tab
 
 ## FAQ
 
