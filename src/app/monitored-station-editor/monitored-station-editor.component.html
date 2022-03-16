@@ -1,14 +1,15 @@
 <ion-item>
-  <ion-label position="floating">Departure count</ion-label>
+  <ion-label position="floating">{{ 'departures.departure-count' | translate }}</ion-label>
   <ion-input type="number" min="1" max="10" [formControl]="departureCount"></ion-input>
 </ion-item>
-<ion-text *ngIf="departureCount.invalid && (departureCount.dirty || departureCount.touched)" color="danger">Please enter a number between 1 and 10.</ion-text>
+<ion-text *ngIf="departureCount.invalid && (departureCount.dirty || departureCount.touched)" color="danger">
+  {{ 'shared.inputs.restraints.range' | translate:{lower: '1', upper: '10'} }}</ion-text>
 <ion-row style="height: 1em"></ion-row>
 <ion-button (click)="submit()" [disabled]="!isFormValid">
   <ion-icon slot="start" name="save-outline"></ion-icon>
-  Save
+  {{ 'shared.inputs.save' | translate }}
 </ion-button>
 <ion-button class="ion-float-right" fill="clear" color="danger" (click)="removeStationFromFavorites()">
   <ion-icon slot="start" name="trash-outline"></ion-icon>
-  Delete
+  {{ 'shared.inputs.delete' | translate }}
 </ion-button>

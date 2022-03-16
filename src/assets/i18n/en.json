@@ -1,0 +1,58 @@
+{
+    "shared": {
+        "station-types": {
+            "platform": "Stand",
+            "railtrack": "Track",
+            "null": ""
+        },
+        "favorite": {
+            "added": "{{name}} added to favorites",
+            "removed": "{{name}} removed from favorites"
+        },
+        "inputs": {
+            "save": "Save",
+            "delete": "Delete",
+            "cancel": "Cancel",
+            "done": "Done",
+            "search": "Search",
+            "station": "Station",
+            "restraints" : {
+                "range": "Please enter a number between {{lower}} and {{upper}}.",
+                "station": "Please choose a station."
+            }
+        },
+        "times": {
+            "departure-time": "Departure time",
+            "departing-at": "Departing at {{time}}"
+        }
+    },
+    "departures": {
+        "title": "Departures",
+        "none-found": "No departures found",
+        "departure-count": "Departure count",
+        "quick-search-title": "Search",
+        "arrival-times": {
+            "now": "now",
+            "min": "{{count}} min",
+            "min-ago": "{{count}} min ago"
+        },
+        "delays": {
+            "on-time": "on time",
+            "late": "{{count}} min late",
+            "early": "{{count}} min early",
+            "cancelled": "cancelled"
+        }
+    },
+    "settings": {
+        "title": "Settings",
+        "language": {
+            "title": "Language",
+            "options": {
+                "system": "System language",
+                "german": "Deutsch",
+                "english": "English"
+            }
+        },
+        "no-affiliation": "This app is in no way affiliated with Dresdner Verkehrsbetriebe AG."
+    }
+}

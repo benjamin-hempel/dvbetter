@@ -1,0 +1,58 @@
+{
+    "shared": {
+        "station-types": {
+            "platform": "Steig",
+            "railtrack": "Gleis",
+            "null": ""
+        },
+        "favorite": {
+            "added": "{{name}} zu Favoriten hinzugefügt",
+            "removed": "{{name}} aus Favoriten entfernt"
+        },
+        "inputs": {
+            "save": "Speichern",
+            "delete": "Löschen",
+            "cancel": "Abbrechen",
+            "done": "Fertig",
+            "search": "Suchen",
+            "station": "Haltestelle",
+            "restraints" : {
+                "range": "Bitte geben Sie eine Zahl zwischen {{lower}} und {{upper}} ein.",
+                "station": "Bitte wählen Sie eine Haltestelle aus."
+            }
+        },
+        "times": {
+            "departure-time": "Abfahrtszeit",
+            "departing-at": "Abfahrt am {{time}}"
+        }
+    },
+    "departures": {
+        "title": "Abfahrten",
+        "none-found": "Keine Abfahrten gefunden",
+        "departure-count": "Anzahl Abfahrten",
+        "quick-search-title": "Suche",
+        "arrival-times": {
+            "now": "jetzt",
+            "min": "{{count}} min",
+            "min-ago": "vor {{count}} min"
+        },
+        "delays": {
+            "on-time": "pünktlich",
+            "late": "{{count}} min zu spät",
+            "early": "{{count}} min zu früh",
+            "cancelled": "fällt aus"
+        }
+    },
+    "settings": {
+        "title": "Einstellungen",
+        "language": {
+            "title": "Sprache",
+            "options": {
+                "system": "Systemsprache",
+                "german": "Deutsch",
+                "english": "English"
+            }
+        },
+        "no-affiliation": "Diese App steht in keinerlei Verbindung zur Dresdner Verkehrsbetriebe AG."
+    }
+}

@@ -1,0 +1,9 @@
+<ion-item>
+  <ion-label>{{ 'settings.language.title' | translate }}</ion-label>
+  <ion-select cancelText="{{ 'shared.inputs.cancel' | translate }}" okText="{{ 'shared.inputs.done' | translate }}"
+    [value]="currentLanguage" (ionChange)="selectLanguage($event)">
+    <ion-select-option value="system">{{ 'settings.language.options.system' | translate }}</ion-select-option>
+    <ion-select-option value="de">{{ 'settings.language.options.german' | translate }}</ion-select-option>
+    <ion-select-option value="en">{{ 'settings.language.options.english' | translate }}</ion-select-option>
+    </ion-select>
+</ion-item>

@@ -2,10 +2,12 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DeparturesPage } from './departures.page';
 
-import { AppTitleComponent } from '../app-title/app-title.component';
 import { DeparturesPageRoutingModule } from './departures-routing.module';
+import { TranslateModule } from '@ngx-translate/core';
+import { SharedComponentsModule } from '../shared-components/shared-components.module';
+
+import { DeparturesPage } from './departures.page';
 import { DepartureCardComponent } from '../departure-card/departure-card.component';
 import { DepartureItemComponent } from '../departure-item/departure-item.component';
 import { MonitoredStationEditorComponent } from '../monitored-station-editor/monitored-station-editor.component';
@@ -21,10 +23,11 @@ import { DepartureSkeletonsComponent } from '../departure-skeletons/departure-sk
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    DeparturesPageRoutingModule
+    DeparturesPageRoutingModule,
+    TranslateModule,
+    SharedComponentsModule
   ],
   declarations: [
-    AppTitleComponent,
     DeparturesPage,
     DepartureCardComponent,
     QuickDepartureSearchCardComponent,

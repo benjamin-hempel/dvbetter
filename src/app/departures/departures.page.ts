@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 import { MonitoredStation } from '../shared/models/monitored-station.model';
 import { DepartureMonitorService } from '../shared/services/departure-monitor.service';
@@ -13,7 +14,11 @@ import { DepartureMonitorService } from '../shared/services/departure-monitor.se
 export class DeparturesPage implements OnInit {
   monitoredStations: MonitoredStation[] = [];
 
-  constructor(private departureMonitorService: DepartureMonitorService, private toastController: ToastController) { }
+  constructor(
+    private departureMonitorService: DepartureMonitorService,
+    private toastController: ToastController,
+    private translateService: TranslateService)
+  { }
 
   async ngOnInit() {
     this.monitoredStations = await this.departureMonitorService.getMonitoredStations();
@@ -28,7 +33,7 @@ export class DeparturesPage implements OnInit {
     this.monitoredStations.push(stationToAdd);
 
     const toast = await this.toastController.create({
-      message: this.getCombinedStationName(stationToAdd) + ' added to favorites',
+      message: this.translateService.instant('shared.favorite.added', {name: this.getCombinedStationName(stationToAdd)}),
       duration: 3000
     });
     toast.present();
@@ -41,7 +46,7 @@ export class DeparturesPage implements OnInit {
     const removedStations = this.monitoredStations.splice(index, 1);
 
     const toast = await this.toastController.create({
-      message: this.getCombinedStationName(removedStations[0]) + ' removed from favorites',
+      message: this.translateService.instant('shared.favorite.removed', {name: this.getCombinedStationName(removedStations[0])}),
       duration: 3000
     });
     toast.present();
