@@ -33,8 +33,9 @@ export class DepartureCardComponent implements OnInit {
 
   async updateDepartures(): Promise<void> {
     this.isUpdating = true;
+
     const departures = await this.departureMonitorService.getDepartures(this.monitoredStation);
-    if(!departures && this.monitoredStation.departures) {
+    if(departures.length === 0 && this.monitoredStation.departures.length > 0) {
       this.isUpdating = false;
       return;
     }
