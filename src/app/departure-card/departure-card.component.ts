@@ -20,6 +20,7 @@ export class DepartureCardComponent implements OnInit {
   constructor(private departureMonitorService: DepartureMonitorService) { }
 
   async ngOnInit() {
+    this.lastUpdatedTimestamp = new Date();
     await this.updateDepartures();
 
     this.updateInterval = setInterval(() => {
@@ -33,8 +34,9 @@ export class DepartureCardComponent implements OnInit {
 
   async updateDepartures(): Promise<void> {
     this.isUpdating = true;
+
     const departures = await this.departureMonitorService.getDepartures(this.monitoredStation);
-    if(!departures && this.monitoredStation.departures) {
+    if(departures.length === 0 && this.monitoredStation.departures.length > 0) {
       this.isUpdating = false;
       return;
     }

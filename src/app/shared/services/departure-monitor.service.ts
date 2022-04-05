@@ -20,6 +20,7 @@ export class DepartureMonitorService {
         const response = await this.db.allDocs({include_docs: true});
         const monitoredStations: MonitoredStation[] = [];
         for(const row of response.rows) {
+            row.doc.departures = [];
             monitoredStations.push(row.doc);
         }
         return monitoredStations;
@@ -27,7 +28,9 @@ export class DepartureMonitorService {
 
     async getMonitoredStation(stationId: string): Promise<MonitoredStation> {
         try {
-            return await this.db.get(stationId);
+            const monitoredStation = await this.db.get(stationId);
+            monitoredStation.departures = [];
+            return monitoredStation;
         }
         catch {
             return null;
