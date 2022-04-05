@@ -68,7 +68,7 @@ export class QuickDepartureSearchCardComponent implements OnInit {
     }
 
     const departures = await this.departureMonitorService.getDepartures(this.selectedStation, minutesFromNow);
-    if(!departures && this.selectedStation.departures) {
+    if(departures.length === 0 && this.selectedStation.departures.length > 0) {
       this.isUpdating = false;
       return;
     }
