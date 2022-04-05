@@ -20,6 +20,7 @@ export class DepartureCardComponent implements OnInit {
   constructor(private departureMonitorService: DepartureMonitorService) { }
 
   async ngOnInit() {
+    this.lastUpdatedTimestamp = new Date();
     await this.updateDepartures();
 
     this.updateInterval = setInterval(() => {
