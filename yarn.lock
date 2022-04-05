@@ -1868,11 +1868,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ionic/angular@npm:^5.5.2":
-  version: 5.6.14
-  resolution: "@ionic/angular@npm:5.6.14"
+"@ionic/angular@npm:^5.9.3":
+  version: 5.9.3
+  resolution: "@ionic/angular@npm:5.9.3"
   dependencies:
-    "@ionic/core": 5.6.14
+    "@ionic/core": 5.9.3
     tslib: ^1.9.3
   peerDependencies:
     "@angular/core": ">=8.2.7"
@@ -1880,7 +1880,7 @@ __metadata:
     "@angular/router": ">=8.2.7"
     rxjs: ">=6.2.0"
     zone.js: ">=0.8.26"
-  checksum: 626bd705bcff54b51bd81e6b724cc304e1d6ff191849988c895c06b243b6bc69e0838a32a37714a56b2cc82cb5f590e4227576694c6de96f89aae3d73ebad00d
+  checksum: 39d40d983302f57283540f656ff7a2195674a4db1ccd1ea5ad5f09c7ef94b6a04fade086780e6e2ecc08e7619e07422e14604e9b3731dd0e8fe2f424e3c88262
   languageName: node
   linkType: hard
 
@@ -1895,14 +1895,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ionic/core@npm:5.6.14":
-  version: 5.6.14
-  resolution: "@ionic/core@npm:5.6.14"
+"@ionic/core@npm:5.9.3":
+  version: 5.9.3
+  resolution: "@ionic/core@npm:5.9.3"
   dependencies:
     "@stencil/core": ^2.4.0
     ionicons: ^5.5.3
     tslib: ^2.1.0
-  checksum: 2f1e7652d0992dc89206bd11e9e3ae6e2ca6fd8e5c787e37e50d7e8c32d8959e4e895be7d28a39fe5ab24d9d034126a720f459b1f26fc9b49cf688530ab2960c
+  checksum: 003b88dbf7ecf7ee4fa88266f969d299b4cd9b086db451ffb7be8c41d73032133fbe7b36687a7a9859e77ca8cc0168114ba96beea68c566489c3c501fa59a0a5
   languageName: node
   linkType: hard
 
@@ -5288,7 +5288,7 @@ __metadata:
     "@capacitor/haptics": 1.0.2
     "@capacitor/keyboard": 1.0.2
     "@capacitor/status-bar": 1.0.2
-    "@ionic/angular": ^5.5.2
+    "@ionic/angular": ^5.9.3
     "@ionic/angular-toolkit": ^4.0.0
     "@ngx-translate/core": ^14.0.0
     "@ngx-translate/http-loader": ^7.0.0
