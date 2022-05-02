@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { SettingsStorageService } from '../shared/services/settings-storage.service';
+import { SettingsStorageService } from '../../shared/services/settings-storage.service';
 
 @Component({
   selector: 'app-language-picker',

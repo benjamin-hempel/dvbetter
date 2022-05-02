@@ -3,8 +3,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { format, add, differenceInMinutes } from 'date-fns';
 import * as dvb from 'dvbjs';
 
-import { MonitoredStation } from '../shared/models/monitored-station.model';
-import { DepartureMonitorService } from '../shared/services/departure-monitor.service';
+import { MonitoredStation } from '../../../shared/models/monitored-station.model';
+import { DepartureMonitorService } from '../../../shared/services/departure-monitor.service';
 
 @Component({
   selector: 'app-quick-departure-search-card',

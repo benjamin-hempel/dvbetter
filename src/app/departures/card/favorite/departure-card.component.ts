@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { MonitoredStation } from '../shared/models/monitored-station.model';
-import { DepartureMonitorService } from '../shared/services/departure-monitor.service';
+import { MonitoredStation } from '../../../shared/models/monitored-station.model';
+import { DepartureMonitorService } from '../../../shared/services/departure-monitor.service';
 
 @Component({
   selector: 'app-departure-card',

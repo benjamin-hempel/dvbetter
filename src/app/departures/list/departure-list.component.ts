@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MonitoredStation } from '../shared/models/monitored-station.model';
+import { MonitoredStation } from '../../shared/models/monitored-station.model';
 
 @Component({
   selector: 'app-departure-list',
