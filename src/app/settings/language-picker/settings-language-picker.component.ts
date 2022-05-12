@@ -3,11 +3,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { SettingsStorageService } from '../../shared/services/settings-storage.service';
 
 @Component({
-  selector: 'app-language-picker',
-  templateUrl: './language-picker.component.html',
-  styleUrls: ['./language-picker.component.scss'],
+  selector: 'app-settings-language-picker',
+  templateUrl: './settings-language-picker.component.html',
+  styleUrls: ['./settings-language-picker.component.scss'],
 })
-export class LanguagePickerComponent implements OnInit {
+export class SettingsLanguagePickerComponent implements OnInit {
   currentLanguage: string;
 
   constructor(
@@ -27,6 +27,7 @@ export class LanguagePickerComponent implements OnInit {
 
     if(language === 'system') {
       this.translateService.use(this.translateService.getBrowserLang());
+      return;
     }
 
     this.translateService.use(language);

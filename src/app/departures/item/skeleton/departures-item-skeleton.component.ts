@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-departure-skeletons',
-  templateUrl: './departure-skeletons.component.html',
-  styleUrls: ['./departure-skeletons.component.scss'],
+  selector: 'app-departures-item-skeleton',
+  templateUrl: './departures-item-skeleton.component.html',
+  styleUrls: ['./departures-item-skeleton.component.scss'],
 })
-export class DepartureSkeletonsComponent implements OnInit {
+export class DeparturesItemSkeletonComponent implements OnInit {
   @Input() departureCount: number;
 
   constructor() { }

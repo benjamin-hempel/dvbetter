@@ -12,14 +12,14 @@
     </ion-button>
   </ion-item>
   <ion-card-content *ngIf="!inEditMode">
-    <app-departure-list *ngIf="monitoredStation.departures && monitoredStation.departures.length > 0" 
-      [monitoredStation]="monitoredStation"></app-departure-list>
-    <app-departure-skeletons *ngIf="!monitoredStation.departures || monitoredStation.departures.length === 0 && isUpdating" 
-      [departureCount]="monitoredStation.departureCount"></app-departure-skeletons>
+    <app-departures-list *ngIf="monitoredStation.departures && monitoredStation.departures.length > 0" 
+      [monitoredStation]="monitoredStation"></app-departures-list>
+    <app-departures-item-skeleton *ngIf="!monitoredStation.departures || monitoredStation.departures.length === 0 && isUpdating" 
+      [departureCount]="monitoredStation.departureCount"></app-departures-item-skeleton>
     <h2 *ngIf="monitoredStation.departures && monitoredStation.departures.length === 0 && !isUpdating">{{ 'departures.none-found' | translate}}</h2>
   </ion-card-content>
   <ion-card-content *ngIf="inEditMode">
-    <app-monitored-station-editor [monitoredStation]="monitoredStation" (submittedEvent)="onMonitoredStationEditorSubmitted()" 
-      (monitoredStationRemovedEvent)="onMonitoredStationRemoved($event)"></app-monitored-station-editor>
+    <app-station-editor [monitoredStation]="monitoredStation" (submittedEvent)="onMonitoredStationEditorSubmitted()" 
+      (monitoredStationRemovedEvent)="onMonitoredStationRemoved($event)"></app-station-editor>
   </ion-card-content>
 </ion-card> 

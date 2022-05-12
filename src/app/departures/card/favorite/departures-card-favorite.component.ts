@@ -4,11 +4,11 @@ import { MonitoredStation } from '../../../shared/models/monitored-station.model
 import { DepartureMonitorService } from '../../../shared/services/departure-monitor.service';
 
 @Component({
-  selector: 'app-departure-card',
-  templateUrl: './departure-card.component.html',
-  styleUrls: ['./departure-card.component.scss'],
+  selector: 'app-departures-card-favorite',
+  templateUrl: './departures-card-favorite.component.html',
+  styleUrls: ['./departures-card-favorite.component.scss'],
 })
-export class DepartureCardComponent implements OnInit {
+export class DeparturesCardFavoriteComponent implements OnInit {
   @Input() monitoredStation: MonitoredStation;
   @Output() monitoredStationRemovedEvent = new EventEmitter();
   inEditMode = false;

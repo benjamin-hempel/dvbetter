@@ -7,11 +7,11 @@ import { MonitoredStation } from '../../../shared/models/monitored-station.model
 import { DepartureMonitorService } from '../../../shared/services/departure-monitor.service';
 
 @Component({
-  selector: 'app-quick-departure-search-card',
-  templateUrl: './quick-departure-search-card.component.html',
-  styleUrls: ['./quick-departure-search-card.component.scss'],
+  selector: 'app-departures-card-quick-search',
+  templateUrl: './departures-card-quick-search.component.html',
+  styleUrls: ['./departures-card-quick-search.component.scss'],
 })
-export class QuickDepartureSearchCardComponent implements OnInit {
+export class DeparturesCardQuickSearchComponent implements OnInit {
   @Output() monitoredStationAddedEvent = new EventEmitter();
   @Output() monitoredStationRemovedEvent = new EventEmitter();
 

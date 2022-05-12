@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { QuickDepartureSearchCardComponent } from './quick-departure-search-card.component';
+import { StationEditorComponent } from './station-editor.component';
 
-describe('QuickDepartureSearchCardComponent', () => {
-  let component: QuickDepartureSearchCardComponent;
-  let fixture: ComponentFixture<QuickDepartureSearchCardComponent>;
+describe('StationEditorComponent', () => {
+  let component: StationEditorComponent;
+  let fixture: ComponentFixture<StationEditorComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ QuickDepartureSearchCardComponent ],
+      declarations: [ StationEditorComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(QuickDepartureSearchCardComponent);
+    fixture = TestBed.createComponent(StationEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

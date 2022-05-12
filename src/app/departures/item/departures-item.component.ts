@@ -3,11 +3,11 @@ import { TranslateService } from '@ngx-translate/core';
 import * as dvb from 'dvbjs';
 
 @Component({
-  selector: 'app-departure-item',
-  templateUrl: './departure-item.component.html',
-  styleUrls: ['./departure-item.component.scss'],
+  selector: 'app-departures-item',
+  templateUrl: './departures-item.component.html',
+  styleUrls: ['./departures-item.component.scss'],
 })
-export class DepartureItemComponent implements OnInit {
+export class DeparturesItemComponent implements OnInit {
   @Input() departure: dvb.IMonitor;
 
   constructor(private translateService: TranslateService) { }

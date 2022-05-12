@@ -8,14 +8,14 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SharedComponentsModule } from '../shared/components/shared-components.module';
 
 import { DeparturesPage } from './departures.page';
-import { DepartureCardComponent } from './card/favorite/departure-card.component';
-import { DepartureItemComponent } from './item/departure-item.component';
-import { MonitoredStationEditorComponent } from '../shared/components/station/editor/monitored-station-editor.component';
+import { DeparturesCardFavoriteComponent } from './card/favorite/departures-card-favorite.component';
+import { DeparturesItemComponent } from './item/departures-item.component';
+import { StationEditorComponent } from '../shared/components/station/editor/station-editor.component';
 import { StationPickerComponent } from '../shared/components/station/picker/station-picker.component';
-import { QuickDepartureSearchCardComponent } from './card/quick-search/quick-departure-search-card.component';
-import { DepartureListComponent } from './list/departure-list.component';
+import { DeparturesCardQuickSearchComponent } from './card/quick-search/departures-card-quick-search.component';
+import { DeparturesListComponent } from './list/departures-list.component';
 import { TimerComponent } from '../shared/components/timer/timer.component';
-import { DepartureSkeletonsComponent } from './item/skeleton/departure-skeletons.component';
+import { DeparturesItemSkeletonComponent } from './item/skeleton/departures-item-skeleton.component';
 
 @NgModule({
   imports: [
@@ -29,14 +29,14 @@ import { DepartureSkeletonsComponent } from './item/skeleton/departure-skeletons
   ],
   declarations: [
     DeparturesPage,
-    DepartureCardComponent,
-    QuickDepartureSearchCardComponent,
-    DepartureItemComponent,
-    MonitoredStationEditorComponent,
+    DeparturesCardFavoriteComponent,
+    DeparturesCardQuickSearchComponent,
+    DeparturesItemComponent,
+    StationEditorComponent,
     StationPickerComponent,
-    DepartureListComponent,
+    DeparturesListComponent,
     TimerComponent,
-    DepartureSkeletonsComponent
+    DeparturesItemSkeletonComponent
   ]
 })
 export class DeparturesPageModule {}

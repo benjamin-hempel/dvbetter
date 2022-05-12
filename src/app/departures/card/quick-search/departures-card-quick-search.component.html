@@ -42,10 +42,10 @@
     <ion-text color="dark">
       {{ 'shared.times.departing-at' | translate: {time: formattedDepartureTime} }}
     </ion-text>
-    <app-departure-list *ngIf="selectedStation.departures.length > 0" [monitoredStation]="selectedStation"></app-departure-list>
+    <app-departures-list *ngIf="selectedStation.departures.length > 0" [monitoredStation]="selectedStation"></app-departures-list>
     <h2 class="no-departures" *ngIf="selectedStation.departures.length === 0  && !isUpdating">{{ 'departures.none-found' | translate }}</h2>
-    <app-departure-skeletons *ngIf="selectedStation.departures.length === 0 && isUpdating" 
-      [departureCount]="selectedStation.departureCount"></app-departure-skeletons>
+    <app-departures-item-skeleton *ngIf="selectedStation.departures.length === 0 && isUpdating" 
+      [departureCount]="selectedStation.departureCount"></app-departures-item-skeleton>
   </ion-card-content>
 </ion-card>
 

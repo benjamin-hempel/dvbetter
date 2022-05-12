@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { LanguagePickerComponent } from './language-picker.component';
+import { DeparturesItemComponent } from './departures-item.component';
 
-describe('LanguagePickerComponent', () => {
-  let component: LanguagePickerComponent;
-  let fixture: ComponentFixture<LanguagePickerComponent>;
+describe('DeparturesItemComponent', () => {
+  let component: DeparturesItemComponent;
+  let fixture: ComponentFixture<DeparturesItemComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LanguagePickerComponent ],
+      declarations: [ DeparturesItemComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LanguagePickerComponent);
+    fixture = TestBed.createComponent(DeparturesItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

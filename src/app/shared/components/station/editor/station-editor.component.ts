@@ -4,11 +4,11 @@ import { FormControl, Validators } from '@angular/forms';
 import { MonitoredStation } from '../../../models/monitored-station.model';
 
 @Component({
-  selector: 'app-monitored-station-editor',
-  templateUrl: './monitored-station-editor.component.html',
-  styleUrls: ['./monitored-station-editor.component.scss'],
+  selector: 'app-station-editor',
+  templateUrl: './station-editor.component.html',
+  styleUrls: ['./station-editor.component.scss'],
 })
-export class MonitoredStationEditorComponent implements OnInit {
+export class StationEditorComponent implements OnInit {
   @Input() monitoredStation: MonitoredStation;
   @Output() submittedEvent = new EventEmitter();
   @Output() monitoredStationRemovedEvent = new EventEmitter();

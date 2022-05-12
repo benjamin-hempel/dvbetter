@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { DepartureListComponent } from './departure-list.component';
+import { DeparturesCardQuickSearchComponent } from './departures-card-quick-search.component';
 
-describe('DepartureListComponent', () => {
-  let component: DepartureListComponent;
-  let fixture: ComponentFixture<DepartureListComponent>;
+describe('DeparturesCardQuickSearchComponent', () => {
+  let component: DeparturesCardQuickSearchComponent;
+  let fixture: ComponentFixture<DeparturesCardQuickSearchComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ DepartureListComponent ],
+      declarations: [ DeparturesCardQuickSearchComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DepartureListComponent);
+    fixture = TestBed.createComponent(DeparturesCardQuickSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
