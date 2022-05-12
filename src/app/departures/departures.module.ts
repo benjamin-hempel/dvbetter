@@ -10,8 +10,8 @@ import { SharedComponentsModule } from '../shared/components/shared-components.m
 import { DeparturesPage } from './departures.page';
 import { DeparturesCardFavoriteComponent } from './card/favorite/departures-card-favorite.component';
 import { DeparturesItemComponent } from './item/departures-item.component';
-import { StationEditorComponent } from '../shared/components/station/editor/station-editor.component';
-import { StationPickerComponent } from '../shared/components/station/picker/station-picker.component';
+import { DeparturesStationEditorComponent } from './station-editor/departures-station-editor.component';
+import { StationPickerComponent } from '../shared/components/station-picker/station-picker.component';
 import { DeparturesCardQuickSearchComponent } from './card/quick-search/departures-card-quick-search.component';
 import { DeparturesListComponent } from './list/departures-list.component';
 import { TimerComponent } from '../shared/components/timer/timer.component';
@@ -32,7 +32,7 @@ import { DeparturesItemSkeletonComponent } from './item/skeleton/departures-item
     DeparturesCardFavoriteComponent,
     DeparturesCardQuickSearchComponent,
     DeparturesItemComponent,
-    StationEditorComponent,
+    DeparturesStationEditorComponent,
     StationPickerComponent,
     DeparturesListComponent,
     TimerComponent,

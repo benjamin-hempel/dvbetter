@@ -2,7 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import * as dvb from 'dvbjs';
 
-import { MonitoredStation } from '../../../models/monitored-station.model';
+import { MonitoredStation } from '../../models/monitored-station.model';
 
 @Component({
   selector: 'app-station-picker',

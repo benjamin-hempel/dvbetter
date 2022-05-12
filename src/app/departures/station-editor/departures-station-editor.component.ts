@@ -1,14 +1,14 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
-import { MonitoredStation } from '../../../models/monitored-station.model';
+import { MonitoredStation } from '../../shared/models/monitored-station.model';
 
 @Component({
-  selector: 'app-station-editor',
-  templateUrl: './station-editor.component.html',
-  styleUrls: ['./station-editor.component.scss'],
+  selector: 'app-departures-station-editor',
+  templateUrl: './departures-station-editor.component.html',
+  styleUrls: ['./departures-station-editor.component.scss'],
 })
-export class StationEditorComponent implements OnInit {
+export class DeparturesStationEditorComponent implements OnInit {
   @Input() monitoredStation: MonitoredStation;
   @Output() submittedEvent = new EventEmitter();
   @Output() monitoredStationRemovedEvent = new EventEmitter();
