@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { MonitoredStation } from '../models/monitored-station.model';
 import { DepartureMonitorService } from './departure-monitor.service';
 
@@ -7,17 +7,31 @@ import { DepartureMonitorService } from './departure-monitor.service';
   providedIn: 'root'
 })
 export class StationService {
-  stationCreated = new Subject<MonitoredStation>();
-  stationUpdated = new Subject<MonitoredStation>();
-  stationDeleted = new Subject<MonitoredStation>();
+  private stationCreated = new Subject<MonitoredStation>();
+  private stationUpdated = new Subject<MonitoredStation>();
+  private stationDeleted = new Subject<MonitoredStation>();
+  private stations: MonitoredStation[];
 
   constructor(private departureMonitorService: DepartureMonitorService) { }
 
-  async initialize(): Promise<void> {
-    const stations = await this.departureMonitorService.getMonitoredStations();
-    for(const station of stations) {
-      this.stationCreated.next(station);
+  getStationCreated(): Observable<MonitoredStation> {
+    return this.stationCreated.asObservable();
+  }
+
+  getStationUpdated(): Observable<MonitoredStation> {
+    return this.stationUpdated.asObservable();
+  }
+
+  getStationDeleted(): Observable<MonitoredStation> {
+    return this.stationDeleted.asObservable();
+  }
+
+  async getStations(): Promise<MonitoredStation[]> {
+    if(!this.stations) {
+      this.stations = await this.departureMonitorService.getMonitoredStations();
     }
+
+    return this.stations;
   }
 
   async createStation(station: MonitoredStation): Promise<void> {

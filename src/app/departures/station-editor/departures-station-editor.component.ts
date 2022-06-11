@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { StationService } from 'src/app/shared/services/station.service';
 
 import { MonitoredStation } from '../../shared/models/monitored-station.model';
 
@@ -11,11 +12,10 @@ import { MonitoredStation } from '../../shared/models/monitored-station.model';
 export class DeparturesStationEditorComponent implements OnInit {
   @Input() monitoredStation: MonitoredStation;
   @Output() submittedEvent = new EventEmitter();
-  @Output() monitoredStationRemovedEvent = new EventEmitter();
   departureCount: FormControl;
   isStationNameValid = true;
 
-  constructor() { }
+  constructor(private stationService: StationService) { }
 
   ngOnInit() {
     this.departureCount = new FormControl(this.monitoredStation.departureCount, [
@@ -34,7 +34,7 @@ export class DeparturesStationEditorComponent implements OnInit {
     this.submittedEvent.emit();
   }
 
-  removeStationFromFavorites(): void {
-    this.monitoredStationRemovedEvent.emit(this.monitoredStation);
+  async removeStationFromFavorites(): Promise<void> {
+    await this.stationService.deleteStation(this.monitoredStation);
   }
 }

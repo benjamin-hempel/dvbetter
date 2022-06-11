@@ -1,10 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import * as dvb from 'dvbjs';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { format, add, differenceInMinutes } from 'date-fns';
-import * as dvb from 'dvbjs';
-
-import { MonitoredStation } from '../../../shared/models/monitored-station.model';
+import { StationService } from 'src/app/shared/services/station.service';
 import { DepartureMonitorService } from '../../../shared/services/departure-monitor.service';
+import { MonitoredStation } from '../../../shared/models/monitored-station.model';
 
 @Component({
   selector: 'app-departures-card-quick-search',
@@ -12,23 +12,23 @@ import { DepartureMonitorService } from '../../../shared/services/departure-moni
   styleUrls: ['./departures-card-quick-search.component.scss'],
 })
 export class DeparturesCardQuickSearchComponent implements OnInit {
-  @Output() monitoredStationAddedEvent = new EventEmitter();
-  @Output() monitoredStationRemovedEvent = new EventEmitter();
+  selectedStation: MonitoredStation;
 
   inStationSelectedMode = false;
   isUpdating = true;
   isStationNameValid = false;
   isStationInFavorites = false;
-  selectedStation: MonitoredStation;
   departureTime: FormControl;
   lastUpdatedTimestamp: Date;
   currentDate: string;
   maxDate: string;
-
   updateCurrentDateInterval: NodeJS.Timeout;
   updateInterval: NodeJS.Timeout;
 
-  constructor(private departureMonitorService: DepartureMonitorService) { }
+  constructor(
+    private stationService: StationService,
+    private departureMonitorService: DepartureMonitorService)
+  { }
 
   ngOnInit() {
     this.lastUpdatedTimestamp = new Date();
@@ -106,13 +106,12 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
     stationToSave.station = this.selectedStation.station;
     stationToSave.departureCount = this.selectedStation.departureCount;
 
-    await this.departureMonitorService.addMonitoredStation(stationToSave);
-    this.monitoredStationAddedEvent.emit(this.selectedStation.station.id);
+    await this.stationService.createStation(stationToSave);
     this.leaveStationSelectedMode();
   }
 
   async removeStationFromFavorites(): Promise<void> {
-    this.monitoredStationRemovedEvent.emit(this.selectedStation);
+    await this.stationService.deleteStation(this.selectedStation);
     this.isStationInFavorites = false;
   }
 
