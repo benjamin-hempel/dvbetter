@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { MonitoredStation } from '../shared/models/monitored-station.model';
+import { Station } from '../shared/models/station.model';
 import { StationService } from '../shared/services/station.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { StationService } from '../shared/services/station.service';
   styleUrls: ['departures.page.scss']
 })
 export class DeparturesPage implements OnInit {
-  monitoredStations: MonitoredStation[] = [];
+  stations: Station[] = [];
 
   constructor(
     private stationService: StationService,
@@ -23,15 +23,25 @@ export class DeparturesPage implements OnInit {
     this.stationService.getStationCreated().subscribe(s => this.onStationCreated(s));
     this.stationService.getStationDeleted().subscribe(s => this.onStationDeleted(s));
 
-    this.monitoredStations = await this.stationService.getStations();
+    this.stations = await this.stationService.getStations();
+    this.stations.sort((a, b) => this.compare(a, b));
   }
 
-  getCombinedStationName(monitoredStation: MonitoredStation): string {
-    return monitoredStation.station.name + ', ' + monitoredStation.station.city;
+  getCombinedStationName(station: Station): string {
+    return station.name + ', ' + station.city;
   }
 
-  async onStationCreated(station: MonitoredStation): Promise<void> {
-    this.monitoredStations.push(station);
+  compare(a: Station, b: Station): number {
+    if(a.city === b.city) {
+      return a.name.localeCompare(b.name);
+    }
+
+    return a.city.localeCompare(b.city);
+  }
+
+  async onStationCreated(station: Station): Promise<void> {
+    this.stations.push(station);
+    this.stations.sort((a, b) => this.compare(a, b));
 
     const toast = await this.toastController.create({
       message: this.translateService.instant('shared.favorite.added', {name: this.getCombinedStationName(station)}),
@@ -40,9 +50,9 @@ export class DeparturesPage implements OnInit {
     toast.present();
   }
 
-  async onStationDeleted(station: MonitoredStation): Promise<void> {
-    const index = this.monitoredStations.findIndex(s => s._id === station._id);
-    this.monitoredStations.splice(index, 1);
+  async onStationDeleted(station: Station): Promise<void> {
+    const index = this.stations.findIndex(s => s._id === station._id);
+    this.stations.splice(index, 1);
 
     const toast = await this.toastController.create({
       message: this.translateService.instant('shared.favorite.removed', {name: this.getCombinedStationName(station)}),

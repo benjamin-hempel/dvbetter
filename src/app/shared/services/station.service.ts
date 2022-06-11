@@ -1,51 +1,56 @@
+/* eslint-disable no-underscore-dangle */
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { MonitoredStation } from '../models/monitored-station.model';
-import { DepartureMonitorService } from './departure-monitor.service';
+import { Station } from '../models/station.model';
+import { StationStorageService } from './station-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StationService {
-  private stationCreated = new Subject<MonitoredStation>();
-  private stationUpdated = new Subject<MonitoredStation>();
-  private stationDeleted = new Subject<MonitoredStation>();
-  private stations: MonitoredStation[];
+  private stationCreated = new Subject<Station>();
+  private stationUpdated = new Subject<Station>();
+  private stationDeleted = new Subject<Station>();
+  private stations: Station[];
 
-  constructor(private departureMonitorService: DepartureMonitorService) { }
+  constructor(private stationStorageService: StationStorageService) { }
 
-  getStationCreated(): Observable<MonitoredStation> {
+  getStationCreated(): Observable<Station> {
     return this.stationCreated.asObservable();
   }
 
-  getStationUpdated(): Observable<MonitoredStation> {
+  getStationUpdated(): Observable<Station> {
     return this.stationUpdated.asObservable();
   }
 
-  getStationDeleted(): Observable<MonitoredStation> {
+  getStationDeleted(): Observable<Station> {
     return this.stationDeleted.asObservable();
   }
 
-  async getStations(): Promise<MonitoredStation[]> {
+  async getStations(): Promise<Station[]> {
     if(!this.stations) {
-      this.stations = await this.departureMonitorService.getMonitoredStations();
+      this.stations = await this.stationStorageService.getStations();
     }
 
     return this.stations;
   }
 
-  async createStation(station: MonitoredStation): Promise<void> {
-    const createdStation = await this.departureMonitorService.addMonitoredStation(station);
+  async getStation(id: string): Promise<Station> {
+    return await this.stationStorageService.getStation(id);
+  }
+
+  async createStation(station: Station): Promise<void> {
+    const createdStation = await this.stationStorageService.addUpdateStation(station);
     this.stationCreated.next(createdStation);
   }
 
-  async updateStation(station: MonitoredStation): Promise<void> {
-    const updatedStation = await this.departureMonitorService.updateMonitoredStation(station);
+  async updateStation(station: Station): Promise<void> {
+    const updatedStation = await this.stationStorageService.addUpdateStation(station);
     this.stationUpdated.next(updatedStation);
   }
 
-  async deleteStation(station: MonitoredStation): Promise<void> {
-    await this.departureMonitorService.deleteMonitoredStation(station);
-    this.stationDeleted.next(station);
+  async deleteStation(station: Station): Promise<void> {
+    const deletedStation = await this.stationStorageService.deleteStation(station);
+    this.stationDeleted.next(deletedStation);
   }
 }

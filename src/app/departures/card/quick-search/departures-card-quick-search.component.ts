@@ -1,10 +1,11 @@
+/* eslint-disable no-underscore-dangle */
 import * as dvb from 'dvbjs';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { format, add, differenceInMinutes } from 'date-fns';
+import { ApiService } from 'src/app/shared/services/api.service';
 import { StationService } from 'src/app/shared/services/station.service';
-import { DepartureMonitorService } from '../../../shared/services/departure-monitor.service';
-import { MonitoredStation } from '../../../shared/models/monitored-station.model';
+import { Station } from 'src/app/shared/models/station.model';
 
 @Component({
   selector: 'app-departures-card-quick-search',
@@ -12,7 +13,8 @@ import { MonitoredStation } from '../../../shared/models/monitored-station.model
   styleUrls: ['./departures-card-quick-search.component.scss'],
 })
 export class DeparturesCardQuickSearchComponent implements OnInit {
-  selectedStation: MonitoredStation;
+  selectedStation: Station;
+  departures: dvb.IMonitor[] = [];
 
   inStationSelectedMode = false;
   isUpdating = true;
@@ -26,8 +28,8 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
   updateInterval: NodeJS.Timeout;
 
   constructor(
-    private stationService: StationService,
-    private departureMonitorService: DepartureMonitorService)
+    private apiService: ApiService,
+    private stationService: StationService)
   { }
 
   ngOnInit() {
@@ -67,19 +69,21 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
       this.departureTime.setValue(this.currentDate);
     }
 
-    const departures = await this.departureMonitorService.getDepartures(this.selectedStation, minutesFromNow);
-    if(departures.length === 0 && this.selectedStation.departures.length > 0) {
+    const departures = await this.apiService.getDepartures(this.selectedStation, minutesFromNow);
+    if(departures.length === 0 && this.departures.length > 0) {
       this.isUpdating = false;
       return;
     }
 
-    this.selectedStation.departures = departures;
+    this.departures = departures;
     this.isUpdating = false;
     this.lastUpdatedTimestamp = new Date();
   }
 
   async searchDepartures(): Promise<void> {
-    if(await this.departureMonitorService.getMonitoredStation(this.selectedStation.station.id)) {
+    const station = await this.stationService.getStation(this.selectedStation._id);
+    if(station) {
+      this.selectedStation = station;
       this.isStationInFavorites = true;
     }
 
@@ -101,24 +105,20 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
   }
 
   async addStationToFavorites(): Promise<void> {
-    // Do not save departures to database
-    const stationToSave = new MonitoredStation();
-    stationToSave.station = this.selectedStation.station;
-    stationToSave.departureCount = this.selectedStation.departureCount;
-
-    await this.stationService.createStation(stationToSave);
+    await this.stationService.createStation(this.selectedStation);
     this.leaveStationSelectedMode();
   }
 
   async removeStationFromFavorites(): Promise<void> {
     await this.stationService.deleteStation(this.selectedStation);
-    this.isStationInFavorites = false;
+    this.leaveStationSelectedMode();
   }
 
   leaveStationSelectedMode(): void {
     this.inStationSelectedMode = false;
     this.isStationInFavorites = false;
     this.selectedStation = null;
+    this.departures = [];
     clearInterval(this.updateInterval);
   }
 
@@ -126,9 +126,7 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
     this.isStationNameValid = isStationNameValid;
   }
 
-  onSelectedStationChanged(station: dvb.ILocation): void {
-    this.selectedStation = new MonitoredStation();
-    this.selectedStation.station = station;
-    this.selectedStation.departureCount = 5;
+  onSelectedStationChanged(station: Station): void {
+    this.selectedStation = station;
   }
 }

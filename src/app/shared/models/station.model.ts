@@ -3,5 +3,5 @@ export class Station {
     _rev: string;
     name: string;
     city: string;
-    departureCount: number;
+    departureCount = 5;
 }

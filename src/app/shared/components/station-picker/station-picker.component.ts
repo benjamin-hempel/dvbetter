@@ -1,8 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import * as dvb from 'dvbjs';
-
-import { MonitoredStation } from '../../models/monitored-station.model';
+import { ApiService } from '../../services/api.service';
+import { Station } from '../../models/station.model';
 
 @Component({
   selector: 'app-station-picker',
@@ -10,13 +9,14 @@ import { MonitoredStation } from '../../models/monitored-station.model';
   styleUrls: ['./station-picker.component.scss'],
 })
 export class StationPickerComponent implements OnInit {
-  @Input() selectedStation: MonitoredStation;
+  @Input() selectedStation: Station;
   @Output() stationNameValidityChangedEvent = new EventEmitter();
   @Output() selectedStationChangedEvent = new EventEmitter();
-  matchingStations: dvb.ILocation[];
+
+  matchingStations: Station[];
   stationName: FormControl;
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     this.stationName = new FormControl(this.combinedStationName, [
@@ -25,7 +25,7 @@ export class StationPickerComponent implements OnInit {
   }
 
   get combinedStationName(): string {
-    return this.selectedStation ? this.selectedStation.station.name + ', ' + this.selectedStation.station.city : '';
+    return this.selectedStation ? this.selectedStation.name + ', ' + this.selectedStation.city : '';
   }
 
   get stationNameValid(): boolean {
@@ -43,12 +43,11 @@ export class StationPickerComponent implements OnInit {
       return;
     }
 
-    this.matchingStations = (await dvb.findStop(stationName)).slice(0, 4);
+    this.matchingStations = (await this.apiService.getStations(stationName)).slice(0, 4);
   }
 
-  selectStation(station: dvb.ILocation): void {
-    this.selectedStation = new MonitoredStation();
-    this.selectedStation.station = station;
+  selectStation(station: Station): void {
+    this.selectedStation = station;
     this.stationName.setValue(this.combinedStationName);
     this.matchingStations = [];
     this.stationNameValidityChangedEvent.emit(this.stationNameValid);

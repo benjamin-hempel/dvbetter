@@ -1,8 +1,9 @@
 /* eslint-disable no-underscore-dangle */
+import * as dvb from 'dvbjs';
 import { Component, Input, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/shared/services/api.service';
 import { StationService } from 'src/app/shared/services/station.service';
-import { DepartureMonitorService } from '../../../shared/services/departure-monitor.service';
-import { MonitoredStation } from '../../../shared/models/monitored-station.model';
+import { Station } from '../../../shared/models/station.model';
 
 @Component({
   selector: 'app-departures-card-favorite',
@@ -10,7 +11,8 @@ import { MonitoredStation } from '../../../shared/models/monitored-station.model
   styleUrls: ['./departures-card-favorite.component.scss'],
 })
 export class DeparturesCardFavoriteComponent implements OnInit {
-  @Input() monitoredStation: MonitoredStation;
+  @Input() station: Station;
+  departures: dvb.IMonitor[] = [];
 
   inEditMode = false;
   isUpdating = true;
@@ -18,8 +20,8 @@ export class DeparturesCardFavoriteComponent implements OnInit {
   updateInterval: NodeJS.Timeout;
 
   constructor(
-    private stationService: StationService,
-    private departureMonitorService: DepartureMonitorService)
+    private apiService: ApiService,
+    private stationService: StationService)
   { }
 
   async ngOnInit() {
@@ -40,13 +42,13 @@ export class DeparturesCardFavoriteComponent implements OnInit {
   async updateDepartures(): Promise<void> {
     this.isUpdating = true;
 
-    const departures = await this.departureMonitorService.getDepartures(this.monitoredStation);
-    if(departures.length === 0 && this.monitoredStation.departures.length > 0) {
+    const departures = await this.apiService.getDepartures(this.station);
+    if(departures.length === 0 && this.departures.length > 0) {
       this.isUpdating = false;
       return;
     }
 
-    this.monitoredStation.departures = departures;
+    this.departures = departures;
     this.isUpdating = false;
     this.lastUpdatedTimestamp = new Date();
   }
@@ -66,15 +68,14 @@ export class DeparturesCardFavoriteComponent implements OnInit {
     this.inEditMode = true;
   }
 
-  async onStationUpdated(station: MonitoredStation): Promise<void> {
-    if(station._id === this.monitoredStation._id) {
-      this.monitoredStation = station;
+  async onStationUpdated(station: Station): Promise<void> {
+    if(station._id === this.station._id) {
+      this.station = station;
     }
   }
 
   async onMonitoredStationEditorSubmitted(): Promise<void> {
-    this.monitoredStation.departures = null;
-    await this.stationService.updateStation(this.monitoredStation);
+    this.departures = [];
     this.inEditMode = false;
 
     await this.updateDepartures();

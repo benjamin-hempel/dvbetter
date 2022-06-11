@@ -19,12 +19,23 @@ export class StationStorageService {
     return response.rows.map(row => row.doc);
   }
 
+  async getStation(id: string): Promise<Station> {
+    try {
+      return await this.db.get(id);
+    }
+    catch {
+      return null;
+    }
+  }
+
   async addUpdateStation(station: Station): Promise<Station> {
     await this.db.put(station);
     return await this.db.get(station._id); // Get updated rev
   }
 
-  async deleteStation(station: Station): Promise<void> {
+  async deleteStation(station: Station): Promise<Station> {
     await this.db.remove(station);
+    station._rev = ''; // Strip rev
+    return station;
   }
 }

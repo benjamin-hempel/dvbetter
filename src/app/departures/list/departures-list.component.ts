@@ -1,5 +1,5 @@
+import * as dvb from 'dvbjs';
 import { Component, Input, OnInit } from '@angular/core';
-import { MonitoredStation } from '../../shared/models/monitored-station.model';
 
 @Component({
   selector: 'app-departures-list',
@@ -7,7 +7,7 @@ import { MonitoredStation } from '../../shared/models/monitored-station.model';
   styleUrls: ['./departures-list.component.scss'],
 })
 export class DeparturesListComponent implements OnInit {
-  @Input() monitoredStation: MonitoredStation;
+  @Input() departures: dvb.IMonitor[];
 
   constructor() { }
 

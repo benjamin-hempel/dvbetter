@@ -1,8 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { StationService } from 'src/app/shared/services/station.service';
-
-import { MonitoredStation } from '../../shared/models/monitored-station.model';
+import { Station } from '../../shared/models/station.model';
 
 @Component({
   selector: 'app-departures-station-editor',
@@ -10,15 +9,16 @@ import { MonitoredStation } from '../../shared/models/monitored-station.model';
   styleUrls: ['./departures-station-editor.component.scss'],
 })
 export class DeparturesStationEditorComponent implements OnInit {
-  @Input() monitoredStation: MonitoredStation;
+  @Input() station: Station;
   @Output() submittedEvent = new EventEmitter();
+
   departureCount: FormControl;
   isStationNameValid = true;
 
   constructor(private stationService: StationService) { }
 
   ngOnInit() {
-    this.departureCount = new FormControl(this.monitoredStation.departureCount, [
+    this.departureCount = new FormControl(this.station.departureCount, [
       Validators.required,
       Validators.min(1),
       Validators.max(10)
@@ -29,12 +29,13 @@ export class DeparturesStationEditorComponent implements OnInit {
     return this.departureCount.valid;
   }
 
-  submit(): void {
-    this.monitoredStation.departureCount = this.departureCount.value;
+  async submit(): Promise<void> {
+    this.station.departureCount = this.departureCount.value;
+    await this.stationService.updateStation(this.station);
     this.submittedEvent.emit();
   }
 
   async removeStationFromFavorites(): Promise<void> {
-    await this.stationService.deleteStation(this.monitoredStation);
+    await this.stationService.deleteStation(this.station);
   }
 }

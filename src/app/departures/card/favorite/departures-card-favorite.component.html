@@ -1,8 +1,8 @@
 <ion-card>
   <ion-item lines="none">
     <ion-label>
-      <ion-card-title class="ion-text-nowrap">{{ monitoredStation.station.name }}</ion-card-title>
-      <ion-card-subtitle class="ion-text-nowrap">{{ monitoredStation.station.city }}</ion-card-subtitle>
+      <ion-card-title class="ion-text-nowrap">{{ station.name }}</ion-card-title>
+      <ion-card-subtitle class="ion-text-nowrap">{{ station.city }}</ion-card-subtitle>
     </ion-label>
     <app-timer *ngIf="!inEditMode" class="timer-item" [ngClass]="{'clickable': lastUpdatedSeconds > 35}" 
       [color]="lastUpdatedSeconds <= 35 ? 'medium' : ''" (click)="lastUpdatedSeconds > 35 && tapToRefresh()"
@@ -12,13 +12,12 @@
     </ion-button>
   </ion-item>
   <ion-card-content *ngIf="!inEditMode">
-    <app-departures-list *ngIf="monitoredStation.departures && monitoredStation.departures.length > 0" 
-      [monitoredStation]="monitoredStation"></app-departures-list>
-    <app-departures-item-skeleton *ngIf="!monitoredStation.departures || monitoredStation.departures.length === 0 && isUpdating" 
-      [departureCount]="monitoredStation.departureCount"></app-departures-item-skeleton>
-    <h2 *ngIf="monitoredStation.departures && monitoredStation.departures.length === 0 && !isUpdating">{{ 'departures.none-found' | translate}}</h2>
+    <app-departures-list *ngIf="departures && departures.length > 0" [departures]="departures"></app-departures-list>
+    <app-departures-item-skeleton *ngIf="!departures || departures.length === 0 && isUpdating" 
+      [departureCount]="station.departureCount"></app-departures-item-skeleton>
+    <h2 *ngIf="departures && departures.length === 0 && !isUpdating">{{ 'departures.none-found' | translate}}</h2>
   </ion-card-content>
   <ion-card-content *ngIf="inEditMode">
-    <app-departures-station-editor [monitoredStation]="monitoredStation" (submittedEvent)="onMonitoredStationEditorSubmitted()"></app-departures-station-editor>
+    <app-departures-station-editor [station]="station" (submittedEvent)="onMonitoredStationEditorSubmitted()"></app-departures-station-editor>
   </ion-card-content>
 </ion-card> 
