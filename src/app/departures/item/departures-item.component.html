@@ -12,7 +12,7 @@
     <h3 *ngIf="departure.hasLiveData" [ngClass]="{'color-departed': departure.relativeArrival < 0, 
       'color-on-time': departure.relativeDelay === 0, 'color-late': departure.relativeDelay > 0 || departure.isCancelled, 
       'color-early': departure.relativeDelay < 0}">
-      {{delay}}
+      {{ delay }}
     </h3>
   </ion-note>
 </ion-item>

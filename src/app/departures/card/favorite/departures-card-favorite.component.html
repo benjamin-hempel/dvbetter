@@ -15,7 +15,7 @@
     <app-departures-list *ngIf="departures && departures.length > 0" [departures]="departures"></app-departures-list>
     <app-departures-item-skeleton *ngIf="!departures || departures.length === 0 && isUpdating" 
       [departureCount]="station.departureCount"></app-departures-item-skeleton>
-    <h2 *ngIf="departures && departures.length === 0 && !isUpdating">{{ 'departures.none-found' | translate}}</h2>
+    <h2 *ngIf="departures && departures.length === 0 && !isUpdating">{{ 'departures.none-found' | translate }}</h2>
   </ion-card-content>
   <ion-card-content *ngIf="inEditMode">
     <app-departures-station-editor [station]="station" (submittedEvent)="onMonitoredStationEditorSubmitted()"></app-departures-station-editor>

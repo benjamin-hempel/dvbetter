@@ -40,7 +40,7 @@
   </ion-item>
   <ion-card-content>
     <ion-text color="dark">
-      {{ 'shared.times.departing-at' | translate: {time: formattedDepartureTime} }}
+      {{ 'shared.times.departing-at' | translate: { time: formattedDepartureTime } }}
     </ion-text>
     <app-departures-list *ngIf="departures.length > 0" [departures]="departures"></app-departures-list>
     <h2 class="no-departures" *ngIf="departures.length === 0  && !isUpdating">{{ 'departures.none-found' | translate }}</h2>
