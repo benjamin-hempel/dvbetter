@@ -1,17 +1,17 @@
 <ion-item>
   <ion-avatar slot="start">
-    <img src="{{departure.mode.iconUrl}}" [ngClass]="{'filter-grayscale': departure.arrivalTimeRelative < 0}"
+    <img src="{{ departure.modeIconUrl }}" [ngClass]="{'filter-grayscale': departure.relativeArrival < 0}"
       onerror="this.onerror=null; this.src='assets/unknown-mode.svg'" alt="">
   </ion-avatar>
-  <ion-label [ngClass]="{'color-departed': departure.arrivalTimeRelative < 0, 'strikethrough': departure.state === 'Cancelled'}">
-    <h2>{{departure.line}} {{departure.direction}}</h2>
-    <h3>{{ 'shared.station-types.' + departure.platform?.type | lowercase | translate }} {{departure.platform?.name}}</h3>
+  <ion-label [ngClass]="{'color-departed': departure.relativeArrival < 0, 'strikethrough': departure.isCancelled}">
+    <h2>{{ departure.line }} {{ departure.destination }}</h2>
+    <h3>{{ 'shared.station-types.' + departure.platformType | lowercase | translate }} {{ departure.platformName }}</h3>
   </ion-label>
-  <ion-note slot="end" class="ion-text-end" [ngClass]="{'color-departed': departure.arrivalTimeRelative < 0}">
-    <h3>{{departureTime}}</h3>
-    <h3 *ngIf="departure.state !== 'Unknown'" [ngClass]="{'color-departed': departure.arrivalTimeRelative < 0, 
-      'color-on-time': departure.delayTime === 0, 'color-late': departure.delayTime > 0 || departure.state === 'Cancelled', 
-      'color-early': departure.delayTime < 0}">
+  <ion-note slot="end" class="ion-text-end" [ngClass]="{'color-departed': departure.relativeArrival < 0}">
+    <h3>{{ departureTime }}</h3>
+    <h3 *ngIf="departure.hasLiveData" [ngClass]="{'color-departed': departure.relativeArrival < 0, 
+      'color-on-time': departure.relativeDelay === 0, 'color-late': departure.relativeDelay > 0 || departure.isCancelled, 
+      'color-early': departure.relativeDelay < 0}">
       {{delay}}
     </h3>
   </ion-note>

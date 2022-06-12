@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import * as dvb from 'dvbjs';
+import { Departure } from 'src/app/shared/models/departure.model';
 
 @Component({
   selector: 'app-departures-item',
@@ -8,48 +8,48 @@ import * as dvb from 'dvbjs';
   styleUrls: ['./departures-item.component.scss'],
 })
 export class DeparturesItemComponent implements OnInit {
-  @Input() departure: dvb.IMonitor;
+  @Input() departure: Departure;
 
   constructor(private translateService: TranslateService) { }
 
   ngOnInit() {}
 
   get departureTime(): string {
-    if(this.departure.arrivalTimeRelative === 0) {
+    if(this.departure.relativeArrival === 0) {
       return this.translateService.instant('departures.arrival-times.now');
     }
 
-    if(this.departure.arrivalTimeRelative < 0) {
-      return this.translateService.instant('departures.arrival-times.min-ago', {count: Math.abs(this.departure.arrivalTimeRelative)});
+    if(this.departure.relativeArrival < 0) {
+      return this.translateService.instant('departures.arrival-times.min-ago', {count: Math.abs(this.departure.relativeArrival)});
     }
 
-    if(this.departure.arrivalTimeRelative > 30) {
+    if(this.departure.relativeArrival > 30) {
       let delimiter = ':';
-      const minutes = this.departure.arrivalTime.getMinutes();
+      const minutes = this.departure.arrival.getMinutes();
 
       if(minutes < 10) {
         delimiter = ':0';
       }
 
-      return this.departure.arrivalTime.getHours() + delimiter + minutes;
+      return this.departure.arrival.getHours() + delimiter + minutes;
     }
 
-    return this.translateService.instant('departures.arrival-times.min', {count: this.departure.arrivalTimeRelative});
+    return this.translateService.instant('departures.arrival-times.min', {count: this.departure.relativeArrival});
   }
 
   get delay(): string {
-    if(this.departure.state === 'Cancelled') {
+    if(this.departure.isCancelled) {
       return this.translateService.instant('departures.delays.cancelled');
     }
 
-    if(this.departure.delayTime === 0) {
+    if(this.departure.relativeDelay === 0) {
       return this.translateService.instant('departures.delays.on-time');
     }
 
-    if(this.departure.delayTime < 0) {
-      return this.translateService.instant('departures.delays.early', {count: Math.abs(this.departure.delayTime)});
+    if(this.departure.relativeDelay < 0) {
+      return this.translateService.instant('departures.delays.early', {count: Math.abs(this.departure.relativeDelay)});
     }
 
-    return this.translateService.instant('departures.delays.late', {count: this.departure.delayTime});
+    return this.translateService.instant('departures.delays.late', {count: this.departure.relativeDelay});
   }
 }

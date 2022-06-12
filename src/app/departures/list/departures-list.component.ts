@@ -1,5 +1,5 @@
-import * as dvb from 'dvbjs';
 import { Component, Input, OnInit } from '@angular/core';
+import { Departure } from 'src/app/shared/models/departure.model';
 
 @Component({
   selector: 'app-departures-list',
@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./departures-list.component.scss'],
 })
 export class DeparturesListComponent implements OnInit {
-  @Input() departures: dvb.IMonitor[];
+  @Input() departures: Departure[];
 
   constructor() { }
 

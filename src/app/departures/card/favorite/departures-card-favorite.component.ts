@@ -1,9 +1,9 @@
 /* eslint-disable no-underscore-dangle */
-import * as dvb from 'dvbjs';
 import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { StationService } from 'src/app/shared/services/station.service';
 import { Station } from '../../../shared/models/station.model';
+import { Departure } from 'src/app/shared/models/departure.model';
 
 @Component({
   selector: 'app-departures-card-favorite',
@@ -12,7 +12,7 @@ import { Station } from '../../../shared/models/station.model';
 })
 export class DeparturesCardFavoriteComponent implements OnInit {
   @Input() station: Station;
-  departures: dvb.IMonitor[] = [];
+  departures: Departure[] = [];
 
   inEditMode = false;
   isUpdating = true;

@@ -2,6 +2,7 @@
 import * as dvb from 'dvbjs';
 import { Injectable } from '@angular/core';
 import { Station } from '../models/station.model';
+import { Departure } from '../models/departure.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +27,23 @@ export class ApiService {
     }
   }
 
-  async getDepartures(station: Station, minutesFromNow: number = 0): Promise<dvb.IMonitor[]> {
+  async getDepartures(station: Station, minutesFromNow: number = 0): Promise<Departure[]> {
     try {
-      return await dvb.monitor(station._id, minutesFromNow, station.departureCount);
+      const monitors = await dvb.monitor(station._id, minutesFromNow, station.departureCount);
+      return monitors.map(m => {
+        const departure = new Departure();
+        departure.line = m.line;
+        departure.destination = m.direction;
+        departure.arrival = m.arrivalTime;
+        departure.relativeArrival = m.arrivalTimeRelative;
+        departure.relativeDelay = m.delayTime;
+        departure.hasLiveData = m.state === 'Unknown' ? false: true;
+        departure.isCancelled = m.state === 'Cancelled' ? true : false;
+        departure.platformType = m.platform.type;
+        departure.platformName = m.platform.name;
+        departure.modeIconUrl = m.mode.iconUrl;
+        return departure;
+      });
     }
     catch {
       return [];

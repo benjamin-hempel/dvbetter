@@ -1,11 +1,11 @@
 /* eslint-disable no-underscore-dangle */
-import * as dvb from 'dvbjs';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { format, add, differenceInMinutes } from 'date-fns';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { StationService } from 'src/app/shared/services/station.service';
 import { Station } from 'src/app/shared/models/station.model';
+import { Departure } from 'src/app/shared/models/departure.model';
 
 @Component({
   selector: 'app-departures-card-quick-search',
@@ -14,7 +14,7 @@ import { Station } from 'src/app/shared/models/station.model';
 })
 export class DeparturesCardQuickSearchComponent implements OnInit {
   selectedStation: Station;
-  departures: dvb.IMonitor[] = [];
+  departures: Departure[] = [];
 
   inStationSelectedMode = false;
   isUpdating = true;
