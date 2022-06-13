@@ -1,8 +1,8 @@
 <ion-card>
   <ion-item lines="none">
     <ion-label>
-      <ion-card-title class="ion-text-nowrap">{{ station.name }}</ion-card-title>
       <ion-card-subtitle class="ion-text-nowrap">{{ station.city }}</ion-card-subtitle>
+      <ion-card-title class="ion-text-nowrap">{{ station.name }}</ion-card-title>
     </ion-label>
     <app-timer *ngIf="!inEditMode" 
       class="timer-item"

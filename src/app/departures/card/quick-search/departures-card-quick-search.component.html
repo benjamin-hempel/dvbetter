@@ -22,8 +22,8 @@
 <ion-card *ngIf="inStationSelectedMode">
   <ion-item lines="none">
     <ion-label>
-      <ion-card-title class="ion-text-nowrap">{{ selectedStation.name }}</ion-card-title>
       <ion-card-subtitle class="ion-text-nowrap">{{ selectedStation.city }}</ion-card-subtitle>
+      <ion-card-title class="ion-text-nowrap">{{ selectedStation.name }}</ion-card-title>
     </ion-label>
     <app-timer class="timer-item"
       [start]="lastUpdate"
