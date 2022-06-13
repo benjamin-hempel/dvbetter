@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { HelperService } from '../../services/helper.service';
 
 @Component({
   selector: 'app-timer',
@@ -6,26 +7,31 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./timer.component.scss'],
 })
 export class TimerComponent implements OnInit {
-  @Input() updateCounterTimestamp: Date;
-  @Input() color: string;
-  @Input() isActive: boolean;
-  updateCounterSeconds = 0;
+  @Input() start: Date;
+  @Input() interval: number;
+  @Input() update: boolean;
+  @Input() clickable: boolean;
+  @Output() elapsed = new EventEmitter();
+
+  value = 0;
 
   updateInterval: NodeJS.Timeout;
-  updateCounterInterval: NodeJS.Timeout;
 
-  constructor() { }
+  constructor(private helperService: HelperService) { }
 
   ngOnInit() {
-    this.updateCounterInterval = setInterval(() => {
-      this.computeUpdateCounter();
+    this.updateInterval = setInterval(() => {
+      this.compute();
     }, 500);
   }
 
-  computeUpdateCounter(): void {
-    if(this.isActive) {
-      this.updateCounterSeconds =
-        Math.floor((new Date().getTime() - this.updateCounterTimestamp.getTime()) / 1000);
+  compute(): void {
+    if(this.update) {
+      this.value = this.helperService.getSecondsElapsed(this.start);
+
+      if(this.value > 0 && this.value % this.interval === 0) {
+        this.elapsed.emit();
+      }
     }
   }
 }

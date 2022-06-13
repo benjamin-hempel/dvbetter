@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { format, add, differenceInMinutes } from 'date-fns';
+import { HelperService } from 'src/app/shared/services/helper.service';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { StationService } from 'src/app/shared/services/station.service';
 import { Station } from 'src/app/shared/models/station.model';
@@ -20,20 +21,22 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
   isUpdating = true;
   isStationNameValid = false;
   isStationInFavorites = false;
-  departureTime: FormControl;
-  lastUpdatedTimestamp: Date;
+  lastUpdate: Date;
   currentDate: string;
   maxDate: string;
+
+  departureTime: FormControl;
   updateCurrentDateInterval: NodeJS.Timeout;
   updateInterval: NodeJS.Timeout;
 
   constructor(
+    private helperService: HelperService,
     private apiService: ApiService,
     private stationService: StationService)
   { }
 
   ngOnInit() {
-    this.lastUpdatedTimestamp = new Date();
+    this.lastUpdate = new Date();
     this.updateCurrentDate();
     this.updateCurrentDateInterval = setInterval(() => {
       this.updateCurrentDate();
@@ -45,8 +48,8 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
     return format(new Date(this.departureTime.value), 'dd.MM.yyyy, HH:mm');
   }
 
-  get lastUpdatedSeconds(): number {
-    return this.lastUpdatedTimestamp ? Math.floor((new Date().getTime() - this.lastUpdatedTimestamp.getTime()) / 1000) : 0;
+  get secondsElapsed(): number {
+    return this.lastUpdate ? this.helperService.getSecondsElapsed(this.lastUpdate) : 0;
   }
 
   updateCurrentDate(): void {
@@ -77,7 +80,7 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
 
     this.departures = departures;
     this.isUpdating = false;
-    this.lastUpdatedTimestamp = new Date();
+    this.lastUpdate = new Date();
   }
 
   async searchDepartures(): Promise<void> {
@@ -89,19 +92,6 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
 
     this.inStationSelectedMode = true;
     this.updateDepartures();
-    this.updateInterval = setInterval(() => {
-      this.updateDepartures();
-    }, 30000);
-  }
-
-  async tapToRefresh(): Promise<void> {
-    clearInterval(this.updateInterval);
-
-    await this.updateDepartures();
-
-    this.updateInterval = setInterval(() => {
-      this.updateDepartures();
-    }, 30000);
   }
 
   async addStationToFavorites(): Promise<void> {
@@ -119,7 +109,6 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
     this.isStationInFavorites = false;
     this.selectedStation = null;
     this.departures = [];
-    clearInterval(this.updateInterval);
   }
 
   onStationNameValidityChanged(isStationNameValid: boolean): void {

@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { Component, Input, OnInit } from '@angular/core';
+import { HelperService } from 'src/app/shared/services/helper.service';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { StationService } from 'src/app/shared/services/station.service';
 import { Station } from '../../../shared/models/station.model';
@@ -12,14 +13,14 @@ import { Departure } from 'src/app/shared/models/departure.model';
 })
 export class DeparturesCardFavoriteComponent implements OnInit {
   @Input() station: Station;
-  departures: Departure[] = [];
 
+  departures: Departure[] = [];
   inEditMode = false;
   isUpdating = true;
-  lastUpdatedTimestamp: Date;
-  updateInterval: NodeJS.Timeout;
+  lastUpdate: Date;
 
   constructor(
+    private helperService: HelperService,
     private apiService: ApiService,
     private stationService: StationService)
   { }
@@ -27,16 +28,12 @@ export class DeparturesCardFavoriteComponent implements OnInit {
   async ngOnInit() {
     this.stationService.getStationUpdated().subscribe(s => this.onStationUpdated(s));
 
-    this.lastUpdatedTimestamp = new Date();
-
+    this.lastUpdate = new Date();
     await this.updateDepartures();
-    this.updateInterval = setInterval(() => {
-      this.updateDepartures();
-    }, 30000);
   }
 
-  get lastUpdatedSeconds(): number {
-    return this.lastUpdatedTimestamp ? Math.floor((new Date().getTime() - this.lastUpdatedTimestamp.getTime()) / 1000) : 0;
+  get secondsElapsed(): number {
+    return this.lastUpdate ? this.helperService.getSecondsElapsed(this.lastUpdate) : 0;
   }
 
   async updateDepartures(): Promise<void> {
@@ -50,21 +47,10 @@ export class DeparturesCardFavoriteComponent implements OnInit {
 
     this.departures = departures;
     this.isUpdating = false;
-    this.lastUpdatedTimestamp = new Date();
-  }
-
-  async tapToRefresh(): Promise<void> {
-    clearInterval(this.updateInterval);
-
-    await this.updateDepartures();
-
-    this.updateInterval = setInterval(() => {
-      this.updateDepartures();
-    }, 30000);
+    this.lastUpdate = new Date();
   }
 
   enterEditMode(): void {
-    clearInterval(this.updateInterval);
     this.inEditMode = true;
   }
 
@@ -77,10 +63,6 @@ export class DeparturesCardFavoriteComponent implements OnInit {
   async onMonitoredStationEditorSubmitted(): Promise<void> {
     this.departures = [];
     this.inEditMode = false;
-
     await this.updateDepartures();
-    this.updateInterval = setInterval(() => {
-      this.updateDepartures();
-    }, 30000);
   }
 }
