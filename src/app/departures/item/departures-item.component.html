@@ -1,7 +1,7 @@
 <ion-item>
   <ion-avatar slot="start">
-    <img src="{{ departure.modeIconUrl }}" [ngClass]="{'filter-grayscale': departure.relativeArrival < 0}"
-      onerror="this.onerror=null; this.src='assets/unknown-mode.svg'" alt="">
+    <img src="{{ departure.modeIconUrl === 'https://m.dvb.de/img/mot_icons/plusBus.svg' ? 'assets/plusbus.svg' : departure.modeIconUrl }}" 
+      [ngClass]="{'filter-grayscale': departure.relativeArrival < 0}" onerror="this.onerror=null; this.src='assets/unknown-mode.svg'" alt="">
   </ion-avatar>
   <ion-label [ngClass]="{'color-departed': departure.relativeArrival < 0, 'strikethrough': departure.isCancelled}">
     <h2>{{ departure.line }} {{ departure.destination }}</h2>
