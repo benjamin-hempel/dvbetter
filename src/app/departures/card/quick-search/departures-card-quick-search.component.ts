@@ -19,7 +19,6 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
 
   inStationSelectedMode = false;
   isUpdating = true;
-  isStationNameValid = false;
   isStationInFavorites = false;
   lastUpdate: Date;
   currentDate: string;
