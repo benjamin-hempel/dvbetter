@@ -5,15 +5,14 @@
     </ion-label>
   </ion-item>
   <ion-card-content>
-    <app-station-picker [selectedStation]="selectedStation" (stationNameValidityChangedEvent)="onStationNameValidityChanged($event)" 
-      (selectedStationChangedEvent)="onSelectedStationChanged($event)"></app-station-picker>
+    <app-station-picker (stationSelected)="onStationSelected($event)"></app-station-picker>
     <ion-item>
       <ion-label position="floating">{{ 'shared.times.departure-time' | translate }}</ion-label>
       <ion-datetime [formControl]="departureTime" displayFormat="DD.MM.YYYY, HH:mm" min="{{ currentDate }}" max="{{ maxDate }}" 
         cancelText="{{ 'shared.inputs.cancel' | translate }}" doneText="{{ 'shared.inputs.done' | translate }}"></ion-datetime>
     </ion-item>
     <ion-row style="height: 1em"></ion-row>
-    <ion-button (click)="searchDepartures()" [disabled]="!isStationNameValid">
+    <ion-button (click)="searchDepartures()" [disabled]="!selectedStation">
       <ion-icon slot="start" name="search-outline"></ion-icon>
       {{ 'shared.inputs.search' | translate }}
     </ion-button>

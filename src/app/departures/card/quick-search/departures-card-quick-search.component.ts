@@ -111,11 +111,7 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
     this.departures = [];
   }
 
-  onStationNameValidityChanged(isStationNameValid: boolean): void {
-    this.isStationNameValid = isStationNameValid;
-  }
-
-  onSelectedStationChanged(station: Station): void {
+  onStationSelected(station: Station): void {
     this.selectedStation = station;
   }
 }

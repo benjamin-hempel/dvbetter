@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { Station } from '../../models/station.model';
@@ -9,36 +9,34 @@ import { Station } from '../../models/station.model';
   styleUrls: ['./station-picker.component.scss'],
 })
 export class StationPickerComponent implements OnInit {
-  @Input() selectedStation: Station;
-  @Output() stationNameValidityChangedEvent = new EventEmitter();
-  @Output() selectedStationChangedEvent = new EventEmitter();
+  @Output() stationSelected = new EventEmitter();
 
+  selectedStation: Station;
   matchingStations: Station[];
+
   stationName: FormControl;
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    this.stationName = new FormControl(this.combinedStationName, [
+    this.stationName = new FormControl(this.combinedStationName(), [
       Validators.required
     ]);
   }
 
-  get combinedStationName(): string {
+  combinedStationName(): string {
     return this.selectedStation ? this.selectedStation.name + ', ' + this.selectedStation.city : '';
   }
 
-  get stationNameValid(): boolean {
-    return this.stationName.valid && this.stationName.value === this.combinedStationName;
-  }
-
-  async getMatchingStations(event: any): Promise<void> {
+  async onInput(event: any): Promise<void> {
     const stationName: string = event.target.value;
-    this.stationName.setValue(stationName);
-    this.stationName.markAsDirty();
-    this.stationNameValidityChangedEvent.emit(this.stationNameValid);
 
-    if(stationName == null || stationName === '') {
+    if(this.selectedStation && stationName !== this.combinedStationName()) {
+      this.selectedStation = null;
+      this.stationSelected.emit(null);
+    }
+
+    if(!stationName) {
       this.matchingStations = [];
       return;
     }
@@ -46,11 +44,10 @@ export class StationPickerComponent implements OnInit {
     this.matchingStations = (await this.apiService.getStations(stationName)).slice(0, 4);
   }
 
-  selectStation(station: Station): void {
+  onSelect(station: Station): void {
     this.selectedStation = station;
-    this.stationName.setValue(this.combinedStationName);
+    this.stationName.setValue(this.combinedStationName());
     this.matchingStations = [];
-    this.stationNameValidityChangedEvent.emit(this.stationNameValid);
-    this.selectedStationChangedEvent.emit(station);
+    this.stationSelected.emit(station);
   }
 }

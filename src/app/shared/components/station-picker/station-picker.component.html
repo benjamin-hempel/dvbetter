@@ -1,11 +1,11 @@
 <ion-item>
   <ion-label position="floating">{{ 'shared.inputs.station' | translate }}</ion-label>
-  <ion-input type="text" debounce="250" (ionInput)="getMatchingStations($event)" [formControl]="stationName"></ion-input>
+  <ion-input type="text" debounce="250" (ionInput)="onInput($event)" [formControl]="stationName"></ion-input>
 </ion-item>
-<ion-text *ngIf="!stationNameValid && (stationName.dirty || stationName.touched)" color="danger">
+<ion-text *ngIf="!selectedStation && (stationName.dirty || stationName.touched)" color="danger">
   {{ 'shared.inputs.restraints.station' | translate }}</ion-text>
 <ion-list>
-  <ion-item *ngFor="let matchingStation of matchingStations" button (click)="selectStation(matchingStation)">
+  <ion-item *ngFor="let matchingStation of matchingStations" button (click)="onSelect(matchingStation)">
     <ion-label>
       <h2>{{matchingStation.name}}</h2>
       <ion-card-subtitle>{{matchingStation.city}}</ion-card-subtitle>
