@@ -1,6 +1,6 @@
 <ion-item>
   <ion-label position="floating">{{ 'shared.inputs.station' | translate }}</ion-label>
-  <ion-input type="text" debounce="250" (ionInput)="onInput($event)" [formControl]="stationName"></ion-input>
+  <ion-input type="text" (ionInput)="onInput($event)" [formControl]="stationName"></ion-input>
 </ion-item>
 <ion-text *ngIf="!selectedStation && (stationName.dirty || stationName.touched)" color="danger">
   {{ 'shared.inputs.restraints.station' | translate }}</ion-text>

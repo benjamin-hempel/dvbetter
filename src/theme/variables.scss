@@ -74,6 +74,16 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** delays **/
+  --color-departed: #92949c;
+  --color-on-time: #02a342;
+  --color-cancelled: #eb445a;
+  --color-slightly-early: #40e0d0;
+  --color-early: #00bfff;
+  --color-slightly-late: #a8a803;
+  --color-late: #edb607;
+  --color-very-late: #ff7b00;
 }
 
 @media (prefers-color-scheme: dark) {

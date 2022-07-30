@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ColorService } from 'src/app/shared/services/color.service';
 import { StringService } from 'src/app/shared/services/string.service';
 import { Departure } from 'src/app/shared/models/departure.model';
 
@@ -10,7 +11,7 @@ import { Departure } from 'src/app/shared/models/departure.model';
 export class DeparturesItemComponent implements OnInit {
   @Input() departure: Departure;
 
-  constructor(private stringService: StringService) { }
+  constructor(private stringService: StringService, private colorService: ColorService) { }
 
   ngOnInit() {}
 
@@ -20,5 +21,9 @@ export class DeparturesItemComponent implements OnInit {
 
   get delay(): string {
     return this.stringService.getDelay(this.departure);
+  }
+
+  get delayColor(): string {
+    return this.colorService.getDelayColor(this.departure.relativeArrival, this.departure.relativeDelay, this.departure.isCancelled);
   }
 }

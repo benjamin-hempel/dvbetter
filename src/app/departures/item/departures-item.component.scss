@@ -11,22 +11,6 @@ ion-note {
     margin-left: 8px;
 }
 
-.color-on-time {
-    color: var(--ion-color-success-shade);
-}
-
-.color-late {
-    color: var(--ion-color-danger);
-}
-
-.color-early {
-    color: var(--ion-color-warning);
-}
-
-.color-departed {
-    color: var(--ion-color-medium)
-}
-
 .filter-grayscale {
     filter: grayscale(100%);
 }

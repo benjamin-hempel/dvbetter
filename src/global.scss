@@ -32,3 +32,35 @@
 .clickable {
     cursor: pointer;
 }
+
+.color-departed {
+    color: var(--color-departed) !important;
+}
+
+.color-on-time {
+    color: var(--color-on-time)
+}
+
+.color-cancelled {
+    color: var(--color-cancelled)
+}
+
+.color-slightly-early {
+    color: var(--color-slightly-early)
+}
+
+.color-early {
+    color: var(--color-early)
+}
+
+.color-slightly-late {
+    color: var(--color-slightly-late)
+}
+
+.color-late {
+    color: var(--color-late)
+}
+
+.color-very-late {
+    color: var(--color-very-late)
+}
