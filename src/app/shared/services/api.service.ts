@@ -37,7 +37,7 @@ export class ApiService {
         departure.arrival = m.arrivalTime;
         departure.relativeArrival = m.arrivalTimeRelative;
         departure.relativeDelay = m.delayTime;
-        departure.hasLiveData = m.state === 'Unknown' ? false: true;
+        departure.hasLiveData = m.state === 'Unknown' ? false : true;
         departure.isCancelled = m.state === 'Cancelled' ? true : false;
         departure.platformType = m.platform.type;
         departure.platformName = m.platform.name;
