@@ -1,4 +1,4 @@
-<ion-item [ngClass]="{'clickable': lastUpdatedSeconds > 35}" lines="none">
+<ion-item [ngClass]="{'clickable': clickable}" lines="none">
   <ion-icon [color]="clickable ? '' : 'medium'" name="timer-outline"></ion-icon>
   &nbsp;
   <ion-text [color]="clickable ? '' : 'medium'">{{ value > 99 ? '>99' : value }}s</ion-text>
