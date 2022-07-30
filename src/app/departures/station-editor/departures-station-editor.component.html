@@ -5,7 +5,7 @@
 <ion-text *ngIf="departureCount.invalid && (departureCount.dirty || departureCount.touched)" color="danger">
   {{ 'shared.inputs.restraints.range' | translate: { lower: '1', upper: '10' } }}</ion-text>
 <ion-row style="height: 1em"></ion-row>
-<ion-button (click)="submit()" [disabled]="!isFormValid">
+<ion-button (click)="submit()" [disabled]="departureCount.invalid">
   <ion-icon slot="start" name="save-outline"></ion-icon>
   {{ 'shared.inputs.save' | translate }}
 </ion-button>

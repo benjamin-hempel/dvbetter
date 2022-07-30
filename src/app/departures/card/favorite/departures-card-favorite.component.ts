@@ -60,7 +60,7 @@ export class DeparturesCardFavoriteComponent implements OnInit {
     }
   }
 
-  async onMonitoredStationEditorSubmitted(): Promise<void> {
+  async onEditorSubmitted(): Promise<void> {
     this.departures = [];
     this.inEditMode = false;
     await this.updateDepartures();

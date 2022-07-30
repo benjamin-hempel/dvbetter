@@ -10,10 +10,9 @@ import { Station } from '../../shared/models/station.model';
 })
 export class DeparturesStationEditorComponent implements OnInit {
   @Input() station: Station;
-  @Output() submittedEvent = new EventEmitter();
+  @Output() submitted = new EventEmitter();
 
   departureCount: FormControl;
-  isStationNameValid = true;
 
   constructor(private stationService: StationService) { }
 
@@ -25,14 +24,10 @@ export class DeparturesStationEditorComponent implements OnInit {
     ]);
   }
 
-  get isFormValid(): boolean {
-    return this.departureCount.valid;
-  }
-
   async submit(): Promise<void> {
     this.station.departureCount = this.departureCount.value;
     await this.stationService.updateStation(this.station);
-    this.submittedEvent.emit();
+    this.submitted.emit();
   }
 
   async removeStationFromFavorites(): Promise<void> {
