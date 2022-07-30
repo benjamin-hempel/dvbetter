@@ -2,9 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-
-import { MonitoredStation } from '../shared/models/monitored-station.model';
-import { DepartureMonitorService } from '../shared/services/departure-monitor.service';
+import { Station } from '../shared/models/station.model';
+import { StationService } from '../shared/services/station.service';
 
 @Component({
   selector: 'app-departures',
@@ -12,41 +11,51 @@ import { DepartureMonitorService } from '../shared/services/departure-monitor.se
   styleUrls: ['departures.page.scss']
 })
 export class DeparturesPage implements OnInit {
-  monitoredStations: MonitoredStation[] = [];
+  stations: Station[] = [];
 
   constructor(
-    private departureMonitorService: DepartureMonitorService,
+    private stationService: StationService,
     private toastController: ToastController,
     private translateService: TranslateService)
   { }
 
   async ngOnInit() {
-    this.monitoredStations = await this.departureMonitorService.getMonitoredStations();
+    this.stationService.getStationCreated().subscribe(s => this.onStationCreated(s));
+    this.stationService.getStationDeleted().subscribe(s => this.onStationDeleted(s));
+
+    this.stations = await this.stationService.getStations();
+    this.stations.sort((a, b) => this.compare(a, b));
   }
 
-  getCombinedStationName(monitoredStation: MonitoredStation): string {
-    return monitoredStation.station.name + ', ' + monitoredStation.station.city;
+  getCombinedStationName(station: Station): string {
+    return station.name + ', ' + station.city;
   }
 
-  async onMonitoredStationAdded(stationId: string) {
-    const stationToAdd = await this.departureMonitorService.getMonitoredStation(stationId);
-    this.monitoredStations.push(stationToAdd);
+  compare(a: Station, b: Station): number {
+    if(a.city === b.city) {
+      return a.name.localeCompare(b.name);
+    }
+
+    return a.city.localeCompare(b.city);
+  }
+
+  async onStationCreated(station: Station): Promise<void> {
+    this.stations.push(station);
+    this.stations.sort((a, b) => this.compare(a, b));
 
     const toast = await this.toastController.create({
-      message: this.translateService.instant('shared.favorite.added', {name: this.getCombinedStationName(stationToAdd)}),
+      message: this.translateService.instant('shared.favorite.added', {name: this.getCombinedStationName(station)}),
       duration: 3000
     });
     toast.present();
   }
 
-  async onMonitoredStationRemoved(monitoredStation: MonitoredStation) {
-    this.departureMonitorService.deleteMonitoredStation(monitoredStation);
-
-    const index = this.monitoredStations.findIndex(stationToDelete => stationToDelete._id === monitoredStation._id);
-    const removedStations = this.monitoredStations.splice(index, 1);
+  async onStationDeleted(station: Station): Promise<void> {
+    const index = this.stations.findIndex(s => s._id === station._id);
+    this.stations.splice(index, 1);
 
     const toast = await this.toastController.create({
-      message: this.translateService.instant('shared.favorite.removed', {name: this.getCombinedStationName(removedStations[0])}),
+      message: this.translateService.instant('shared.favorite.removed', {name: this.getCombinedStationName(station)}),
       duration: 3000
     });
     toast.present();

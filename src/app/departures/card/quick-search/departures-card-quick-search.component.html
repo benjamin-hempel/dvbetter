@@ -1,0 +1,54 @@
+<ion-card *ngIf="!inStationSelectedMode">
+  <ion-item lines="none">
+    <ion-label>
+      <ion-card-title class="ion-text-nowrap">{{ 'departures.quick-search-title' | translate }}</ion-card-title>
+    </ion-label>
+  </ion-item>
+  <ion-card-content>
+    <app-station-picker (stationSelected)="onStationSelected($event)"></app-station-picker>
+    <ion-item>
+      <ion-label position="floating">{{ 'shared.times.departure-time' | translate }}</ion-label>
+      <ion-datetime [formControl]="departureTime" displayFormat="DD.MM.YYYY, HH:mm" min="{{ currentDate }}" max="{{ maxDate }}" 
+        cancelText="{{ 'shared.inputs.cancel' | translate }}" doneText="{{ 'shared.inputs.done' | translate }}"></ion-datetime>
+    </ion-item>
+    <ion-row style="height: 1em"></ion-row>
+    <ion-button (click)="searchDepartures()" [disabled]="!selectedStation">
+      <ion-icon slot="start" name="search-outline"></ion-icon>
+      {{ 'shared.inputs.search' | translate }}
+    </ion-button>
+  </ion-card-content>
+</ion-card>
+<ion-card *ngIf="inStationSelectedMode">
+  <ion-item lines="none">
+    <ion-label>
+      <ion-card-subtitle class="ion-text-nowrap">{{ selectedStation.city }}</ion-card-subtitle>
+      <ion-card-title class="ion-text-nowrap">{{ selectedStation.name }}</ion-card-title>
+    </ion-label>
+    <app-timer class="timer-item"
+      [start]="lastUpdate"
+      [interval]="30"
+      [update]="inStationSelectedMode"
+      [clickable]="secondsElapsed > 35"
+      (click)="secondsElapsed > 35 && updateDepartures()"
+      (elapsed)="updateDepartures()"></app-timer>
+    <ion-button *ngIf="!isStationInFavorites" class="card-button-item" fill="clear" size="small" (click)="addStationToFavorites()">
+      <ion-icon slot="icon-only" name="star-outline" color="dark"></ion-icon>
+    </ion-button>
+    <ion-button *ngIf="isStationInFavorites" class="card-button-item" fill="clear" size="small" (click)="removeStationFromFavorites()">
+      <ion-icon slot="icon-only" name="star" color="primary"></ion-icon>
+    </ion-button>
+    <ion-button fill="clear" size="small" (click)="leaveStationSelectedMode()">
+      <ion-icon slot="icon-only" name="close-outline" color="dark"></ion-icon>
+    </ion-button>
+  </ion-item>
+  <ion-card-content>
+    <ion-text color="dark">
+      {{ 'shared.times.departing-at' | translate: { time: formattedDepartureTime } }}
+    </ion-text>
+    <app-departures-list *ngIf="departures.length > 0" [departures]="departures"></app-departures-list>
+    <h2 class="no-departures" *ngIf="departures.length === 0  && !isUpdating">{{ 'departures.none-found' | translate }}</h2>
+    <app-departures-item-skeleton *ngIf="departures.length === 0 && isUpdating" 
+      [departureCount]="selectedStation.departureCount"></app-departures-item-skeleton>
+  </ion-card-content>
+</ion-card>
+

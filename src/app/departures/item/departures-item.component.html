@@ -1,0 +1,16 @@
+<ion-item>
+  <ion-avatar slot="start">
+    <img src="{{ departure.modeIconUrl === 'https://m.dvb.de/img/mot_icons/plusBus.svg' ? 'assets/plusbus.svg' : departure.modeIconUrl }}" 
+      [ngClass]="{'filter-grayscale': departure.relativeArrival < 0}" onerror="this.onerror=null; this.src='assets/unknown-mode.svg'" alt="">
+  </ion-avatar>
+  <ion-label [ngClass]="{'color-departed': departure.relativeArrival < 0, 'strikethrough': departure.isCancelled}">
+    <h2>{{ departure.line }} {{ departure.destination }}</h2>
+    <h3>{{ 'shared.station-types.' + departure.platformType | lowercase | translate }} {{ departure.platformName }}</h3>
+  </ion-label>
+  <ion-note slot="end" class="ion-text-end" [ngClass]="{'color-departed': departure.relativeArrival < 0}">
+    <h3>{{ departureTime }}</h3>
+    <h3 *ngIf="departure.hasLiveData" class="{{ delayColor }}">
+      {{ delay }}
+    </h3>
+  </ion-note>
+</ion-item>

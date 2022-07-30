@@ -1,0 +1,28 @@
+<ion-card>
+  <ion-item lines="none">
+    <ion-label>
+      <ion-card-subtitle class="ion-text-nowrap">{{ station.city }}</ion-card-subtitle>
+      <ion-card-title class="ion-text-nowrap">{{ station.name }}</ion-card-title>
+    </ion-label>
+    <app-timer *ngIf="!inEditMode" 
+      class="timer-item"
+      [start]="lastUpdate"
+      [interval]="30" 
+      [update]="!inEditMode"
+      [clickable]="secondsElapsed > 35"
+      (click)="secondsElapsed > 35 && updateDepartures()"
+      (elapsed)="updateDepartures()"></app-timer>
+    <ion-button *ngIf="!inEditMode" class="settings-item" slot="end" fill="clear" size="small" (click)="enterEditMode()">
+      <ion-icon slot="icon-only" name="settings-outline" color="dark"></ion-icon>
+    </ion-button>
+  </ion-item>
+  <ion-card-content *ngIf="!inEditMode">
+    <app-departures-list *ngIf="departures && departures.length > 0" [departures]="departures"></app-departures-list>
+    <app-departures-item-skeleton *ngIf="!departures || departures.length === 0 && isUpdating" 
+      [departureCount]="station.departureCount"></app-departures-item-skeleton>
+    <h2 *ngIf="departures && departures.length === 0 && !isUpdating">{{ 'departures.none-found' | translate }}</h2>
+  </ion-card-content>
+  <ion-card-content *ngIf="inEditMode">
+    <app-departures-station-editor [station]="station" (submitted)="onEditorSubmitted()"></app-departures-station-editor>
+  </ion-card-content>
+</ion-card> 

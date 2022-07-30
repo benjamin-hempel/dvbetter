@@ -13,12 +13,10 @@
   <ion-grid>
     <ion-row>
       <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6" size-xl="4">
-        <app-quick-departure-search-card (monitoredStationAddedEvent)="onMonitoredStationAdded($event)" 
-          (monitoredStationRemovedEvent)="onMonitoredStationRemoved($event)"></app-quick-departure-search-card>
+        <app-departures-card-quick-search></app-departures-card-quick-search>
       </ion-col>
-      <ion-col *ngFor="let monitoredStation of monitoredStations" size-xs="12" size-sm="12" size-md="6" size-lg="6" size-xl="4">
-        <app-departure-card [monitoredStation]="monitoredStation" 
-          (monitoredStationRemovedEvent)="onMonitoredStationRemoved($event)"></app-departure-card>
+      <ion-col *ngFor="let station of stations" size-xs="12" size-sm="12" size-md="6" size-lg="6" size-xl="4">
+        <app-departures-card-favorite [station]="station"></app-departures-card-favorite>
       </ion-col>
     </ion-row>
   </ion-grid>
