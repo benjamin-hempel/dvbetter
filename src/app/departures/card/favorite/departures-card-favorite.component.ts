@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { Component, Input, OnInit } from '@angular/core';
-import { HelperService } from 'src/app/shared/services/helper.service';
+import { DateTimeService } from 'src/app/shared/services/date-time.service';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { StationService } from 'src/app/shared/services/station.service';
 import { Station } from '../../../shared/models/station.model';
@@ -22,7 +22,7 @@ export class DeparturesCardFavoriteComponent implements OnInit {
   updateInterval: NodeJS.Timeout;
 
   constructor(
-    private helperService: HelperService,
+    private dateTimeService: DateTimeService,
     private apiService: ApiService,
     private stationService: StationService)
   { }
@@ -35,7 +35,7 @@ export class DeparturesCardFavoriteComponent implements OnInit {
   }
 
   get secondsElapsed(): number {
-    return this.lastUpdate ? this.helperService.getSecondsElapsed(this.lastUpdate) : 0;
+    return this.lastUpdate ? this.dateTimeService.getSecondsElapsed(this.lastUpdate) : 0;
   }
 
   setUpdateInterval(): void {

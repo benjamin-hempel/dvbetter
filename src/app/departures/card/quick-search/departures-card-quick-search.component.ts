@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { format, add, differenceInMinutes } from 'date-fns';
-import { HelperService } from 'src/app/shared/services/helper.service';
+import { DateTimeService } from 'src/app/shared/services/date-time.service';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { StationService } from 'src/app/shared/services/station.service';
 import { Station } from 'src/app/shared/models/station.model';
@@ -29,7 +29,7 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
   updateDeparturesInterval: NodeJS.Timeout;
 
   constructor(
-    private helperService: HelperService,
+    private dateTimeService: DateTimeService,
     private apiService: ApiService,
     private stationService: StationService)
   { }
@@ -48,7 +48,7 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
   }
 
   get secondsElapsed(): number {
-    return this.lastUpdate ? this.helperService.getSecondsElapsed(this.lastUpdate) : 0;
+    return this.lastUpdate ? this.dateTimeService.getSecondsElapsed(this.lastUpdate) : 0;
   }
 
   updateCurrentDate(): void {

@@ -4,7 +4,7 @@ import { differenceInSeconds } from 'date-fns';
 @Injectable({
   providedIn: 'root'
 })
-export class HelperService {
+export class DateTimeService {
   constructor() { }
 
   getSecondsElapsed(start: Date): number {
