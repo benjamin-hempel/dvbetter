@@ -1,8 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { format, add, differenceInMinutes } from 'date-fns';
-import { HelperService } from 'src/app/shared/services/helper.service';
+import { format, add } from 'date-fns';
+import { DateTimeService } from 'src/app/shared/services/date-time.service';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { StationService } from 'src/app/shared/services/station.service';
 import { Station } from 'src/app/shared/models/station.model';
@@ -25,21 +25,21 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
   maxDate: string;
 
   departureTime: FormControl;
-  updateCurrentDateInterval: NodeJS.Timeout;
-  updateInterval: NodeJS.Timeout;
+  updateDateTimeInterval: NodeJS.Timeout;
+  updateDeparturesInterval: NodeJS.Timeout;
 
   constructor(
-    private helperService: HelperService,
+    private dateTimeService: DateTimeService,
     private apiService: ApiService,
     private stationService: StationService)
   { }
 
   ngOnInit() {
-    this.lastUpdate = new Date();
     this.updateCurrentDate();
-    this.updateCurrentDateInterval = setInterval(() => {
+    this.updateDateTimeInterval = setInterval(() => {
       this.updateCurrentDate();
-    }, 30000);
+    }, 500);
+
     this.departureTime = new FormControl(this.currentDate, Validators.required);
   }
 
@@ -48,7 +48,7 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
   }
 
   get secondsElapsed(): number {
-    return this.lastUpdate ? this.helperService.getSecondsElapsed(this.lastUpdate) : 0;
+    return this.lastUpdate ? this.dateTimeService.getSecondsElapsed(this.lastUpdate) : 0;
   }
 
   updateCurrentDate(): void {
@@ -56,7 +56,7 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
     this.currentDate = format(currentDateObj, 'yyyy-MM-dd\'T\'HH:mm');
     this.maxDate = format(add(currentDateObj, { months: 1 }), 'yyyy-MM-dd\'T\'HH:mm');
 
-    if(this.departureTime && !(this.departureTime.dirty || this.departureTime.touched)) {
+    if(this.departureTime && this.dateTimeService.getMinutesFromNow(new Date(this.departureTime.value)) < 0) {
       this.departureTime.setValue(this.currentDate);
     }
   }
@@ -64,11 +64,9 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
   async updateDepartures(): Promise<void> {
     this.isUpdating = true;
 
-    let minutesFromNow = differenceInMinutes(new Date(this.departureTime.value), new Date());
+    let minutesFromNow = this.dateTimeService.getMinutesFromNow(new Date(this.departureTime.value));
     if(minutesFromNow < 0) {
       minutesFromNow = 0;
-      this.updateCurrentDate();
-      this.departureTime.setValue(this.currentDate);
     }
 
     const departures = await this.apiService.getDepartures(this.selectedStation, minutesFromNow);
@@ -82,15 +80,28 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
     this.lastUpdate = new Date();
   }
 
-  async searchDepartures(): Promise<void> {
+  async enterStationSelectedMode(): Promise<void> {
     const station = await this.stationService.getStation(this.selectedStation._id);
     if(station) {
       this.selectedStation = station;
       this.isStationInFavorites = true;
     }
 
+    this.lastUpdate = null;
     this.inStationSelectedMode = true;
+
     this.updateDepartures();
+    this.updateDeparturesInterval = setInterval(() => {
+      this.updateDepartures();
+    }, 30000);
+  }
+
+  leaveStationSelectedMode(): void {
+    clearInterval(this.updateDeparturesInterval);
+    this.inStationSelectedMode = false;
+    this.isStationInFavorites = false;
+    this.selectedStation = null;
+    this.departures = [];
   }
 
   async addStationToFavorites(): Promise<void> {
@@ -101,13 +112,6 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
   async removeStationFromFavorites(): Promise<void> {
     await this.stationService.deleteStation(this.selectedStation);
     this.leaveStationSelectedMode();
-  }
-
-  leaveStationSelectedMode(): void {
-    this.inStationSelectedMode = false;
-    this.isStationInFavorites = false;
-    this.selectedStation = null;
-    this.departures = [];
   }
 
   onStationSelected(station: Station): void {

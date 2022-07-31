@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { HelperService } from '../../services/helper.service';
+import { DateTimeService } from '../../services/date-time.service';
 
 @Component({
   selector: 'app-timer',
@@ -8,16 +8,14 @@ import { HelperService } from '../../services/helper.service';
 })
 export class TimerComponent implements OnInit {
   @Input() start: Date;
-  @Input() interval: number;
   @Input() update: boolean;
   @Input() clickable: boolean;
-  @Output() elapsed = new EventEmitter();
 
   value = 0;
 
   updateInterval: NodeJS.Timeout;
 
-  constructor(private helperService: HelperService) { }
+  constructor(private dateTimeService: DateTimeService) { }
 
   ngOnInit() {
     this.updateInterval = setInterval(() => {
@@ -27,11 +25,7 @@ export class TimerComponent implements OnInit {
 
   compute(): void {
     if(this.update) {
-      this.value = this.helperService.getSecondsElapsed(this.start);
-
-      if(this.value > 0 && this.value % this.interval === 0) {
-        this.elapsed.emit();
-      }
+      this.value = this.start ? this.dateTimeService.getSecondsElapsed(this.start) : 0;
     }
   }
 }

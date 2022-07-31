@@ -13,7 +13,8 @@ export class ColorService {
       case relativeDelay === 0: return 'color-on-time';
       case relativeDelay < 3: return 'color-slightly-late';
       case relativeDelay < 5: return 'color-late';
-      default: return 'color-very-late';
+      case relativeDelay < 10: return 'color-very-late';
+      default: return 'color-cancelled';
     }
   }
 }
