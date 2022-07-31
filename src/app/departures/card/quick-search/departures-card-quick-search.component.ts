@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { format, add, differenceInMinutes } from 'date-fns';
+import { format, add } from 'date-fns';
 import { DateTimeService } from 'src/app/shared/services/date-time.service';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { StationService } from 'src/app/shared/services/station.service';
@@ -56,7 +56,7 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
     this.currentDate = format(currentDateObj, 'yyyy-MM-dd\'T\'HH:mm');
     this.maxDate = format(add(currentDateObj, { months: 1 }), 'yyyy-MM-dd\'T\'HH:mm');
 
-    if(this.departureTime && differenceInMinutes(new Date(this.departureTime.value), new Date()) < 0) {
+    if(this.departureTime && this.dateTimeService.getMinutesFromNow(new Date(this.departureTime.value)) < 0) {
       this.departureTime.setValue(this.currentDate);
     }
   }
@@ -64,7 +64,7 @@ export class DeparturesCardQuickSearchComponent implements OnInit {
   async updateDepartures(): Promise<void> {
     this.isUpdating = true;
 
-    let minutesFromNow = differenceInMinutes(new Date(this.departureTime.value), new Date());
+    let minutesFromNow = this.dateTimeService.getMinutesFromNow(new Date(this.departureTime.value));
     if(minutesFromNow < 0) {
       minutesFromNow = 0;
     }
