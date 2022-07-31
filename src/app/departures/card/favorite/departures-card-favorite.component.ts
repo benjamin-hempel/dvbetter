@@ -19,6 +19,8 @@ export class DeparturesCardFavoriteComponent implements OnInit {
   isUpdating = true;
   lastUpdate: Date;
 
+  updateInterval: NodeJS.Timeout;
+
   constructor(
     private helperService: HelperService,
     private apiService: ApiService,
@@ -28,12 +30,18 @@ export class DeparturesCardFavoriteComponent implements OnInit {
   async ngOnInit() {
     this.stationService.getStationUpdated().subscribe(s => this.onStationUpdated(s));
 
-    this.lastUpdate = new Date();
     await this.updateDepartures();
+    this.setUpdateInterval();
   }
 
   get secondsElapsed(): number {
     return this.lastUpdate ? this.helperService.getSecondsElapsed(this.lastUpdate) : 0;
+  }
+
+  setUpdateInterval(): void {
+    this.updateInterval = setInterval(() => {
+      this.updateDepartures();
+    }, 30000);
   }
 
   async updateDepartures(): Promise<void> {
@@ -51,6 +59,7 @@ export class DeparturesCardFavoriteComponent implements OnInit {
   }
 
   enterEditMode(): void {
+    clearInterval(this.updateInterval);
     this.inEditMode = true;
   }
 
@@ -62,7 +71,9 @@ export class DeparturesCardFavoriteComponent implements OnInit {
 
   async onEditorSubmitted(): Promise<void> {
     this.departures = [];
+    this.lastUpdate = null;
     this.inEditMode = false;
     await this.updateDepartures();
+    this.setUpdateInterval();
   }
 }

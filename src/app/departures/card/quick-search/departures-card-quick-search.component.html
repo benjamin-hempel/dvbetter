@@ -12,7 +12,7 @@
         cancelText="{{ 'shared.inputs.cancel' | translate }}" doneText="{{ 'shared.inputs.done' | translate }}"></ion-datetime>
     </ion-item>
     <ion-row style="height: 1em"></ion-row>
-    <ion-button (click)="searchDepartures()" [disabled]="!selectedStation">
+    <ion-button (click)="enterStationSelectedMode()" [disabled]="!selectedStation">
       <ion-icon slot="start" name="search-outline"></ion-icon>
       {{ 'shared.inputs.search' | translate }}
     </ion-button>
@@ -26,11 +26,9 @@
     </ion-label>
     <app-timer class="timer-item"
       [start]="lastUpdate"
-      [interval]="30"
       [update]="inStationSelectedMode"
       [clickable]="secondsElapsed > 35"
-      (click)="secondsElapsed > 35 && updateDepartures()"
-      (elapsed)="updateDepartures()"></app-timer>
+      (click)="secondsElapsed > 35 && updateDepartures()"></app-timer>
     <ion-button *ngIf="!isStationInFavorites" class="card-button-item" fill="clear" size="small" (click)="addStationToFavorites()">
       <ion-icon slot="icon-only" name="star-outline" color="dark"></ion-icon>
     </ion-button>
