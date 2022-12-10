@@ -27,8 +27,9 @@
     <app-timer class="timer-item"
       [start]="lastUpdate"
       [update]="inStationSelectedMode"
-      [clickable]="secondsElapsed > 35"
-      (click)="secondsElapsed > 35 && updateDepartures()"></app-timer>
+      [clickable]="secondsElapsed > 35 && !isUpdating"
+      [updating]="isUpdating"
+      (click)="secondsElapsed > 35 && !isUpdating && updateDepartures()"></app-timer>
     <ion-button *ngIf="!isStationInFavorites" class="card-button-item" fill="clear" size="small" (click)="addStationToFavorites()">
       <ion-icon slot="icon-only" name="star-outline" color="dark"></ion-icon>
     </ion-button>
