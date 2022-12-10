@@ -9,6 +9,7 @@
       [start]="lastUpdate"
       [update]="!inEditMode"
       [clickable]="secondsElapsed > 35 && !isUpdating"
+      [updating]="isUpdating"
       (click)="secondsElapsed > 35 && !isUpdating && updateDepartures()"></app-timer>
     <ion-button *ngIf="!inEditMode" class="settings-item" slot="end" fill="clear" size="small" (click)="enterEditMode()">
       <ion-icon slot="icon-only" name="settings-outline" color="dark"></ion-icon>

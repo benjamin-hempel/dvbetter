@@ -10,6 +10,7 @@ export class TimerComponent implements OnInit {
   @Input() start: Date;
   @Input() update: boolean;
   @Input() clickable: boolean;
+  @Input() updating: boolean;
 
   value = 0;
 
