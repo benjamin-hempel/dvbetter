@@ -34,7 +34,7 @@
         "arrival-times": {
             "now": "jetzt",
             "min": "{{count}} min",
-            "min-ago": "vor {{count}} min"
+            "min-ago": "abgefahren"
         },
         "delays": {
             "on-time": "pünktlich",

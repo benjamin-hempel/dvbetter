@@ -14,7 +14,7 @@ export class StringService {
     }
 
     if(departure.relativeArrival < 0) {
-      return this.translateService.instant('departures.arrival-times.min-ago', { count: Math.abs(departure.relativeArrival) });
+      return this.translateService.instant('departures.arrival-times.min-ago');
     }
 
     if(departure.relativeArrival > 30) {
