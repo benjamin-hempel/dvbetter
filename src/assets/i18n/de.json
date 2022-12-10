@@ -37,6 +37,7 @@
             "min-ago": "abgefahren"
         },
         "delays": {
+            "scheduled": "planmäßig",
             "on-time": "pünktlich",
             "late": "{{count}} min zu spät",
             "early": "{{count}} min zu früh",

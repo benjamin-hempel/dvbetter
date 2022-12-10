@@ -37,6 +37,7 @@
             "min-ago": "departed"
         },
         "delays": {
+            "scheduled": "scheduled",
             "on-time": "on time",
             "late": "{{count}} min late",
             "early": "{{count}} min early",

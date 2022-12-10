@@ -24,6 +24,6 @@ export class DeparturesItemComponent implements OnInit {
   }
 
   get delayColor(): string {
-    return this.colorService.getDelayColor(this.departure.relativeArrival, this.departure.relativeDelay, this.departure.isCancelled);
+    return this.colorService.getDelayColor(this.departure.relativeArrival, this.departure.relativeDelay, this.departure.isCancelled, this.departure.hasLiveData);
   }
 }

@@ -27,6 +27,10 @@ export class StringService {
   }
 
   getDelay(departure: Departure): string {
+    if(!departure.hasLiveData) {
+      return this.translateService.instant('departures.delays.scheduled');
+    }
+
     if(departure.isCancelled) {
       return this.translateService.instant('departures.delays.cancelled');
     }

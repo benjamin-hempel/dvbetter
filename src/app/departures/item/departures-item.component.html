@@ -9,8 +9,6 @@
   </ion-label>
   <ion-note slot="end" class="ion-text-end" [ngClass]="{'color-departed': departure.relativeArrival < 0}">
     <h3>{{ departureTime }}</h3>
-    <h3 *ngIf="departure.hasLiveData" class="{{ delayColor }}">
-      {{ delay }}
-    </h3>
+    <h3 class="{{ delayColor }}">{{ delay }}</h3>
   </ion-note>
 </ion-item>

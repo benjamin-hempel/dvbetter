@@ -4,8 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ColorService {
-  getDelayColor(relativeArrival: number, relativeDelay: number, isCancelled: boolean): string {
+  getDelayColor(relativeArrival: number, relativeDelay: number, isCancelled: boolean, hasLiveData: boolean): string {
     switch(true) {
+      case !hasLiveData: return 'color-departed';
       case relativeArrival < 0: return 'color-departed';
       case isCancelled: return 'color-cancelled';
       case relativeDelay < -2: return 'color-early';
