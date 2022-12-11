@@ -42,8 +42,9 @@ export class StationPickerComponent implements OnInit {
       return;
     }
 
-    setTimeout(() => this.onDebounceElapsed(stationName), 300);
-    
+    if(stationName.length >= 3) {
+      setTimeout(() => this.onDebounceElapsed(stationName), 300);
+    }
   }
 
   async onDebounceElapsed(stationName: string): Promise<void> {
