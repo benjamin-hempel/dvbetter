@@ -41,7 +41,14 @@ export class StationPickerComponent implements OnInit {
       return;
     }
 
-    this.matchingStations = (await this.apiService.getStations(stationName)).slice(0, 4);
+    setTimeout(() => this.onDebounceElapsed(stationName), 300);
+    
+  }
+
+  async onDebounceElapsed(stationName: string): Promise<void> {
+    if(stationName === this.stationName.value) {
+      this.matchingStations = (await this.apiService.getStations(stationName)).slice(0, 3);
+    }
   }
 
   onSelect(station: Station): void {
