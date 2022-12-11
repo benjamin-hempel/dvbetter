@@ -1,6 +1,6 @@
 <ion-item [ngClass]="{'clickable': clickable}" lines="none">
   <ion-spinner *ngIf="updating" name="crescent" color="medium"></ion-spinner>
-  <ion-icon *ngIf="!updating" [color]="clickable ? '' : 'medium'" name="timer-outline"></ion-icon>
+  <ion-icon *ngIf="!updating" [color]="clickable ? 'default' : 'medium'" name="timer-outline"></ion-icon>
   &nbsp;
-  <ion-text [color]="clickable ? '' : 'medium'">{{ value > 99 ? '>99' : value }}s</ion-text>
+  <ion-text [color]="clickable ? 'default' : 'medium'">{{ value > 99 ? '>99' : value }}s</ion-text>
 </ion-item>
