@@ -7,10 +7,16 @@ import { DateTimeService } from '../../services/date-time.service';
   styleUrls: ['./timer.component.scss'],
 })
 export class TimerComponent implements OnInit {
-  @Input() start: Date;
+  private _start: Date;
+  
   @Input() update: boolean;
   @Input() clickable: boolean;
   @Input() updating: boolean;
+
+  @Input() set start(start: Date) {
+    this._start = start;
+    this.compute();
+  }
 
   value = 0;
 
@@ -22,6 +28,10 @@ export class TimerComponent implements OnInit {
     this.updateInterval = setInterval(() => {
       this.compute();
     }, 500);
+  }
+
+  get start(): Date {
+    return this._start;
   }
 
   compute(): void {
