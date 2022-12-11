@@ -4,7 +4,7 @@
 </ion-item>
 <ion-text *ngIf="!selectedStation && (stationName.dirty || stationName.touched)" color="danger">
   {{ 'shared.inputs.restraints.station' | translate }}</ion-text>
-<ion-list>
+<ion-list *ngIf="!isUpdating">
   <ion-item *ngFor="let matchingStation of matchingStations" button (click)="onSelect(matchingStation)">
     <ion-label>
       <h2>{{matchingStation.name}}</h2>
@@ -12,3 +12,4 @@
     </ion-label>
   </ion-item>
 </ion-list>
+<app-station-picker-skeleton *ngIf="isUpdating"></app-station-picker-skeleton>

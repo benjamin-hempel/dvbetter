@@ -11,6 +11,7 @@ import { Station } from '../../models/station.model';
 export class StationPickerComponent implements OnInit {
   @Output() stationSelected = new EventEmitter();
 
+  isUpdating = false;
   selectedStation: Station;
   matchingStations: Station[];
 
@@ -47,7 +48,9 @@ export class StationPickerComponent implements OnInit {
 
   async onDebounceElapsed(stationName: string): Promise<void> {
     if(stationName === this.stationName.value) {
+      this.isUpdating = true;
       this.matchingStations = (await this.apiService.getStations(stationName)).slice(0, 3);
+      this.isUpdating = false;
     }
   }
 
