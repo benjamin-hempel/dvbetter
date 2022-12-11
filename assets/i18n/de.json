@@ -34,9 +34,10 @@
         "arrival-times": {
             "now": "jetzt",
             "min": "{{count}} min",
-            "min-ago": "vor {{count}} min"
+            "min-ago": "abgefahren"
         },
         "delays": {
+            "scheduled": "planmäßig",
             "on-time": "pünktlich",
             "late": "{{count}} min zu spät",
             "early": "{{count}} min zu früh",
