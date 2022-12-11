@@ -37,14 +37,12 @@ export class StationPickerComponent implements OnInit {
       this.stationSelected.emit(null);
     }
 
-    if(!stationName) {
+    if(!stationName || stationName.length < 3) {
       this.matchingStations = [];
       return;
     }
 
-    if(stationName.length >= 3) {
-      setTimeout(() => this.onDebounceElapsed(stationName), 300);
-    }
+    setTimeout(() => this.onDebounceElapsed(stationName), 300);
   }
 
   async onDebounceElapsed(stationName: string): Promise<void> {
