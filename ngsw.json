@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1670776462420,
+  "timestamp": 1670777642098,
   "index": "https://benjamin-hempel.github.io/dvbetter/index.html",
   "assetGroups": [
     {
@@ -41,7 +41,7 @@
         "https://benjamin-hempel.github.io/dvbetter/6911.65c97ba4f641b5234b84.js",
         "https://benjamin-hempel.github.io/dvbetter/7089.9253954f1c365ffe158d.js",
         "https://benjamin-hempel.github.io/dvbetter/7110.675143e4fd51b6227bca.js",
-        "https://benjamin-hempel.github.io/dvbetter/7138.596c191854ac8e1611c1.js",
+        "https://benjamin-hempel.github.io/dvbetter/7138.6531a7c3fc60edc654db.js",
         "https://benjamin-hempel.github.io/dvbetter/7162.a3898ec6890a1e6de754.js",
         "https://benjamin-hempel.github.io/dvbetter/7321.5675410003dad275c23e.js",
         "https://benjamin-hempel.github.io/dvbetter/7509.c94c24c862b37c97392b.js",
@@ -61,7 +61,7 @@
         "https://benjamin-hempel.github.io/dvbetter/9072.3874f295afc8b2bded8f.js",
         "https://benjamin-hempel.github.io/dvbetter/9222.47ba04063a046d6b5bc6.js",
         "https://benjamin-hempel.github.io/dvbetter/937.4993794325f25bcb06ae.js",
-        "https://benjamin-hempel.github.io/dvbetter/9409.97537ab33a134b7ea66a.js",
+        "https://benjamin-hempel.github.io/dvbetter/9409.44598f3ce0d5db884098.js",
         "https://benjamin-hempel.github.io/dvbetter/9695.3adc3976003e7fa31b56.js",
         "https://benjamin-hempel.github.io/dvbetter/9921.5c51579fc57a1dd33748.js",
         "https://benjamin-hempel.github.io/dvbetter/common.eacdc124fb9e8077cd5d.js",
@@ -72,7 +72,7 @@
         "https://benjamin-hempel.github.io/dvbetter/polyfills-css-shim.19134de184789717492e.js",
         "https://benjamin-hempel.github.io/dvbetter/polyfills-dom.b1692040b10d141c77d3.js",
         "https://benjamin-hempel.github.io/dvbetter/polyfills.6ef9c054f750aeb5e056.js",
-        "https://benjamin-hempel.github.io/dvbetter/runtime.8886f0fc7d8588fa8d57.js",
+        "https://benjamin-hempel.github.io/dvbetter/runtime.1cdcb49536594ec31754.js",
         "https://benjamin-hempel.github.io/dvbetter/styles.1ffe2dd8000eca28c003.css"
       ],
       "patterns": []
@@ -135,7 +135,7 @@
     "https://benjamin-hempel.github.io/dvbetter/6911.65c97ba4f641b5234b84.js": "8773fd67e9ff9bc53ad90f32280cb836d515943d",
     "https://benjamin-hempel.github.io/dvbetter/7089.9253954f1c365ffe158d.js": "870d9b70e0f92f9836ce772a78867f79f5655ef6",
     "https://benjamin-hempel.github.io/dvbetter/7110.675143e4fd51b6227bca.js": "ad094756fefdd9929116843cf325a08ca72b734d",
-    "https://benjamin-hempel.github.io/dvbetter/7138.596c191854ac8e1611c1.js": "303bdfee1c621fa7562901fcceb7247ad4d55029",
+    "https://benjamin-hempel.github.io/dvbetter/7138.6531a7c3fc60edc654db.js": "a671f490b70b1d7a126d7f7aeb09ec1aa2b60f8f",
     "https://benjamin-hempel.github.io/dvbetter/7162.a3898ec6890a1e6de754.js": "42f3cabc6acc80a43b4f574017b8036a867c28c8",
     "https://benjamin-hempel.github.io/dvbetter/7321.5675410003dad275c23e.js": "524a1c3fe7ca63fbcb0722a0584b21023f4c65f3",
     "https://benjamin-hempel.github.io/dvbetter/7509.c94c24c862b37c97392b.js": "a972776de522656cbde44ef89a5232e9fef7a38c",
@@ -155,7 +155,7 @@
     "https://benjamin-hempel.github.io/dvbetter/9072.3874f295afc8b2bded8f.js": "b0b0e8f7c33fb8b35a7d244ec00d94a27f32ced7",
     "https://benjamin-hempel.github.io/dvbetter/9222.47ba04063a046d6b5bc6.js": "c54a526b26fa213da4356cb8a9bc62ed59b8aa62",
     "https://benjamin-hempel.github.io/dvbetter/937.4993794325f25bcb06ae.js": "401bfee83d9b805f08b35ef84162d8ceac0a3a00",
-    "https://benjamin-hempel.github.io/dvbetter/9409.97537ab33a134b7ea66a.js": "2c84fbf3af7dc57b71a23bcb27653f0249f89242",
+    "https://benjamin-hempel.github.io/dvbetter/9409.44598f3ce0d5db884098.js": "69aab29c76adda2ba5d96f2a1ccd4859de50cec0",
     "https://benjamin-hempel.github.io/dvbetter/9695.3adc3976003e7fa31b56.js": "363e77d96c9f67585fce10db1d6e255ea3be3894",
     "https://benjamin-hempel.github.io/dvbetter/9921.5c51579fc57a1dd33748.js": "d9dbb76943bf5feb073255050685bd43d694b530",
     "https://benjamin-hempel.github.io/dvbetter/assets/i18n/de.json": "2b5717cbfdc79f481c20459b9c6de41c3399c9c0",
@@ -173,14 +173,14 @@
     "https://benjamin-hempel.github.io/dvbetter/assets/plusbus.svg": "cd432efef2345425dbd21e116bd176a42cb0af94",
     "https://benjamin-hempel.github.io/dvbetter/assets/unknown-mode.svg": "1f56b3b6ddf062ef187aa2f5068f189297380d98",
     "https://benjamin-hempel.github.io/dvbetter/common.eacdc124fb9e8077cd5d.js": "2dc4930c87e752e5f7deda7635a939cf75554f58",
-    "https://benjamin-hempel.github.io/dvbetter/index.html": "6f4b724d769d773b2a77f458195a7df6aed550e5",
+    "https://benjamin-hempel.github.io/dvbetter/index.html": "41d3fdccac8326acc9d4566bd97dc744d426fc3f",
     "https://benjamin-hempel.github.io/dvbetter/main.db7ca5a81ca8d85e0c58.js": "bd4e44197e6c6be411f00a2bc86c95741d8d353a",
     "https://benjamin-hempel.github.io/dvbetter/manifest.webmanifest": "d6cd09f6f5b0b6bab135741988710b45e105bbb2",
     "https://benjamin-hempel.github.io/dvbetter/polyfills-core-js.35d638dd52e7fca2fba2.js": "d929f15279597abb20f0dbb4bb4c868b2c381e45",
     "https://benjamin-hempel.github.io/dvbetter/polyfills-css-shim.19134de184789717492e.js": "d3f4caabdf987df5e7eb1f825f5a8c54b6b0a4b6",
     "https://benjamin-hempel.github.io/dvbetter/polyfills-dom.b1692040b10d141c77d3.js": "abd5a38aad14413e744ca011da00cfbc4ac01f54",
     "https://benjamin-hempel.github.io/dvbetter/polyfills.6ef9c054f750aeb5e056.js": "bac84b1b852436e8ee020d5bc307b33ae73ea1f3",
-    "https://benjamin-hempel.github.io/dvbetter/runtime.8886f0fc7d8588fa8d57.js": "0758fbaf7cb8b77433357005b2c679b8f69540f1",
+    "https://benjamin-hempel.github.io/dvbetter/runtime.1cdcb49536594ec31754.js": "3f77d8178bffd3a39965fdaf6b8aea5b744112b0",
     "https://benjamin-hempel.github.io/dvbetter/styles.1ffe2dd8000eca28c003.css": "bcab62ec63b04139a113e1cd88530acaafe6cec4"
   },
   "navigationUrls": [
