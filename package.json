@@ -30,7 +30,7 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "@types/pouchdb": "^6.4.0",
-    "angular-cli-ghpages": "^1.0.0-rc.2",
+    "angular-cli-ghpages": "^1.0.5",
     "date-fns": "^2.23.0",
     "dvbjs": "^6.0.1",
     "pouchdb": "^7.2.2",

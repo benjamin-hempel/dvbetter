@@ -3289,21 +3289,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"angular-cli-ghpages@npm:^1.0.0-rc.2":
-  version: 1.0.0-rc.2
-  resolution: "angular-cli-ghpages@npm:1.0.0-rc.2"
+"angular-cli-ghpages@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "angular-cli-ghpages@npm:1.0.5"
   dependencies:
     commander: ^3.0.0-0
     fs-extra: ^9.0.1
     gh-pages: ^3.1.0
   peerDependencies:
-    "@angular-devkit/architect": ">= 0.900 < 0.1300"
-    "@angular-devkit/core": ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0
-    "@angular-devkit/schematics": ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0
+    "@angular-devkit/architect": ">= 0.900 < 0.1600"
+    "@angular-devkit/core": ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
+    "@angular-devkit/schematics": ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
   bin:
     angular-cli-ghpages: angular-cli-ghpages
     ngh: angular-cli-ghpages
-  checksum: ecf753936e01f12ce8f6f7ea723a7745efbef7b6d1e4b2be50782169b791a94a1c07f19ac91ef22c8dab8b81fd6a6a5b117168374c1dafe285b2ea0faa00120b
+  checksum: 5f6ad0548f36d18519464cb2aa9eadbc8128bcce72bafe78debbd8d9ca1fc2c78157931e141089fb507469a6f8b6bb7f30795120595b17611c7423651b691692
   languageName: node
   linkType: hard
 
@@ -5489,7 +5489,7 @@ __metadata:
     "@types/pouchdb": ^6.4.0
     "@typescript-eslint/eslint-plugin": 4.16.1
     "@typescript-eslint/parser": 4.16.1
-    angular-cli-ghpages: ^1.0.0-rc.2
+    angular-cli-ghpages: ^1.0.5
     date-fns: ^2.23.0
     dvbjs: ^6.0.1
     eslint: ^7.6.0
