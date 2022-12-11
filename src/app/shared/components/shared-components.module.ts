@@ -4,7 +4,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { AppTitleComponent } from './app-title/app-title.component';
 import { StationPickerComponent } from './station-picker/station-picker.component';
-import { StationPickerSkeletonComponent } from './station-picker/skeleton/station-picker-skeleton/station-picker-skeleton.component';
+import { StationPickerSkeletonComponent } from './station-picker/skeleton/station-picker-skeleton.component';
 import { TimerComponent } from './timer/timer.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,8 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppTitleComponent,
-    StationPickerComponent,
     StationPickerSkeletonComponent,
+    StationPickerComponent,
     TimerComponent
   ],
   imports: [
@@ -26,7 +26,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   exports: [
     AppTitleComponent,
     StationPickerComponent,
-    StationPickerSkeletonComponent,
     TimerComponent
   ]
 })
